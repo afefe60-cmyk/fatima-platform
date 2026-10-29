@@ -1995,15 +1995,15 @@ footer {
 </header>
 
 <div class="tabs-nav">
-  <button class="tab-btn active" data-tab="cards" id="tab-cards">🎴 Flashcards (البطاقات)</button>
-  <button class="tab-btn" data-tab="cinema" id="tab-cinema">🎬 Phonics Cinema (سينما الحروف)</button>
-  <button class="tab-btn" data-tab="blending" id="tab-blending">🧪 Blending Lab (دمج الأصوات)</button>
-  <button class="tab-btn" data-tab="tracing" id="tab-tracing">✏️ Smart Tracing (سبورة الخط)</button>
-  <button class="tab-btn" data-tab="sentences" id="tab-sentences">🎯 Sentence Builder (بناء الجملة)</button>
-  <button class="tab-btn" data-tab="builder" id="tab-builder">🧩 Word Builder (ركّب الكلمة)</button>
-  <button class="tab-btn" data-tab="quiz" id="tab-quiz">🏆 Picture Quiz (تحدي الصور)</button>
-  <button class="tab-btn" data-tab="gallery" id="tab-gallery">🖼️ Gallery (معرض الصور)</button>
-  <button class="tab-btn" data-tab="printbook" id="tab-printbook">🖨️ Print Workbook (كراسة الخط)</button>
+  <button class="tab-btn active" data-tab="cards" id="tab-cards" onclick="switchTab('cards')">🎴 Flashcards (البطاقات)</button>
+  <button class="tab-btn" data-tab="cinema" id="tab-cinema" onclick="switchTab('cinema')">🎬 Phonics Cinema (سينما الحروف)</button>
+  <button class="tab-btn" data-tab="blending" id="tab-blending" onclick="switchTab('blending')">🧪 Blending Lab (دمج الأصوات)</button>
+  <button class="tab-btn" data-tab="tracing" id="tab-tracing" onclick="switchTab('tracing')">✏️ Smart Tracing (سبورة الخط)</button>
+  <button class="tab-btn" data-tab="sentences" id="tab-sentences" onclick="switchTab('sentences')">🎯 Sentence Builder (بناء الجملة)</button>
+  <button class="tab-btn" data-tab="builder" id="tab-builder" onclick="switchTab('builder')">🧩 Word Builder (ركّب الكلمة)</button>
+  <button class="tab-btn" data-tab="quiz" id="tab-quiz" onclick="switchTab('quiz')">🏆 Picture Quiz (تحدي الصور)</button>
+  <button class="tab-btn" data-tab="gallery" id="tab-gallery" onclick="switchTab('gallery')">🖼️ Gallery (معرض الصور)</button>
+  <button class="tab-btn" data-tab="printbook" id="tab-printbook" onclick="switchTab('printbook')">🖨️ Print Workbook (كراسة الخط)</button>
 </div>
 
 <main>
@@ -2187,7 +2187,7 @@ footer {
           <span class="light green"></span>
           <span class="theater-title-text">✨ Letters & Phonics Sounds Studio ✨</span>
         </div>
-        <video id="phonics-theater-video" src="videos/alphabet_phonics.mp4" playsinline controls preload="metadata" poster="og_fatima_preview.jpg"></video>
+        <video id="phonics-theater-video" src="videos/alphabet_phonics.mp4" playsinline controls preload="auto" poster="og_fatima_preview.jpg" style="cursor:pointer;" onclick="toggleCinemaVideo()"></video>
       </div>
 
       <!-- Cinema Controls -->
@@ -3173,6 +3173,12 @@ function switchTab(tabName) {
     btn.classList.toggle('active', btn.getAttribute('data-tab') === tabName);
   });
   document.querySelectorAll('.view-panel').forEach(panel => panel.style.display = 'none');
+
+  // Only show options-bar on Flashcards tab
+  const optBar = document.querySelector('.options-bar');
+  if (optBar) {
+    optBar.style.display = (tabName === 'cards') ? 'flex' : 'none';
+  }
   
   // Pause cinema video if switching away
   const vid = $('phonics-theater-video');
@@ -3317,11 +3323,13 @@ $('btn-prev').onclick = () => changeCard(-1);
 $('btn-next').onclick = () => changeCard(1);
 $('btn-shuffle').onclick = shuffleDeck;
 
-// Tabs
-$('tab-cards').onclick = () => switchTab('cards');
-$('tab-builder').onclick = () => switchTab('builder');
-$('tab-quiz').onclick = () => switchTab('quiz');
-$('tab-gallery').onclick = () => switchTab('gallery');
+// Tabs: bind all buttons dynamically
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.onclick = () => {
+    const tab = btn.getAttribute('data-tab');
+    if (tab) switchTab(tab);
+  };
+});
 
 // Categories
 document.querySelectorAll('.cat-pill').forEach(btn => {
