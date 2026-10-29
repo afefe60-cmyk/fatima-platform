@@ -160,58 +160,93 @@ header p {
 }
 
 /* Nav Tabs */
-.tabs-nav {
-  max-width: 960px;
-  margin: 14px auto 8px;
-  padding: 8px 12px;
-  display: flex;
-  gap: 8px;
-  justify-content: flex-start;
-  align-items: center;
-  overflow-x: auto;
-  white-space: nowrap;
-  flex-wrap: nowrap;
-  scrollbar-width: thin;
-  scrollbar-color: #cbd5e1 transparent;
-  -webkit-overflow-scrolling: touch;
+.main-pillars-nav {
+  max-width: 920px;
+  margin: 14px auto 14px;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
   background: #ffffff;
-  border-radius: 18px;
-  border: 1.5px solid #e2e8f0;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+  border-radius: 22px;
+  border: 2px solid #e2e8f0;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.04);
 }
-.tabs-nav::-webkit-scrollbar {
-  height: 4px;
+@media (max-width: 680px) {
+  .main-pillars-nav {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 6px;
+  }
 }
-.tabs-nav::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
-}
-.tab-btn {
-  flex-shrink: 0;
+.pillar-btn {
   background: #f8fafc;
   border: 1.5px solid #e2e8f0;
-  color: #475569;
-  padding: 8px 16px;
-  border-radius: 12px;
-  font-weight: 700;
-  font-size: 14px;
-  cursor: pointer;
-  display: inline-flex;
+  border-radius: 16px;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  transition: all 0.2s ease;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
   user-select: none;
 }
-.tab-btn:hover {
-  border-color: #93c5fd;
-  color: var(--blue);
-  background: #eff6ff;
+.pillar-btn .p-icon {
+  font-size: 26px;
 }
-.tab-btn.active {
-  background: var(--blue);
-  border-color: var(--blue);
-  color: white;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.28);
+.pillar-btn .p-text {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #334155;
+  white-space: nowrap;
+}
+.pillar-btn:hover {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  transform: translateY(-2px);
+}
+.pillar-btn.active {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border-color: transparent;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+}
+.pillar-btn.active .p-text {
+  color: #ffffff;
+}
+
+/* Sub-Nav Bars inside Pillars */
+.sub-nav-bar {
+  max-width: 920px;
+  margin: 0 auto 16px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.sub-tab-btn {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  color: #475569;
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  user-select: none;
+}
+.sub-tab-btn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+.sub-tab-btn.active {
+  background: #0f172a;
+  border-color: #0f172a;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
 }
 
 /* Main Container */
@@ -2063,20 +2098,43 @@ footer {
   </div>
 </header>
 
-<div class="tabs-nav">
-  <button class="tab-btn active" data-tab="cards" id="tab-cards" onclick="switchTab('cards')">🎴 Flashcards (البطاقات)</button>
-  <button class="tab-btn" data-tab="cinema" id="tab-cinema" onclick="switchTab('cinema')">🎬 Phonics Cinema (سينما الحروف)</button>
-  <button class="tab-btn" data-tab="blending" id="tab-blending" onclick="switchTab('blending')">🧪 Blending Lab (دمج الأصوات)</button>
-  <button class="tab-btn" data-tab="tracing" id="tab-tracing" onclick="switchTab('tracing')">✏️ Smart Tracing (سبورة الخط)</button>
-  <button class="tab-btn" data-tab="sentences" id="tab-sentences" onclick="switchTab('sentences')">🎯 Sentence Builder (بناء الجملة)</button>
-  <button class="tab-btn" data-tab="builder" id="tab-builder" onclick="switchTab('builder')">🧩 Word Builder (ركّب الكلمة)</button>
-  <button class="tab-btn" data-tab="quiz" id="tab-quiz" onclick="switchTab('quiz')">🏆 Picture Quiz (تحدي الصور)</button>
-  <button class="tab-btn" data-tab="printbook" id="tab-printbook" onclick="switchTab('printbook')">🖨️ Print Workbook (كراسة الخط)</button>
-  <button class="tab-btn" data-tab="gallery" id="tab-gallery" onclick="switchTab('gallery')">🖼️ Gallery (المعرض)</button>
+<!-- 4 Main Consolidated Pillars -->
+<div class="main-pillars-nav">
+  <button class="pillar-btn active" id="pillar-cards" onclick="switchPillar('cards')">
+    <span class="p-icon">🎴</span>
+    <span class="p-text">الأصوات والدمج</span>
+  </button>
+  <button class="pillar-btn" id="pillar-cinema" onclick="switchPillar('cinema')">
+    <span class="p-icon">🎬</span>
+    <span class="p-text">سينما الحروف</span>
+  </button>
+  <button class="pillar-btn" id="pillar-writing" onclick="switchPillar('writing')">
+    <span class="p-icon">✏️</span>
+    <span class="p-text">الخط والكتابة</span>
+  </button>
+  <button class="pillar-btn" id="pillar-printbook" onclick="switchPillar('printbook')">
+    <span class="p-icon">🖨️</span>
+    <span class="p-text">كراسة التمارين A4</span>
+  </button>
 </div>
 
 <main>
-  <!-- Category & Audio Bar -->
+  <!-- Sounds & Blending Sub-Nav -->
+  <div class="sub-nav-bar" id="sounds-sub-nav">
+    <button class="sub-tab-btn active" onclick="switchSoundSub('cards', this)">🎴 البطاقات (78)</button>
+    <button class="sub-tab-btn" onclick="switchSoundSub('blending', this)">🧪 معمل الدمج CVC</button>
+    <button class="sub-tab-btn" onclick="switchSoundSub('builder', this)">🧩 ركّب الكلمة</button>
+    <button class="sub-tab-btn" onclick="switchSoundSub('quiz', this)">🏆 تحدي الصور</button>
+    <button class="sub-tab-btn" onclick="switchSoundSub('gallery', this)">🖼️ المعرض</button>
+  </div>
+
+  <!-- Writing & Tracing Sub-Nav -->
+  <div class="sub-nav-bar" id="writing-sub-nav" style="display:none;">
+    <button class="sub-tab-btn active" onclick="switchWritingSub('tracing', this)">✏️ سبورة السطور الأربعة (Canvas)</button>
+    <button class="sub-tab-btn" onclick="switchWritingSub('sentences', this)">🎯 بناء الجمل ومسافة الإصبع</button>
+  </div>
+
+  <!-- Category & Audio Bar (Only visible inside Flashcards) -->
   <div class="options-bar">
     <div class="category-pills" id="category-pills">
       <button class="cat-pill active" data-cat="All" id="cat-all">All (71)</button>
@@ -4218,6 +4276,137 @@ window.addEventListener('DOMContentLoaded', () => {
     }, 200);
   }
 });
+
+
+// ================================================================
+// 🌟 4 PILLARS & CONSOLIDATED NAVIGATION SYSTEM
+// ================================================================
+let activePillar = 'cards';
+let activeSoundSub = 'cards';
+let activeWritingSub = 'tracing';
+
+function switchPillar(pillar) {
+  playSoundFX('pop');
+  activePillar = pillar;
+  
+  // Update pillar buttons active state
+  document.querySelectorAll('.pillar-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.id === `pillar-${pillar}`);
+  });
+
+  const soundsNav = $('sounds-sub-nav');
+  const writingNav = $('writing-sub-nav');
+  const optBar = document.querySelector('.options-bar');
+
+  // Pause cinema video if leaving cinema
+  const vid = $('phonics-theater-video');
+  if (vid && pillar !== 'cinema' && !vid.paused) {
+    vid.pause();
+  }
+
+  // Hide all view panels
+  document.querySelectorAll('.view-panel').forEach(panel => panel.style.display = 'none');
+
+  if (pillar === 'cards') {
+    if (soundsNav) soundsNav.style.display = 'flex';
+    if (writingNav) writingNav.style.display = 'none';
+    switchSoundSub(activeSoundSub);
+  } else if (pillar === 'cinema') {
+    if (soundsNav) soundsNav.style.display = 'none';
+    if (writingNav) writingNav.style.display = 'none';
+    if (optBar) optBar.style.display = 'none';
+    $('view-cinema').style.display = 'block';
+    initCinemaView();
+  } else if (pillar === 'writing') {
+    if (soundsNav) soundsNav.style.display = 'none';
+    if (writingNav) writingNav.style.display = 'flex';
+    if (optBar) optBar.style.display = 'none';
+    switchWritingSub(activeWritingSub);
+  } else if (pillar === 'printbook') {
+    if (soundsNav) soundsNav.style.display = 'none';
+    if (writingNav) writingNav.style.display = 'none';
+    if (optBar) optBar.style.display = 'none';
+    $('view-printbook').style.display = 'block';
+  }
+}
+
+function switchSoundSub(sub, el) {
+  playSoundFX('pop');
+  activeSoundSub = sub;
+  
+  // Highlight sub-tab button
+  if (el) {
+    document.querySelectorAll('#sounds-sub-nav .sub-tab-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Hide all views
+  document.querySelectorAll('.view-panel').forEach(panel => panel.style.display = 'none');
+
+  const optBar = document.querySelector('.options-bar');
+  if (optBar) {
+    optBar.style.display = (sub === 'cards') ? 'flex' : 'none';
+  }
+
+  if (sub === 'cards') {
+    $('view-cards').style.display = 'block';
+    renderCard();
+  } else if (sub === 'blending') {
+    $('view-blending').style.display = 'block';
+    initBlendingLab();
+  } else if (sub === 'builder') {
+    $('view-builder').style.display = 'block';
+    initBuilderGame();
+  } else if (sub === 'quiz') {
+    $('view-quiz').style.display = 'block';
+    initQuizQuestion();
+  } else if (sub === 'gallery') {
+    $('view-gallery').style.display = 'grid';
+    renderGallery();
+  }
+}
+
+function switchWritingSub(sub, el) {
+  playSoundFX('pop');
+  activeWritingSub = sub;
+
+  // Highlight sub-tab button
+  if (el) {
+    document.querySelectorAll('#writing-sub-nav .sub-tab-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Hide all views
+  document.querySelectorAll('.view-panel').forEach(panel => panel.style.display = 'none');
+
+  const optBar = document.querySelector('.options-bar');
+  if (optBar) optBar.style.display = 'none';
+
+  if (sub === 'tracing') {
+    $('view-tracing').style.display = 'block';
+    initTracingBoard();
+  } else if (sub === 'sentences') {
+    $('view-sentences').style.display = 'block';
+    initSentenceBuilder();
+  }
+}
+
+// Map switchTab to pillars for backward compatibility and URL params
+function switchTab(tabName) {
+  if (tabName === 'cinema') {
+    switchPillar('cinema');
+  } else if (tabName === 'cards' || tabName === 'blending' || tabName === 'builder' || tabName === 'quiz' || tabName === 'gallery') {
+    switchPillar('cards');
+    const targetBtn = Array.from(document.querySelectorAll('#sounds-sub-nav .sub-tab-btn')).find(b => b.getAttribute('onclick') && b.getAttribute('onclick').includes(tabName));
+    switchSoundSub(tabName, targetBtn);
+  } else if (tabName === 'tracing' || tabName === 'sentences') {
+    switchPillar('writing');
+    const targetBtn = Array.from(document.querySelectorAll('#writing-sub-nav .sub-tab-btn')).find(b => b.getAttribute('onclick') && b.getAttribute('onclick').includes(tabName));
+    switchWritingSub(tabName, targetBtn);
+  } else if (tabName === 'printbook') {
+    switchPillar('printbook');
+  }
+}
 
 </script>
 
