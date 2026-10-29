@@ -1168,6 +1168,735 @@ footer {
 
 
 
+
+/* ========================================================
+   CINEMA, BLENDING, TRACING, SENTENCES & WORKBOOK STYLES
+   ======================================================== */
+
+/* Cinema View */
+.cinema-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 10px;
+}
+.theater-marquee {
+  text-align: center;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  color: white;
+  padding: 24px 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(30, 27, 75, 0.2);
+}
+.marquee-badge {
+  display: inline-block;
+  background: #f59e0b;
+  color: #1e1b4b;
+  font-weight: 800;
+  padding: 6px 18px;
+  border-radius: 25px;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+.theater-marquee h2 {
+  margin: 0 0 8px;
+  font-size: clamp(20px, 4vw, 26px);
+  color: #fef08a;
+}
+.theater-marquee p {
+  margin: 0;
+  font-size: 15px;
+  color: #c7d2fe;
+}
+.video-frame-box {
+  background: #0f172a;
+  border-radius: 24px;
+  padding: 16px;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.35);
+  border: 4px solid #3b82f6;
+  position: relative;
+  overflow: hidden;
+}
+.video-lights-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.video-lights-bar .light {
+  width: 12px; height: 12px; border-radius: 50%; display: inline-block;
+}
+.video-lights-bar .light.red { background: #ef4444; }
+.video-lights-bar .light.yellow { background: #f59e0b; }
+.video-lights-bar .light.green { background: #10b981; }
+.theater-title-text {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 13px;
+  color: #93c5fd;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+#phonics-theater-video {
+  width: 100%;
+  max-height: 480px;
+  border-radius: 16px;
+  display: block;
+  background: #000;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+.cinema-ctrl-bar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+.cinema-btn {
+  background: #ffffff;
+  color: #1e293b;
+  border: 2px solid #cbd5e1;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+.cinema-btn:hover {
+  transform: translateY(-2px);
+  border-color: #3b82f6;
+  color: #2563eb;
+}
+.cinema-btn.primary {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  border-color: transparent;
+}
+.cinema-tips-card {
+  margin-top: 30px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  border: 2px solid #e2e8f0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+}
+.cinema-tips-card h3 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  color: #1e1b4b;
+}
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+.tip-pill {
+  background: #f8fafc;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border-left: 4px solid #3b82f6;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #334155;
+}
+
+/* Blending Lab View */
+.blending-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 10px;
+}
+.blending-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.blending-badge {
+  display: inline-block;
+  background: #ecfdf5;
+  color: #059669;
+  font-weight: 800;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border: 1px solid #a7f3d0;
+}
+.cvc-families-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.family-pill-btn {
+  background: #ffffff;
+  border: 2px solid #cbd5e1;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 800;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.family-pill-btn.active, .family-pill-btn:hover {
+  background: #059669;
+  color: white;
+  border-color: #059669;
+}
+.blending-machine-box {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+  border: 3px solid #10b981;
+  border-radius: 24px;
+  padding: 30px 20px;
+  box-shadow: 0 16px 36px rgba(16, 185, 129, 0.12);
+  text-align: center;
+  margin-bottom: 30px;
+}
+.machine-stage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 25px;
+  direction: ltr !important;
+}
+.sound-slot-box {
+  width: 95px;
+  height: 110px;
+  background: white;
+  border: 3px solid #3b82f6;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 18px rgba(59, 130, 246, 0.15);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.sound-slot-box:hover {
+  transform: translateY(-4px) scale(1.05);
+  border-color: #2563eb;
+}
+.sound-slot-box.pulse {
+  animation: slotPulse 0.4s ease;
+}
+@keyframes slotPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); border-color: #f59e0b; }
+  100% { transform: scale(1); }
+}
+.sound-label {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 700;
+}
+.sound-letter {
+  font-size: 38px;
+  font-weight: 900;
+  color: #1e1b4b;
+  line-height: 1.1;
+}
+.sound-phonetic {
+  font-size: 14px;
+  color: #2563eb;
+  font-weight: 700;
+}
+.plus-symbol {
+  font-size: 26px;
+  font-weight: 900;
+  color: #10b981;
+}
+.blend-action-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.blend-magic-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 35px;
+  font-size: 17px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+  transition: all 0.2s ease;
+}
+.blend-magic-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(16, 185, 129, 0.4);
+}
+.next-word-btn {
+  background: #f1f5f9;
+  color: #334155;
+  border: 2px solid #cbd5e1;
+  padding: 14px 24px;
+  border-radius: 35px;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.blend-result-box {
+  margin-top: 25px;
+  padding: 20px;
+  background: white;
+  border-radius: 18px;
+  border: 2px dashed #10b981;
+  animation: fadeIn 0.4s ease;
+}
+.result-word-display {
+  font-size: 42px;
+  font-weight: 900;
+  color: #0f172a;
+  letter-spacing: 2px;
+}
+.result-pic {
+  font-size: 55px;
+  margin: 6px 0;
+}
+.result-ar-meaning {
+  font-size: 18px;
+  color: #059669;
+  font-weight: 700;
+}
+.digraphs-section {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  border: 2px solid #e2e8f0;
+}
+.digraphs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.digraph-card {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.digraph-card:hover {
+  border-color: #8b5cf6;
+  background: #f5f3ff;
+  transform: translateY(-3px);
+}
+.digraph-letters {
+  font-size: 26px;
+  font-weight: 900;
+  color: #7c3aed;
+}
+.digraph-sound {
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+.digraph-example {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+/* Tracing & 4-Lines View */
+.tracing-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 10px;
+}
+.tracing-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.tracing-badge {
+  display: inline-block;
+  background: #fdf2f8;
+  color: #db2777;
+  font-weight: 800;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border: 1px solid #fbcfe8;
+}
+.lines-legend-card {
+  background: white;
+  border-radius: 18px;
+  padding: 18px;
+  border: 2px solid #e2e8f0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.legend-item {
+  font-size: 13px;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.line-dot {
+  width: 10px; height: 10px; border-radius: 50%; display: inline-block;
+}
+.line-dot.sky { background: #3b82f6; }
+.line-dot.plane { background: #ef4444; }
+.line-dot.grass { background: #10b981; }
+.line-dot.worm { background: #8b5cf6; }
+
+.letter-picker-row {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 8px 4px 16px;
+  margin-bottom: 16px;
+  scrollbar-width: thin;
+}
+.letter-pill-btn {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: white;
+  border: 2px solid #cbd5e1;
+  font-size: 16px;
+  font-weight: 800;
+  color: #1e293b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.letter-pill-btn.active, .letter-pill-btn:hover {
+  background: #db2777;
+  color: white;
+  border-color: #db2777;
+}
+
+.canvas-board-wrapper {
+  background: white;
+  border-radius: 24px;
+  border: 3px solid #f43f5e;
+  padding: 20px;
+  box-shadow: 0 16px 36px rgba(244, 63, 94, 0.1);
+  text-align: center;
+}
+.canvas-meta-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.letter-badge-info {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e1b4b;
+}
+.brush-colors {
+  display: flex;
+  gap: 8px;
+}
+.color-dot {
+  width: 26px; height: 26px; border-radius: 50%; cursor: pointer; border: 3px solid transparent; transition: all 0.2s ease;
+}
+.color-dot.active {
+  border-color: #0f172a;
+  transform: scale(1.15);
+}
+.canvas-relative-container {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  border-radius: 18px;
+  border: 2px solid #e2e8f0;
+  background: #fff;
+  overflow: hidden;
+  touch-action: none;
+}
+#tracing-canvas {
+  width: 100%;
+  height: 320px;
+  display: block;
+  cursor: crosshair;
+}
+.tracing-ctrl-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+.trace-btn {
+  padding: 12px 22px;
+  border-radius: 30px;
+  font-weight: 800;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.trace-btn.clear { background: #f1f5f9; color: #475569; }
+.trace-btn.sound { background: #eff6ff; color: #2563eb; }
+.trace-btn.success { background: linear-gradient(135deg, #10b981, #059669); color: white; box-shadow: 0 6px 18px rgba(16, 185, 129, 0.25); }
+
+/* Sentence Builder View */
+.sentences-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 10px;
+}
+.sentences-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.sentences-badge {
+  display: inline-block;
+  background: #f5f3ff;
+  color: #7c3aed;
+  font-weight: 800;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd6fe;
+}
+.sentence-rules-banner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 25px;
+}
+.rule-box {
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+}
+.rule-box.highlight {
+  border-color: #8b5cf6;
+  background: #faf5ff;
+}
+.rule-icon { font-size: 28px; display: block; margin-bottom: 6px; }
+.rule-box h4 { margin: 0 0 4px; font-size: 15px; color: #1e1b4b; }
+.rule-box p { margin: 0; font-size: 13px; color: #64748b; }
+
+.sentence-game-card {
+  background: white;
+  border-radius: 24px;
+  border: 3px solid #7c3aed;
+  padding: 30px 20px;
+  box-shadow: 0 16px 36px rgba(124, 58, 237, 0.12);
+  text-align: center;
+}
+.stage-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-weight: 800;
+  color: #64748b;
+  font-size: 14px;
+}
+.sentence-prompt-arabic {
+  font-size: 19px;
+  font-weight: 800;
+  color: #1e1b4b;
+  margin-bottom: 25px;
+}
+.sentence-slots-area {
+  min-height: 90px;
+  background: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  border-radius: 18px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+  direction: ltr !important;
+}
+.finger-space-indicator {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  color: #8b5cf6;
+  font-size: 11px;
+  font-weight: 700;
+  opacity: 0.7;
+}
+.sentence-word-tile {
+  background: white;
+  border: 2px solid #7c3aed;
+  border-radius: 14px;
+  padding: 10px 18px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #1e1b4b;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(124, 58, 237, 0.15);
+  transition: all 0.2s ease;
+  user-select: none;
+}
+.sentence-word-tile:hover {
+  transform: translateY(-2px);
+  background: #f5f3ff;
+}
+.sentence-words-pool {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 25px;
+  direction: ltr !important;
+}
+.sentence-feedback-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+.sent-btn {
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 800;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+}
+.sent-btn.reset { background: #f1f5f9; color: #475569; }
+.sent-btn.next { background: linear-gradient(135deg, #10b981, #059669); color: white; }
+
+/* Printable Workbook View */
+.printbook-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 10px;
+}
+.printbook-header {
+  text-align: center;
+  margin-bottom: 25px;
+  background: linear-gradient(135deg, #312e81 0%, #4338ca 100%);
+  color: white;
+  padding: 25px 20px;
+  border-radius: 20px;
+}
+.printbook-badge {
+  display: inline-block;
+  background: #fbbf24;
+  color: #1e1b4b;
+  font-weight: 800;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+.print-trigger-btn {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 35px;
+  font-size: 17px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+  margin-top: 15px;
+  transition: all 0.2s ease;
+}
+.print-trigger-btn:hover {
+  transform: translateY(-2px);
+  background: #059669;
+}
+.workbook-sheets-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.printable-sheet {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border: 1px solid #e2e8f0;
+  min-height: 520px;
+  box-sizing: border-box;
+}
+.sheet-cover {
+  text-align: center;
+  border: 6px double #4338ca;
+  background: #faf5ff;
+}
+.cover-crown { font-size: 55px; margin-bottom: 10px; }
+.cover-title-ar { font-size: 28px; color: #312e81; margin: 0 0 6px; }
+.cover-title-en { font-size: 20px; color: #4338ca; margin: 0 0 20px; }
+.cover-avatar-box { margin: 20px auto; width: 130px; height: 130px; border-radius: 50%; overflow: hidden; border: 4px solid #f59e0b; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+.cover-avatar-img { width: 100%; height: 100%; object-fit: cover; }
+.cover-meta-grid { max-width: 480px; margin: 25px auto; text-align: right; background: white; padding: 20px; border-radius: 14px; border: 1px solid #cbd5e1; }
+.meta-row { font-size: 15px; margin-bottom: 8px; color: #1e293b; }
+.cover-badge-footer { font-weight: 800; color: #6366f1; margin-top: 25px; }
+
+.sheet-header-small { display: flex; justify-content: space-between; border-bottom: 2px solid #cbd5e1; padding-bottom: 8px; margin-bottom: 20px; font-size: 13px; font-weight: 700; color: #64748b; }
+.sheet-title { font-size: 20px; color: #1e1b4b; margin: 0 0 20px; }
+.lines-diagram-print { border: 2px solid #e2e8f0; border-radius: 12px; padding: 15px; background: #fdfefe; margin-bottom: 25px; }
+.print-rule-line { height: 28px; position: relative; border-bottom: 2px solid #e2e8f0; }
+.print-rule-line.sky-line { border-bottom-color: #3b82f6; }
+.print-rule-line.plane-line { border-bottom: 2px dashed #ef4444; }
+.print-rule-line.grass-line { border-bottom: 3px solid #10b981; }
+.print-rule-line.ground-line { border-bottom: 2px solid #8b5cf6; }
+.line-tag { position: absolute; right: 10px; top: 2px; font-size: 11px; font-weight: 700; }
+
+.sheet-categories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.sheet-cat-box { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 14px; text-align: center; }
+.sheet-cat-box h4 { margin: 0 0 6px; font-size: 14px; color: #1e1b4b; }
+.sheet-cat-box p { margin: 0 0 10px; font-size: 12px; color: #64748b; }
+.letters-sample { font-size: 18px; font-weight: 900; color: #2563eb; letter-spacing: 2px; }
+
+.print-fourlines {
+  height: 48px;
+  border-bottom: 2px solid #10b981;
+  border-top: 1px solid #3b82f6;
+  position: relative;
+  margin-bottom: 18px;
+  background: linear-gradient(to bottom, transparent 48%, rgba(239, 68, 68, 0.4) 50%, transparent 52%);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  direction: ltr !important;
+}
+.letter-lead { font-size: 24px; font-weight: 900; color: #1e1b4b; margin-right: 20px; min-width: 45px; }
+.dotted-sample { font-size: 22px; font-weight: 600; color: #94a3b8; letter-spacing: 3px; font-family: 'Courier New', monospace; }
+.print-space-divider { font-weight: 800; color: #7c3aed; margin: 25px 0 12px; font-size: 15px; }
+
+/* PRINT MEDIA QUERY FOR CLEAN A4 SHEETS */
+@media print {
+  body * { visibility: hidden !important; }
+  header, .tabs-nav, .options-bar, footer, .toast-msg, .printbook-header button { display: none !important; }
+  #view-printbook, #view-printbook * { visibility: visible !important; }
+  #view-printbook { position: absolute; left: 0; top: 0; width: 100% !important; margin: 0 !important; padding: 0 !important; display: block !important; }
+  .printable-sheet {
+    page-break-after: always !important;
+    break-after: page !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 20mm !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    box-sizing: border-box !important;
+  }
+}
+
 </style>
   <!-- PWA & Mobile Web App Meta -->
   <link rel="manifest" href="manifest.json">
@@ -1267,9 +1996,14 @@ footer {
 
 <div class="tabs-nav">
   <button class="tab-btn active" data-tab="cards" id="tab-cards">🎴 Flashcards (البطاقات)</button>
+  <button class="tab-btn" data-tab="cinema" id="tab-cinema">🎬 Phonics Cinema (سينما الحروف)</button>
+  <button class="tab-btn" data-tab="blending" id="tab-blending">🧪 Blending Lab (دمج الأصوات)</button>
+  <button class="tab-btn" data-tab="tracing" id="tab-tracing">✏️ Smart Tracing (سبورة الخط)</button>
+  <button class="tab-btn" data-tab="sentences" id="tab-sentences">🎯 Sentence Builder (بناء الجملة)</button>
   <button class="tab-btn" data-tab="builder" id="tab-builder">🧩 Word Builder (ركّب الكلمة)</button>
-  <button class="tab-btn" data-tab="quiz" id="tab-quiz">🎯 Picture Quiz (تحدي الصور)</button>
-  <button class="tab-btn" data-tab="gallery" id="tab-gallery">🖼️ Picture Board (معرض الصور)</button>
+  <button class="tab-btn" data-tab="quiz" id="tab-quiz">🏆 Picture Quiz (تحدي الصور)</button>
+  <button class="tab-btn" data-tab="gallery" id="tab-gallery">🖼️ Gallery (معرض الصور)</button>
+  <button class="tab-btn" data-tab="printbook" id="tab-printbook">🖨️ Print Workbook (كراسة الخط)</button>
 </div>
 
 <main>
@@ -1436,6 +2170,314 @@ footer {
       <!-- 71 cards injected here -->
     </div>
   </div>
+
+  <!-- ================= VIEW 1: PHONICS CINEMA ================= -->
+  <div id="view-cinema" class="view-panel" style="display:none">
+    <div class="cinema-container">
+      <div class="theater-marquee">
+        <div class="marquee-badge">🎬 سينما فاطمة لتأسيس الحروف • Fatima Phonics Cinema 🍿</div>
+        <h2>Watch, Listen & Repeat the Phonics Sounds!</h2>
+        <p>استمعي بدقة إلى مخارج أصوات الحروف الإنجليزية ورددي بصوت واضح مع الفيديو</p>
+      </div>
+
+      <div class="video-frame-box">
+        <div class="video-lights-bar">
+          <span class="light red"></span>
+          <span class="light yellow"></span>
+          <span class="light green"></span>
+          <span class="theater-title-text">✨ Letters & Phonics Sounds Studio ✨</span>
+        </div>
+        <video id="phonics-theater-video" src="videos/alphabet_phonics.mp4" playsinline controls preload="metadata" poster="og_fatima_preview.jpg"></video>
+      </div>
+
+      <!-- Cinema Controls -->
+      <div class="cinema-ctrl-bar">
+        <button class="cinema-btn primary" id="cinema-play-btn" onclick="toggleCinemaVideo()">▶️ Play / Pause</button>
+        <button class="cinema-btn" onclick="restartCinemaVideo()">🔄 Replay</button>
+        <button class="cinema-btn" id="cinema-speed-btn" onclick="toggleCinemaSpeed()">⚡ Speed: 1.0x</button>
+        <button class="cinema-btn" onclick="toggleCinemaFullscreen()">📺 Fullscreen</button>
+        <button class="cinema-btn" id="cinema-mute-btn" onclick="toggleCinemaMute()">🔊 Sound</button>
+      </div>
+
+      <!-- Educational Tips Box -->
+      <div class="cinema-tips-card">
+        <h3>💡 نصائح ذهبية لفاطمة أثناء مشاهدة الفيديو:</h3>
+        <div class="tips-grid">
+          <div class="tip-pill"><strong>1️⃣ لا نكتفي بالاسم:</strong> الحرف له اسم مثل (A) ولكن صوته في الكلمة هو (/æ/ كما في Apple)!</div>
+          <div class="tip-pill"><strong>2️⃣ راقبي حركة الفم:</strong> الحروف مثل (M) تغلق الشفتين، وحرف (F) تلمس الأسنان الشفة السفلية.</div>
+          <div class="tip-pill"><strong>3️⃣ التكرار الصوتي:</strong> أوقفي الفيديو عند كل حرف وردديه 3 مرات بصوتك الجميل.</div>
+          <div class="tip-pill"><strong>4️⃣ الانتقال للسبورة:</strong> بعد مشاهدة الفيديو، اذهبي لتبويب "سبورة الخط" لتتدرّبي على كتابة الحرف!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= VIEW 2: BLENDING LAB & CVC FAMILIES ================= -->
+  <div id="view-blending" class="view-panel" style="display:none">
+    <div class="blending-container">
+      <div class="blending-header">
+        <span class="blending-badge">🧪 معمل دمج الأصوات • Phonics Blending Lab</span>
+        <h2>Learn How to Blend Sounds to Read Words!</h2>
+        <p>اضغطي على كل صوت لتسمعيه منفرداً، ثم اضغطي زر الدمج السحري لتنطلقي في قراءة الكلمة كاملة!</p>
+      </div>
+
+      <!-- CVC Families Selector -->
+      <div class="cvc-families-row" id="cvc-families-nav">
+        <!-- Injected by JS -->
+      </div>
+
+      <!-- The Magic Blending Machine Box -->
+      <div class="blending-machine-box">
+        <div class="machine-stage">
+          <div class="sound-slot-box" id="blend-slot-1" onclick="playSingleSound(0)">
+            <span class="sound-label">First Sound</span>
+            <span class="sound-letter" id="blend-char-1">C</span>
+            <span class="sound-phonetic" id="blend-phon-1">/k/</span>
+          </div>
+          <span class="plus-symbol">+</span>
+          <div class="sound-slot-box" id="blend-slot-2" onclick="playSingleSound(1)">
+            <span class="sound-label">Vowel</span>
+            <span class="sound-letter" id="blend-char-2">A</span>
+            <span class="sound-phonetic" id="blend-phon-2">/æ/</span>
+          </div>
+          <span class="plus-symbol">+</span>
+          <div class="sound-slot-box" id="blend-slot-3" onclick="playSingleSound(2)">
+            <span class="sound-label">Last Sound</span>
+            <span class="sound-letter" id="blend-char-3">T</span>
+            <span class="sound-phonetic" id="blend-phon-3">/t/</span>
+          </div>
+        </div>
+
+        <div class="blend-action-row">
+          <button class="blend-magic-btn" id="blend-magic-btn" onclick="executeBlend()">
+            <span class="magic-spark">✨</span> ادمج واقرأ الكلمة • Blend & Read!
+          </button>
+          <button class="next-word-btn" onclick="nextBlendWord()">Next Word ➡️</button>
+        </div>
+
+        <!-- Result Box -->
+        <div class="blend-result-box" id="blend-result-box" style="display:none;">
+          <div class="result-word-display" id="blend-result-word">CAT</div>
+          <div class="result-pic" id="blend-result-pic">🐱</div>
+          <div class="result-ar-meaning" id="blend-result-ar">قطة</div>
+        </div>
+      </div>
+
+      <!-- Digraphs Card Section -->
+      <div class="digraphs-section">
+        <h3>الأصوات المركبة السحرية (Magic Digraphs) 🪄</h3>
+        <p>عندما يلتقي حرفان ليصنعا صوتاً جديداً مختلفاً:</p>
+        <div class="digraphs-grid" id="digraphs-grid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= VIEW 3: SMART TRACING & 4-LINES ================= -->
+  <div id="view-tracing" class="view-panel" style="display:none">
+    <div class="tracing-container">
+      <div class="tracing-header">
+        <span class="tracing-badge">✏️ سبورة الخط والسطور الأربعة • 4-Lines Smart Handwriting</span>
+        <h2>Learn the 4-Lines Rule & Trace Letters Correctly!</h2>
+        <p>تعلّمي سر السطور الأربعة الإنجليزية: أين يلمس الحرف السماء، وأين يقف على العشب، وأين ينزل ذيله إلى الأرض!</p>
+      </div>
+
+      <!-- The 4 Lines Legend -->
+      <div class="lines-legend-card">
+        <div class="legend-item"><span class="line-dot sky"></span> ☁️ <strong>Sky Line:</strong> حروف السماء (b, d, f, h, k, l, t)</div>
+        <div class="legend-item"><span class="line-dot plane"></span> ✈️ <strong>Plane Line:</strong> خط الطائرة المتقطع للحروف العادية</div>
+        <div class="legend-item"><span class="line-dot grass"></span> 🌿 <strong>Grass Line:</strong> خط العشب الأساسي (Baseline)</div>
+        <div class="legend-item"><span class="line-dot worm"></span> 🪱 <strong>Ground Line:</strong> حروف تنزل ذيلها (g, j, p, q, y)</div>
+      </div>
+
+      <!-- Letter Selector Bar -->
+      <div class="letter-picker-row" id="letter-picker-row">
+        <!-- JS generates A-Z buttons -->
+      </div>
+
+      <!-- Interactive Canvas Board -->
+      <div class="canvas-board-wrapper">
+        <div class="canvas-meta-bar">
+          <div class="letter-badge-info" id="active-letter-badge">Letter: <strong>Aa</strong> (Grass Letter 🌿)</div>
+          <div class="brush-colors">
+            <span class="color-dot active" style="background:#2563eb" onclick="setBrushColor('#2563eb', this)"></span>
+            <span class="color-dot" style="background:#e11d48" onclick="setBrushColor('#e11d48', this)"></span>
+            <span class="color-dot" style="background:#059669" onclick="setBrushColor('#059669', this)"></span>
+            <span class="color-dot" style="background:#7c3aed" onclick="setBrushColor('#7c3aed', this)"></span>
+            <span class="color-dot" style="background:#d97706" onclick="setBrushColor('#d97706', this)"></span>
+          </div>
+        </div>
+
+        <div class="canvas-relative-container">
+          <canvas id="tracing-canvas" width="700" height="320"></canvas>
+        </div>
+
+        <!-- Tracing Controls -->
+        <div class="tracing-ctrl-row">
+          <button class="trace-btn clear" onclick="clearTracingCanvas()">🧹 مسح وإعادة (Clear)</button>
+          <button class="trace-btn sound" onclick="speakActiveTracingLetter()">🔊 استمع لصوت الحرف</button>
+          <button class="trace-btn success" onclick="checkTracingCompletion()">🌟 إتقان الحرف! (Done)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= VIEW 4: SENTENCE BUILDER ================= -->
+  <div id="view-sentences" class="view-panel" style="display:none">
+    <div class="sentences-container">
+      <div class="sentences-header">
+        <span class="sentences-badge">🎯 قواعد الجملة الإنجليزية • Sentence Mechanics & Finger Space</span>
+        <h2>Build Your First English Sentences with Perfect Rules!</h2>
+        <p>القواعد الذهبية لكتابة أي جملة إنجليزية: تبدأ بحرف كبير، وتترك مسافة إصبع، وتنتهي بنقطة كاملة!</p>
+      </div>
+
+      <!-- Golden Rules Banner -->
+      <div class="sentence-rules-banner">
+        <div class="rule-box">
+          <span class="rule-icon">🔠</span>
+          <h4>1. Capital Letter</h4>
+          <p>أول حرف في الجملة دائماً كبير (كابيتال)</p>
+        </div>
+        <div class="rule-box highlight">
+          <span class="rule-icon">👆</span>
+          <h4>2. Finger Space</h4>
+          <p>اتركي مسافة إصبع بين كل كلمة وأخرى</p>
+        </div>
+        <div class="rule-box">
+          <span class="rule-icon">🛑</span>
+          <h4>3. Full Stop (.)</h4>
+          <p>نهاية الجملة نقطة واضحة أو علامة استفهام</p>
+        </div>
+      </div>
+
+      <!-- Game Stage -->
+      <div class="sentence-game-card">
+        <div class="stage-info">
+          <span id="sentence-level-num">Sentence 1 of 6</span>
+          <span id="sentence-score-badge">⭐ Score: 0</span>
+        </div>
+
+        <div class="sentence-prompt-arabic" id="sentence-prompt-ar">رتب الكلمات لتكوين: "أنا اسمي فاطمة."</div>
+
+        <!-- Drop Slots Container with Finger Spaces -->
+        <div class="sentence-slots-area" id="sentence-slots-area"></div>
+
+        <!-- Available Words Pool -->
+        <div class="sentence-words-pool" id="sentence-words-pool"></div>
+
+        <div class="sentence-feedback-row">
+          <button class="sent-btn reset" onclick="resetCurrentSentence()">🔄 Reset Words</button>
+          <button class="sent-btn next" id="sent-next-btn" onclick="nextSentence()" style="display:none;">Next Sentence ➡️</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= VIEW 5: PRINTABLE WORKBOOK ================= -->
+  <div id="view-printbook" class="view-panel" style="display:none">
+    <div class="printbook-container">
+      <div class="printbook-header">
+        <span class="printbook-badge">🖨️ كراسة خط فاطمة الملكية • Printable Handwriting Workbook</span>
+        <h2>Print Fatima's Custom Handwriting Workbook (A4)!</h2>
+        <p>كراسة خط وتمارين كتابة متكاملة بأسطر إنجليزية أصلية جاهزة للطباعة على ورق A4 لتدريب اليد والقلم في المنزل!</p>
+        <button class="print-trigger-btn" onclick="triggerWorkbookPrint()">🖨️ اضغط هنا لطباعة الكراسة كاملة الآن (Print Workbook)</button>
+      </div>
+
+      <!-- Screen Preview of the Workbook -->
+      <div class="workbook-sheets-wrapper" id="workbook-sheets-printable">
+        <!-- Sheet 1: Royal Cover -->
+        <div class="printable-sheet sheet-cover">
+          <div class="cover-inner-border">
+            <div class="cover-crown">👑</div>
+            <h1 class="cover-title-ar">كراسة خط وتميز الطالبة فاطمة</h1>
+            <h2 class="cover-title-en">Fatima's English Handwriting & Phonics Workbook</h2>
+            <div class="cover-avatar-box">
+              <img src="fatima_circle.png" alt="Fatima" class="cover-avatar-img">
+            </div>
+            <div class="cover-meta-grid">
+              <div class="meta-row"><strong>اسم الطالبة:</strong> الأميرة فاطمة 🌸</div>
+              <div class="meta-row"><strong>المرحلة:</strong> الصف الثالث الأساسي (SMILE Book 3)</div>
+              <div class="meta-row"><strong>المنهج:</strong> التأسيس الصوتي والخط الإنجليزي الحديث</div>
+              <div class="meta-row"><strong>العام الدراسي:</strong> 2026 - 2027 م</div>
+            </div>
+            <div class="cover-badge-footer">منصة فاطمة التعليمية • الإتقان والتميز ✨</div>
+          </div>
+        </div>
+
+        <!-- Sheet 2: The 4-Lines Guide & Letter Rules -->
+        <div class="printable-sheet">
+          <div class="sheet-header-small">
+            <span>Fatima Learning Platform</span>
+            <span>Lesson 1: The 4-Lines Rule & Letter Families</span>
+          </div>
+          <h3 class="sheet-title">قاعدة السطور الأربعة الإنجليزية (The 4 English Lines)</h3>
+          <div class="lines-diagram-print">
+            <div class="print-rule-line sky-line"><span class="line-tag">Sky Line ☁️</span></div>
+            <div class="print-rule-line plane-line"><span class="line-tag">Plane Line ✈️</span></div>
+            <div class="print-rule-line grass-line"><span class="line-tag">Grass Line 🌿</span></div>
+            <div class="print-rule-line ground-line"><span class="line-tag">Ground Line 🪱</span></div>
+          </div>
+          <div class="sheet-categories-grid">
+            <div class="sheet-cat-box">
+              <h4>☁️ Sky Letters (حروف السماء)</h4>
+              <p>تلمس خط السماء العلوي:</p>
+              <div class="letters-sample">b  d  f  h  k  l  t</div>
+            </div>
+            <div class="sheet-cat-box">
+              <h4>🌿 Grass Letters (حروف العشب)</h4>
+              <p>تجلس بين خط الطائرة وخط العشب:</p>
+              <div class="letters-sample">a  c  e  i  m  n  o  r  s  u  v  w  x  z</div>
+            </div>
+            <div class="sheet-cat-box">
+              <h4>🪱 Tail Letters (حروف النزول)</h4>
+              <p>تنزل ذيلها تحت خط العشب إلى الأرض:</p>
+              <div class="letters-sample">g  j  p  q  y</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sheet 3: Letters Tracing (A to Z) -->
+        <div class="printable-sheet">
+          <div class="sheet-header-small">
+            <span>Fatima Learning Platform</span>
+            <span>Lesson 2: Alphabet Tracing & Handwriting Practice</span>
+          </div>
+          <h3 class="sheet-title">تتبع وكتابة الحروف الإنجليزية (Trace and Write Aa - Zz)</h3>
+          <div class="tracing-grid-print">
+            <div class="print-fourlines"><span class="letter-lead">Aa</span> <span class="dotted-sample">Aa ··· Aa ··· Aa ··· Aa ··· Aa</span></div>
+            <div class="print-fourlines"><span class="letter-lead">Bb</span> <span class="dotted-sample">Bb ··· Bb ··· Bb ··· Bb ··· Bb</span></div>
+            <div class="print-fourlines"><span class="letter-lead">Cc</span> <span class="dotted-sample">Cc ··· Cc ··· Cc ··· Cc ··· Cc</span></div>
+            <div class="print-fourlines"><span class="letter-lead">Dd</span> <span class="dotted-sample">Dd ··· Dd ··· Dd ··· Dd ··· Dd</span></div>
+            <div class="print-fourlines"><span class="letter-lead">Ee</span> <span class="dotted-sample">Ee ··· Ee ··· Ee ··· Ee ··· Ee</span></div>
+            <div class="print-fourlines"><span class="letter-lead">Ff</span> <span class="dotted-sample">Ff ··· Ff ··· Ff ··· Ff ··· Ff</span></div>
+            <div class="print-fourlines"><span class="letter-lead">Gg</span> <span class="dotted-sample">Gg ··· Gg ··· Gg ··· Gg ··· Gg</span></div>
+            <div class="print-fourlines"><span class="letter-lead">Hh</span> <span class="dotted-sample">Hh ··· Hh ··· Hh ··· Hh ··· Hh</span></div>
+          </div>
+        </div>
+
+        <!-- Sheet 4: CVC Words & Sentences -->
+        <div class="printable-sheet">
+          <div class="sheet-header-small">
+            <span>Fatima Learning Platform</span>
+            <span>Lesson 3: Word Spacing & My First Sentences</span>
+          </div>
+          <h3 class="sheet-title">كتابة الكلمات والجمل مع قاعدة مسافة الإصبع (Finger Space)</h3>
+          <div class="words-sentences-print">
+            <div class="print-fourlines"><span class="letter-lead">cat</span> <span class="dotted-sample">cat ··· cat ··· cat ··· cat ··· 🐱</span></div>
+            <div class="print-fourlines"><span class="letter-lead">bag</span> <span class="dotted-sample">bag ··· bag ··· bag ··· bag ··· 🎒</span></div>
+            <div class="print-fourlines"><span class="letter-lead">pen</span> <span class="dotted-sample">pen ··· pen ··· pen ··· pen ··· 🖊️</span></div>
+            <div class="print-fourlines"><span class="letter-lead">sun</span> <span class="dotted-sample">sun ··· sun ··· sun ··· sun ··· ☀️</span></div>
+            <div class="print-space-divider">الجمل الكاملة (قاعدة الحرف الكبير والنقطة ومسافة الإصبع):</div>
+            <div class="print-fourlines tall"><span class="letter-lead">Sentence 1:</span> <span class="dotted-sample">I  am  Fatima. ·····························</span></div>
+            <div class="print-fourlines tall"><span class="letter-lead">Sentence 2:</span> <span class="dotted-sample">This  is  my  bag. ·························</span></div>
+            <div class="print-fourlines tall"><span class="letter-lead">Sentence 3:</span> <span class="dotted-sample">I  like  school. ··························</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </main>
 
 <div class="toast-msg" id="toast-msg">Awesome! +1 Star ⭐</div>
@@ -2132,9 +3174,27 @@ function switchTab(tabName) {
   });
   document.querySelectorAll('.view-panel').forEach(panel => panel.style.display = 'none');
   
+  // Pause cinema video if switching away
+  const vid = $('phonics-theater-video');
+  if (vid && tabName !== 'cinema' && !vid.paused) {
+    vid.pause();
+  }
+
   if (tabName === 'cards') {
     $('view-cards').style.display = 'block';
     renderCard();
+  } else if (tabName === 'cinema') {
+    $('view-cinema').style.display = 'block';
+    initCinemaView();
+  } else if (tabName === 'blending') {
+    $('view-blending').style.display = 'block';
+    initBlendingLab();
+  } else if (tabName === 'tracing') {
+    $('view-tracing').style.display = 'block';
+    initTracingBoard();
+  } else if (tabName === 'sentences') {
+    $('view-sentences').style.display = 'block';
+    initSentenceBuilder();
   } else if (tabName === 'builder') {
     $('view-builder').style.display = 'block';
     initBuilderGame();
@@ -2144,6 +3204,8 @@ function switchTab(tabName) {
   } else if (tabName === 'gallery') {
     $('view-gallery').style.display = 'grid';
     renderGallery();
+  } else if (tabName === 'printbook') {
+    $('view-printbook').style.display = 'block';
   }
 }
 
@@ -2499,6 +3561,566 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW registration:', err));
   });
 }
+
+
+// ================================================================
+// 🎬 1. PHONICS CINEMA LOGIC
+// ================================================================
+function initCinemaView() {
+  const vid = $('phonics-theater-video');
+  if (!vid) return;
+  vid.onplay = () => {
+    const playBtn = $('cinema-play-btn');
+    if (playBtn) playBtn.textContent = '⏸️ Pause (إيقاف)';
+  };
+  vid.onpause = () => {
+    const playBtn = $('cinema-play-btn');
+    if (playBtn) playBtn.textContent = '▶️ Play (تشغيل)';
+  };
+  vid.onended = () => {
+    playSoundFX('cheer');
+    launchConfetti();
+    showToastMsg('Bravo Fatima! You completed the Phonics Video! 🌟👑', 4000);
+  };
+}
+
+function toggleCinemaVideo() {
+  const vid = $('phonics-theater-video');
+  if (!vid) return;
+  if (vid.paused) {
+    vid.play().catch(e => console.log('Autoplay policy', e));
+  } else {
+    vid.pause();
+  }
+}
+
+function restartCinemaVideo() {
+  const vid = $('phonics-theater-video');
+  if (!vid) return;
+  vid.currentTime = 0;
+  vid.play().catch(e => console.log(e));
+}
+
+let cinemaSpeedIndex = 0;
+const cinemaSpeeds = [1.0, 0.75, 1.25];
+function toggleCinemaSpeed() {
+  cinemaSpeedIndex = (cinemaSpeedIndex + 1) % cinemaSpeeds.length;
+  const speed = cinemaSpeeds[cinemaSpeedIndex];
+  const vid = $('phonics-theater-video');
+  if (vid) vid.playbackRate = speed;
+  const btn = $('cinema-speed-btn');
+  if (btn) btn.textContent = `⚡ Speed: ${speed}x`;
+}
+
+function toggleCinemaFullscreen() {
+  const vid = $('phonics-theater-video');
+  if (!vid) return;
+  if (vid.requestFullscreen) {
+    vid.requestFullscreen();
+  } else if (vid.webkitRequestFullscreen) {
+    vid.webkitRequestFullscreen();
+  }
+}
+
+function toggleCinemaMute() {
+  const vid = $('phonics-theater-video');
+  if (!vid) return;
+  vid.muted = !vid.muted;
+  const btn = $('cinema-mute-btn');
+  if (btn) btn.textContent = vid.muted ? '🔇 Muted' : '🔊 Sound';
+}
+
+
+// ================================================================
+// 🧪 2. BLENDING LAB & CVC WORD FAMILIES LOGIC
+// ================================================================
+const cvcFamiliesData = {
+  "_at": [
+    { c1: "C", p1: "/k/", c2: "A", p2: "/æ/", c3: "T", p3: "/t/", word: "CAT", pic: "🐱", ar: "قطة" },
+    { c1: "B", p1: "/b/", c2: "A", p2: "/æ/", c3: "T", p3: "/t/", word: "BAT", pic: "🦇", ar: "خفاش" },
+    { c1: "H", p1: "/h/", c2: "A", p2: "/æ/", c3: "T", p3: "/t/", word: "HAT", pic: "🎩", ar: "قبعة" },
+    { c1: "M", p1: "/m/", c2: "A", p2: "/æ/", c3: "T", p3: "/t/", word: "MAT", pic: "🧘", ar: "سجادة" }
+  ],
+  "_an": [
+    { c1: "P", p1: "/p/", c2: "A", p2: "/æ/", c3: "N", p3: "/n/", word: "PAN", pic: "🍳", ar: "مقلاة" },
+    { c1: "F", p1: "/f/", c2: "A", p2: "/æ/", c3: "N", p3: "/n/", word: "FAN", pic: "🪭", ar: "مروحة" },
+    { c1: "V", p1: "/v/", c2: "A", p2: "/æ/", c3: "N", p3: "/n/", word: "VAN", pic: "🚐", ar: "شاحنة" }
+  ],
+  "_en": [
+    { c1: "P", p1: "/p/", c2: "E", p2: "/e/", c3: "N", p3: "/n/", word: "PEN", pic: "🖊️", ar: "قلم حبر" },
+    { c1: "H", p1: "/h/", c2: "E", p2: "/e/", c3: "N", p3: "/n/", word: "HEN", pic: "🐔", ar: "دجاجة" },
+    { c1: "T", p1: "/t/", c2: "E", p2: "/e/", c3: "N", p3: "/n/", word: "TEN", pic: "🔟", ar: "عشرة" }
+  ],
+  "_in": [
+    { c1: "P", p1: "/p/", c2: "I", p2: "/ɪ/", c3: "N", p3: "/n/", word: "PIN", pic: "📌", ar: "دبوس" },
+    { c1: "B", p1: "/b/", c2: "I", p2: "/ɪ/", c3: "N", p3: "/n/", word: "BIN", pic: "🗑️", ar: "سلة مهملات" }
+  ],
+  "_op": [
+    { c1: "T", p1: "/t/", c2: "O", p2: "/ɒ/", c3: "P", p3: "/p/", word: "TOP", pic: "🪀", ar: "بلبل دوار / قمة" },
+    { c1: "M", p1: "/m/", c2: "O", p2: "/ɒ/", c3: "P", p3: "/p/", word: "MOP", pic: "🧹", ar: "ممسحة" }
+  ],
+  "_ug": [
+    { c1: "B", p1: "/b/", c2: "U", p2: "/ʌ/", c3: "G", p3: "/g/", word: "BUG", pic: "🐞", ar: "حشرة" },
+    { c1: "M", p1: "/m/", c2: "U", p2: "/ʌ/", c3: "G", p3: "/g/", word: "MUG", pic: "☕", ar: "كوب كبير" },
+    { c1: "S", p1: "/s/", c2: "U", p2: "/ʌ/", c3: "N", p3: "/n/", word: "SUN", pic: "☀️", ar: "شمس" }
+  ]
+};
+
+const digraphsData = [
+  { letters: "SH", sound: "/ʃ/ (ش)", example: "Ship 🚢 • Fish 🐟", ar: "مثل الشين" },
+  { letters: "CH", sound: "/tʃ/ (تش)", example: "Chair 🪑 • Cheese 🧀", ar: "مثل التاء والشين" },
+  { letters: "TH", sound: "/θ/ (ث) & /ð/ (ذ)", example: "Three 3️⃣ • This 👈", ar: "مثل الثاء والذال" },
+  { letters: "PH", sound: "/f/ (ف)", example: "Phone 📱 • Dolphin 🐬", ar: "تُنطق مثل حرف F" },
+  { letters: "WH", sound: "/w/ (و)", example: "Whale 🐋 • White ⚪", ar: "تُنطق واو مرققة" }
+];
+
+let activeFamily = "_at";
+let activeBlendIndex = 0;
+
+function initBlendingLab() {
+  const nav = $('cvc-families-nav');
+  if (!nav) return;
+  nav.innerHTML = '';
+  Object.keys(cvcFamiliesData).forEach(fam => {
+    const btn = document.createElement('button');
+    btn.className = `family-pill-btn ${fam === activeFamily ? 'active' : ''}`;
+    btn.textContent = `Family ${fam}`;
+    btn.onclick = () => selectCvcFamily(fam);
+    nav.appendChild(btn);
+  });
+  renderBlendWord();
+  renderDigraphs();
+}
+
+function selectCvcFamily(fam) {
+  activeFamily = fam;
+  activeBlendIndex = 0;
+  document.querySelectorAll('.family-pill-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.includes(fam));
+  });
+  renderBlendWord();
+}
+
+function renderBlendWord() {
+  const list = cvcFamiliesData[activeFamily];
+  if (!list || list.length === 0) return;
+  const item = list[activeBlendIndex % list.length];
+
+  $('blend-char-1').textContent = item.c1;
+  $('blend-phon-1').textContent = item.p1;
+  $('blend-char-2').textContent = item.c2;
+  $('blend-phon-2').textContent = item.p2;
+  $('blend-char-3').textContent = item.c3;
+  $('blend-phon-3').textContent = item.p3;
+
+  $('blend-result-box').style.display = 'none';
+}
+
+function playSingleSound(idx) {
+  const item = cvcFamiliesData[activeFamily][activeBlendIndex % cvcFamiliesData[activeFamily].length];
+  const sounds = [item.c1, item.c2, item.c3];
+  const char = sounds[idx];
+  
+  const slot = $(`blend-slot-${idx + 1}`);
+  if (slot) {
+    slot.classList.add('pulse');
+    setTimeout(() => slot.classList.remove('pulse'), 400);
+  }
+  speakEnglish(char.toLowerCase());
+}
+
+function executeBlend() {
+  const item = cvcFamiliesData[activeFamily][activeBlendIndex % cvcFamiliesData[activeFamily].length];
+  const resultBox = $('blend-result-box');
+  $('blend-result-word').textContent = item.word;
+  $('blend-result-pic').textContent = item.pic;
+  $('blend-result-ar').textContent = item.ar;
+  resultBox.style.display = 'block';
+
+  playSoundFX('magic');
+  launchConfetti();
+
+  // Speak sound by sound then the full word
+  const utter = new SpeechSynthesisUtterance(`${item.c1.toLowerCase()} ... ${item.c2.toLowerCase()} ... ${item.c3.toLowerCase()} ... ${item.word}!`);
+  utter.rate = 0.85;
+  utter.lang = 'en-US';
+  speechSynthesis.speak(utter);
+}
+
+function nextBlendWord() {
+  const list = cvcFamiliesData[activeFamily];
+  activeBlendIndex = (activeBlendIndex + 1) % list.length;
+  renderBlendWord();
+}
+
+function renderDigraphs() {
+  const grid = $('digraphs-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  digraphsData.forEach(d => {
+    const card = document.createElement('div');
+    card.className = 'digraph-card';
+    card.innerHTML = `
+      <div class="digraph-letters">${d.letters}</div>
+      <div class="digraph-sound">${d.sound}</div>
+      <div class="digraph-example">${d.example}</div>
+    `;
+    card.onclick = () => {
+      speakEnglish(d.example.split('•')[0].trim());
+      showToastMsg(`${d.letters} Says ${d.sound}! ✨`, 2500);
+    };
+    grid.appendChild(card);
+  });
+}
+
+
+// ================================================================
+// ✏️ 3. SMART TRACING & 4-LINES HANDWRITING LOGIC
+// ================================================================
+const alphabetData = [
+  { char: 'A', lower: 'a', type: 'grass', name: 'Aa', ph: '/æ/ as in Apple' },
+  { char: 'B', lower: 'b', type: 'sky', name: 'Bb', ph: '/b/ as in Ball' },
+  { char: 'C', lower: 'c', type: 'grass', name: 'Cc', ph: '/k/ as in Cat' },
+  { char: 'D', lower: 'd', type: 'sky', name: 'Dd', ph: '/d/ as in Dog' },
+  { char: 'E', lower: 'e', type: 'grass', name: 'Ee', ph: '/e/ as in Egg' },
+  { char: 'F', lower: 'f', type: 'sky', name: 'Ff', ph: '/f/ as in Fish' },
+  { char: 'G', lower: 'g', type: 'tail', name: 'Gg', ph: '/g/ as in Girl' },
+  { char: 'H', lower: 'h', type: 'sky', name: 'Hh', ph: '/h/ as in Hat' },
+  { char: 'I', lower: 'i', type: 'grass', name: 'Ii', ph: '/ɪ/ as in Igloo' },
+  { char: 'J', lower: 'j', type: 'tail', name: 'Jj', ph: '/dʒ/ as in Jam' },
+  { char: 'K', lower: 'k', type: 'sky', name: 'Kk', ph: '/k/ as in Kite' },
+  { char: 'L', lower: 'l', type: 'sky', name: 'Ll', ph: '/l/ as in Lion' },
+  { char: 'M', lower: 'm', type: 'grass', name: 'Mm', ph: '/m/ as in Moon' },
+  { char: 'N', lower: 'n', type: 'grass', name: 'Nn', ph: '/n/ as in Net' },
+  { char: 'O', lower: 'o', type: 'grass', name: 'Oo', ph: '/ɒ/ as in Orange' },
+  { char: 'P', lower: 'p', type: 'tail', name: 'Pp', ph: '/p/ as in Pen' },
+  { char: 'Q', lower: 'q', type: 'tail', name: 'Qq', ph: '/kw/ as in Queen' },
+  { char: 'R', lower: 'r', type: 'grass', name: 'Rr', ph: '/r/ as in Ring' },
+  { char: 'S', lower: 's', type: 'grass', name: 'Ss', ph: '/s/ as in Sun' },
+  { char: 'T', lower: 't', type: 'sky', name: 'Tt', ph: '/t/ as in Tree' },
+  { char: 'U', lower: 'u', type: 'grass', name: 'Uu', ph: '/ʌ/ as in Umbrella' },
+  { char: 'V', lower: 'v', type: 'grass', name: 'Vv', ph: '/v/ as in Van' },
+  { char: 'W', lower: 'w', type: 'grass', name: 'Ww', ph: '/w/ as in Window' },
+  { char: 'X', lower: 'x', type: 'grass', name: 'Xx', ph: '/ks/ as in Box' },
+  { char: 'Y', lower: 'y', type: 'tail', name: 'Yy', ph: '/j/ as in Yo-yo' },
+  { char: 'Z', lower: 'z', type: 'grass', name: 'Zz', ph: '/z/ as in Zebra' }
+];
+
+let activeTraceLetter = alphabetData[0];
+let brushColor = '#2563eb';
+let isDrawing = false;
+let tracingCtx = null;
+
+function initTracingBoard() {
+  const picker = $('letter-picker-row');
+  if (!picker) return;
+  picker.innerHTML = '';
+  alphabetData.forEach(item => {
+    const btn = document.createElement('button');
+    btn.className = `letter-pill-btn ${item.char === activeTraceLetter.char ? 'active' : ''}`;
+    btn.textContent = item.name;
+    btn.onclick = () => selectTracingLetter(item);
+    picker.appendChild(btn);
+  });
+
+  setupTracingCanvas();
+}
+
+function selectTracingLetter(item) {
+  activeTraceLetter = item;
+  document.querySelectorAll('.letter-pill-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent === item.name);
+  });
+  
+  const typeTag = item.type === 'sky' ? 'Sky Letter ☁️' : (item.type === 'tail' ? 'Tail Letter 🪱' : 'Grass Letter 🌿');
+  $('active-letter-badge').innerHTML = `Letter: <strong>${item.name}</strong> (${typeTag})`;
+  
+  clearTracingCanvas();
+  speakEnglish(item.name);
+}
+
+function setupTracingCanvas() {
+  const canvas = $('tracing-canvas');
+  if (!canvas) return;
+  tracingCtx = canvas.getContext('2d');
+
+  // Drawing event handlers
+  const startDraw = (e) => {
+    isDrawing = true;
+    drawPoint(e);
+  };
+  const moveDraw = (e) => {
+    if (!isDrawing) return;
+    drawPoint(e);
+  };
+  const endDraw = () => {
+    isDrawing = false;
+    tracingCtx.beginPath();
+  };
+
+  canvas.onmousedown = startDraw;
+  canvas.onmousemove = moveDraw;
+  window.onmouseup = endDraw;
+
+  canvas.ontouchstart = (e) => { e.preventDefault(); startDraw(e.touches[0]); };
+  canvas.ontouchmove = (e) => { e.preventDefault(); moveDraw(e.touches[0]); };
+  canvas.ontouchend = (e) => { e.preventDefault(); endDraw(); };
+
+  drawGuidelinesAndSample();
+}
+
+function getCanvasPos(e) {
+  const canvas = $('tracing-canvas');
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+  return {
+    x: (e.clientX - rect.left) * scaleX,
+    y: (e.clientY - rect.top) * scaleY
+  };
+}
+
+function drawPoint(e) {
+  const pos = getCanvasPos(e);
+  tracingCtx.lineWidth = 14;
+  tracingCtx.lineCap = 'round';
+  tracingCtx.lineJoin = 'round';
+  tracingCtx.strokeStyle = brushColor;
+
+  tracingCtx.lineTo(pos.x, pos.y);
+  tracingCtx.stroke();
+  tracingCtx.beginPath();
+  tracingCtx.moveTo(pos.x, pos.y);
+}
+
+function drawGuidelinesAndSample() {
+  if (!tracingCtx) return;
+  const w = 700;
+  const h = 320;
+
+  // 1. Clear background
+  tracingCtx.fillStyle = '#ffffff';
+  tracingCtx.fillRect(0, 0, w, h);
+
+  // 2. Draw 4 Ruled Lines
+  const skyY = 60;
+  const planeY = 135;
+  const grassY = 210;
+  const groundY = 285;
+
+  // Sky Line (Blue)
+  tracingCtx.strokeStyle = '#3b82f6';
+  tracingCtx.lineWidth = 2.5;
+  tracingCtx.beginPath();
+  tracingCtx.moveTo(40, skyY);
+  tracingCtx.lineTo(w - 40, skyY);
+  tracingCtx.stroke();
+
+  // Plane Line (Dashed Red)
+  tracingCtx.strokeStyle = '#ef4444';
+  tracingCtx.setLineDash([8, 8]);
+  tracingCtx.lineWidth = 2;
+  tracingCtx.beginPath();
+  tracingCtx.moveTo(40, planeY);
+  tracingCtx.lineTo(w - 40, planeY);
+  tracingCtx.stroke();
+  tracingCtx.setLineDash([]); // Reset dash
+
+  // Grass Line (Green Baseline)
+  tracingCtx.strokeStyle = '#10b981';
+  tracingCtx.lineWidth = 3.5;
+  tracingCtx.beginPath();
+  tracingCtx.moveTo(40, grassY);
+  tracingCtx.lineTo(w - 40, grassY);
+  tracingCtx.stroke();
+
+  // Ground Line (Purple)
+  tracingCtx.strokeStyle = '#8b5cf6';
+  tracingCtx.lineWidth = 2;
+  tracingCtx.beginPath();
+  tracingCtx.moveTo(40, groundY);
+  tracingCtx.lineTo(w - 40, groundY);
+  tracingCtx.stroke();
+
+  // 3. Draw Dotted Guide Letter in Center
+  tracingCtx.font = 'bold 150px Arial, sans-serif';
+  tracingCtx.fillStyle = 'rgba(203, 213, 225, 0.7)';
+  tracingCtx.textAlign = 'center';
+  tracingCtx.textBaseline = 'alphabetic';
+  tracingCtx.fillText(activeTraceLetter.name, w / 2, grassY);
+
+  // 4. Draw Starting Green Dot and Arrow hint
+  tracingCtx.fillStyle = '#10b981';
+  tracingCtx.beginPath();
+  const dotY = activeTraceLetter.type === 'sky' ? skyY + 15 : planeY + 15;
+  tracingCtx.arc(w / 2 - 80, dotY, 10, 0, Math.PI * 2);
+  tracingCtx.fill();
+  tracingCtx.fillStyle = '#ffffff';
+  tracingCtx.font = 'bold 12px sans-serif';
+  tracingCtx.fillText('1', w / 2 - 80, dotY + 4);
+}
+
+function clearTracingCanvas() {
+  if (!tracingCtx) return;
+  drawGuidelinesAndSample();
+  playSoundFX('pop');
+}
+
+function setBrushColor(color, el) {
+  brushColor = color;
+  document.querySelectorAll('.brush-colors .color-dot').forEach(d => d.classList.remove('active'));
+  if (el) el.classList.add('active');
+}
+
+function speakActiveTracingLetter() {
+  speakEnglish(`${activeTraceLetter.name}. ${activeTraceLetter.ph}`);
+}
+
+function checkTracingCompletion() {
+  playSoundFX('cheer');
+  launchConfetti();
+  showToastMsg(`Excellent Handwriting Fatima! Letter ${activeTraceLetter.name} Mastered! 🌟👑`, 3500);
+}
+
+
+// ================================================================
+// 🎯 4. SENTENCE BUILDER & FINGER SPACE LOGIC
+// ================================================================
+const sentenceLevels = [
+  { ar: 'أنا اسمي فاطمة.', words: ['I', 'am', 'Fatima', '.'], full: 'I am Fatima.' },
+  { ar: 'هذه حقيبتي المدرسية.', words: ['This', 'is', 'my', 'school', 'bag', '.'], full: 'This is my school bag.' },
+  { ar: 'حقيبتي لونها وردي.', words: ['My', 'bag', 'is', 'pink', '.'], full: 'My bag is pink.' },
+  { ar: 'أنا أحب مدرستي.', words: ['I', 'like', 'my', 'school', '.'], full: 'I like my school.' },
+  { ar: 'هذا قلم رصاص أحمر.', words: ['This', 'is', 'a', 'red', 'pencil', '.'], full: 'This is a red pencil.' },
+  { ar: 'اليوم هو يوم الأحد.', words: ['Today', 'is', 'Sunday', '.'], full: 'Today is Sunday.' }
+];
+
+let currentSentenceIdx = 0;
+let sentenceScore = 0;
+let placedWords = [];
+let poolWords = [];
+
+function initSentenceBuilder() {
+  renderSentenceStage();
+}
+
+function renderSentenceStage() {
+  const current = sentenceLevels[currentSentenceIdx % sentenceLevels.length];
+  $('sentence-level-num').textContent = `Sentence ${currentSentenceIdx + 1} of ${sentenceLevels.length}`;
+  $('sentence-score-badge').textContent = `⭐ Score: ${sentenceScore}`;
+  $('sentence-prompt-ar').textContent = current.ar;
+  $('sent-next-btn').style.display = 'none';
+
+  placedWords = [];
+  // Shuffle words for pool
+  poolWords = [...current.words].sort(() => Math.random() - 0.5);
+
+  renderSlotsAndPool();
+}
+
+function renderSlotsAndPool() {
+  const slotsArea = $('sentence-slots-area');
+  const poolArea = $('sentence-words-pool');
+  slotsArea.innerHTML = '';
+  poolArea.innerHTML = '';
+
+  // Render placed words with finger space indicators
+  if (placedWords.length === 0) {
+    slotsArea.innerHTML = '<span style="color:#94a3b8; font-weight:700;">👆 انقري على الكلمات بالترتيب الصحيح لتكوين الجملة...</span>';
+  } else {
+    placedWords.forEach((word, idx) => {
+      const tile = document.createElement('div');
+      tile.className = 'sentence-word-tile';
+      tile.textContent = word;
+      tile.onclick = () => returnWordToPool(idx);
+      slotsArea.appendChild(tile);
+
+      // Add finger space indicator between words (except before full stop)
+      if (idx < placedWords.length - 1 && placedWords[idx + 1] !== '.') {
+        const space = document.createElement('div');
+        space.className = 'finger-space-indicator';
+        space.innerHTML = '<span>👆</span><span>space</span>';
+        slotsArea.appendChild(space);
+      }
+    });
+  }
+
+  // Render pool
+  poolWords.forEach((word, idx) => {
+    const tile = document.createElement('div');
+    tile.className = 'sentence-word-tile';
+    tile.textContent = word;
+    tile.onclick = () => pickWordFromPool(idx);
+    poolArea.appendChild(tile);
+  });
+}
+
+function pickWordFromPool(idx) {
+  const word = poolWords.splice(idx, 1)[0];
+  placedWords.push(word);
+  playSoundFX('pop');
+  renderSlotsAndPool();
+  checkSentenceComplete();
+}
+
+function returnWordToPool(idx) {
+  const word = placedWords.splice(idx, 1)[0];
+  poolWords.push(word);
+  playSoundFX('pop');
+  renderSlotsAndPool();
+}
+
+function resetCurrentSentence() {
+  const current = sentenceLevels[currentSentenceIdx % sentenceLevels.length];
+  placedWords = [];
+  poolWords = [...current.words].sort(() => Math.random() - 0.5);
+  renderSlotsAndPool();
+}
+
+function checkSentenceComplete() {
+  const current = sentenceLevels[currentSentenceIdx % sentenceLevels.length];
+  if (poolWords.length === 0) {
+    const constructed = placedWords.join(' ').replace(' .', '.');
+    if (constructed === current.full) {
+      playSoundFX('cheer');
+      launchConfetti();
+      sentenceScore += 10;
+      $('sentence-score-badge').textContent = `⭐ Score: ${sentenceScore}`;
+      showToastMsg(`Superb Fatima! "${current.full}" is 100% Correct! 🌟👑`, 3500);
+      speakEnglish(current.full);
+      $('sent-next-btn').style.display = 'inline-block';
+    } else {
+      playSoundFX('wrong');
+      showToastMsg('Try again! Remember: Capital letter first, full stop at the end! 🔄', 3000);
+    }
+  }
+}
+
+function nextSentence() {
+  currentSentenceIdx = (currentSentenceIdx + 1) % sentenceLevels.length;
+  renderSentenceStage();
+}
+
+
+// ================================================================
+// 🖨️ 5. WORKBOOK PRINT TRIGGER
+// ================================================================
+function triggerWorkbookPrint() {
+  window.print();
+}
+
+// Auto open tab from URL parameter if present (e.g. ?tab=cinema)
+window.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('tab')) {
+    const requestedTab = params.get('tab');
+    setTimeout(() => {
+      if (typeof switchTab === 'function') {
+        switchTab(requestedTab);
+      }
+    }, 200);
+  }
+});
 
 </script>
 
