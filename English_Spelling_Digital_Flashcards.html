@@ -293,16 +293,58 @@ main {
   flex-direction: column;
   align-items: center;
 }
+.card-stage-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  max-width: 680px;
+  margin: 0 auto;
+  position: relative;
+}
+.stage-nav-arrow {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: white;
+  border: 2.5px solid #cbd5e1;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: #1e293b;
+  z-index: 5;
+}
+.stage-nav-arrow:hover {
+  transform: scale(1.12);
+  border-color: #2563eb;
+  background: #eff6ff;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.22);
+}
+.stage-nav-arrow:active {
+  transform: scale(0.95);
+}
+@media (max-width: 640px) {
+  .stage-nav-arrow {
+    width: 42px;
+    height: 42px;
+    font-size: 16px;
+  }
+}
 .card-scene {
   width: 100%;
-  max-width: 520px;
-  min-height: 400px;
+  max-width: 500px;
+  min-height: 490px;
   perspective: 1200px;
   margin: 0 auto;
 }
 .card-box {
   width: 100%;
-  min-height: 400px;
+  min-height: 490px;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -316,7 +358,7 @@ main {
   top: 0; left: 0;
   width: 100%;
   height: 100%;
-  min-height: 400px;
+  min-height: 490px;
   backface-visibility: hidden;
   background: var(--card-bg);
   border-radius: 28px;
@@ -326,7 +368,8 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 24px 20px;
+  padding: 18px 20px 22px;
+  box-sizing: border-box;
   user-select: none;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -374,14 +417,14 @@ main {
   position: relative;
 }
 .visual-illustration {
-  width: 150px;
-  height: 150px;
-  border-radius: 30px;
+  width: 130px;
+  height: 130px;
+  border-radius: 26px;
   background: linear-gradient(135deg, #f0f7ff 0%, #e0effe 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 80px;
+  font-size: 70px;
   position: relative;
   box-shadow: 0 10px 24px rgba(37, 99, 235, 0.12), inset 0 2px 6px rgba(255,255,255,0.8);
   border: 3px solid #dbeafe;
@@ -2047,7 +2090,12 @@ footer {
   <!-- TAB 1: FLASHCARDS -->
   <div id="view-cards" class="view-panel">
     <div class="card-section">
-      <div class="card-scene" id="card-scene">
+      <div class="card-stage-wrapper">
+        <button class="stage-nav-arrow prev" id="arrow-prev" title="البطاقة السابقة / Previous (←)">
+          <span>◀️</span>
+        </button>
+
+        <div class="card-scene" id="card-scene">
         <div class="card-box" id="card-box" tabindex="0" role="button" aria-label="Flashcard. Press Space or Click to Flip.">
           <!-- FRONT FACE -->
           <div class="card-face front-face" id="card-front-face">
@@ -2116,6 +2164,11 @@ footer {
             <div class="card-hint-ar" id="c-hint-back-ar">ردد الصوت واسم الحرف بصوت واضح</div>
           </div>
         </div>
+      </div>
+
+        <button class="stage-nav-arrow next" id="arrow-next" title="البطاقة التالية / Next (→)">
+          <span>▶️</span>
+        </button>
       </div>
 
       <div class="progress-indicator" id="progress-indicator">Card 1 / 71</div>
@@ -3345,6 +3398,10 @@ $('btn-mic-practice').onclick = toggleMicPractice;
 $('btn-flip').onclick = flipCard;
 $('btn-prev').onclick = () => changeCard(-1);
 $('btn-next').onclick = () => changeCard(1);
+const arrowPrev = $('arrow-prev');
+const arrowNext = $('arrow-next');
+if (arrowPrev) arrowPrev.onclick = () => changeCard(-1);
+if (arrowNext) arrowNext.onclick = () => changeCard(1);
 $('btn-shuffle').onclick = shuffleDeck;
 
 // Tabs: bind all buttons dynamically
