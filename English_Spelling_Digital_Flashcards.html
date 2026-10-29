@@ -1733,6 +1733,10 @@ footer {
   height: 320px;
   display: block;
   cursor: crosshair;
+  touch-action: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
 }
 .tracing-ctrl-row {
   display: flex;
@@ -3999,27 +4003,85 @@ function setupTracingCanvas() {
   if (!canvas) return;
   tracingCtx = canvas.getContext('2d');
 
-  // Drawing event handlers
-  const startDraw = (e) => {
+  const getCanvasCoords = (clientX, clientY) => {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    return {
+      x: (clientX - rect.left) * scaleX,
+      y: (clientY - rect.top) * scaleY
+    };
+  };
+
+  const drawStrokeTo = (x, y) => {
+    tracingCtx.lineWidth = 15;
+    tracingCtx.lineCap = 'round';
+    tracingCtx.lineJoin = 'round';
+    tracingCtx.strokeStyle = brushColor;
+
+    tracingCtx.lineTo(x, y);
+    tracingCtx.stroke();
+    tracingCtx.beginPath();
+    tracingCtx.moveTo(x, y);
+  };
+
+  // --- UNIFIED POINTER EVENTS (Touch, Stylus Pen, and Mouse) ---
+  const handlePointerDown = (e) => {
+    e.preventDefault();
     isDrawing = true;
-    drawPoint(e);
+    try { canvas.setPointerCapture(e.pointerId); } catch(err) {}
+    const { x, y } = getCanvasCoords(e.clientX, e.clientY);
+    tracingCtx.beginPath();
+    tracingCtx.moveTo(x, y);
+    drawStrokeTo(x, y);
   };
-  const moveDraw = (e) => {
+
+  const handlePointerMove = (e) => {
     if (!isDrawing) return;
-    drawPoint(e);
+    e.preventDefault();
+    const { x, y } = getCanvasCoords(e.clientX, e.clientY);
+    drawStrokeTo(x, y);
   };
-  const endDraw = () => {
+
+  const handlePointerUp = (e) => {
+    if (isDrawing) {
+      isDrawing = false;
+      try { canvas.releasePointerCapture(e.pointerId); } catch(err) {}
+      tracingCtx.beginPath();
+    }
+  };
+
+  canvas.onpointerdown = handlePointerDown;
+  canvas.onpointermove = handlePointerMove;
+  canvas.onpointerup = handlePointerUp;
+  canvas.onpointercancel = handlePointerUp;
+
+  // --- NATIVE TOUCH FALLBACK (with { passive: false }) ---
+  canvas.addEventListener('touchstart', (e) => {
+    if (e.touches && e.touches.length > 0) {
+      e.preventDefault();
+      const t = e.touches[0];
+      isDrawing = true;
+      const { x, y } = getCanvasCoords(t.clientX, t.clientY);
+      tracingCtx.beginPath();
+      tracingCtx.moveTo(x, y);
+      drawStrokeTo(x, y);
+    }
+  }, { passive: false });
+
+  canvas.addEventListener('touchmove', (e) => {
+    if (!isDrawing || !e.touches || e.touches.length === 0) return;
+    e.preventDefault();
+    const t = e.touches[0];
+    const { x, y } = getCanvasCoords(t.clientX, t.clientY);
+    drawStrokeTo(x, y);
+  }, { passive: false });
+
+  canvas.addEventListener('touchend', (e) => {
+    e.preventDefault();
     isDrawing = false;
     tracingCtx.beginPath();
-  };
-
-  canvas.onmousedown = startDraw;
-  canvas.onmousemove = moveDraw;
-  window.onmouseup = endDraw;
-
-  canvas.ontouchstart = (e) => { e.preventDefault(); startDraw(e.touches[0]); };
-  canvas.ontouchmove = (e) => { e.preventDefault(); moveDraw(e.touches[0]); };
-  canvas.ontouchend = (e) => { e.preventDefault(); endDraw(); };
+  }, { passive: false });
 
   drawGuidelinesAndSample();
 }
@@ -4033,19 +4095,6 @@ function getCanvasPos(e) {
     x: (e.clientX - rect.left) * scaleX,
     y: (e.clientY - rect.top) * scaleY
   };
-}
-
-function drawPoint(e) {
-  const pos = getCanvasPos(e);
-  tracingCtx.lineWidth = 14;
-  tracingCtx.lineCap = 'round';
-  tracingCtx.lineJoin = 'round';
-  tracingCtx.strokeStyle = brushColor;
-
-  tracingCtx.lineTo(pos.x, pos.y);
-  tracingCtx.stroke();
-  tracingCtx.beginPath();
-  tracingCtx.moveTo(pos.x, pos.y);
 }
 
 function drawGuidelinesAndSample() {
