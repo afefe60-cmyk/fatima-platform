@@ -1,0 +1,15 @@
+{
+  "name": "fatima-platform",
+  "version": "1.0.0",
+  "description": "منصة فاطمة التعليمية • Fatima Learning Platform",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
