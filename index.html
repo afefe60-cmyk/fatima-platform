@@ -1,0 +1,1439 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>منصة فاطمة التعليمية • Fatima Learning Platform</title>
+<style>
+:root {
+  --primary: #4338ca;
+  --primary-light: #6366f1;
+  --primary-bg: #eef2ff;
+  --rose: #e11d48;
+  --rose-light: #f43f5e;
+  --rose-bg: #fff1f2;
+  --emerald: #059669;
+  --emerald-light: #10b981;
+  --emerald-bg: #ecfdf5;
+  --amber: #d97706;
+  --amber-light: #f59e0b;
+  --amber-bg: #fffbeb;
+  --cyan: #0284c7;
+  --cyan-light: #0ea5e9;
+  --cyan-bg: #f0f9ff;
+  --purple: #7c3aed;
+  --purple-light: #8b5cf6;
+  --purple-bg: #f5f3ff;
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 10px 25px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 20px 40px rgba(15, 23, 42, 0.12);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, system-ui;
+  background: var(--bg);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Confetti canvas */
+#confetti-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+/* Header */
+header {
+  background: linear-gradient(135deg, #312e81 0%, #4338ca 40%, #6366f1 100%);
+  color: white;
+  padding: 16px 20px;
+  box-shadow: 0 6px 24px rgba(67, 56, 202, 0.25);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.header-wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.avatar-ring {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, #fbbf24, #f43f5e, #38bdf8);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.avatar-ring:hover {
+  transform: scale(1.1) rotate(6deg);
+}
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #ffffff;
+}
+.header-title h1 {
+  margin: 0;
+  font-size: clamp(20px, 4vw, 26px);
+  font-weight: 900;
+  letter-spacing: -0.3px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.header-title p {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #c7d2fe;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.stars-pill {
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-weight: 800;
+  font-size: 15px;
+  color: #fef08a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  user-select: none;
+}
+.btn-sound-greet {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+.btn-sound-greet:hover {
+  background: rgba(255, 255, 255, 0.32);
+  transform: translateY(-2px);
+}
+
+/* Main Container */
+main {
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px 18px 40px;
+  flex: 1;
+}
+
+/* Hero Section */
+.hero-card {
+  background: linear-gradient(135deg, #ffffff 0%, #fdf4ff 50%, #eff6ff 100%);
+  border-radius: 32px;
+  padding: 32px 28px;
+  border: 3px solid #e0e7ff;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-card::after {
+  content: '⭐';
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  font-size: 28px;
+  opacity: 0.6;
+  animation: floatStar 3s ease-in-out infinite;
+}
+@keyframes floatStar {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-8px) rotate(15deg); }
+}
+.hero-text {
+  flex: 1;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fdf2f8;
+  color: #be185d;
+  border: 1.5px solid #fbcfe8;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 800;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+.hero-title {
+  margin: 0 0 10px;
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 900;
+  color: #1e1b4b;
+  line-height: 1.25;
+}
+.hero-title span {
+  color: var(--rose-light);
+  display: inline-block;
+  background: linear-gradient(135deg, #e11d48, #9333ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-desc {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #475569;
+  margin: 0 0 20px;
+  max-width: 580px;
+}
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn-hero-primary {
+  background: linear-gradient(135deg, #4338ca 0%, #6366f1 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 6px 18px rgba(67, 56, 202, 0.3);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-decoration: none;
+}
+.btn-hero-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(67, 56, 202, 0.4);
+}
+.btn-hero-secondary {
+  background: white;
+  color: #3730a3;
+  border: 2px solid #c7d2fe;
+  padding: 12px 20px;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+.btn-hero-secondary:hover {
+  background: #f5f3ff;
+  border-color: #a5b4fc;
+}
+
+/* Hero Portrait Photo */
+.hero-photo-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+.photo-frame {
+  width: 210px;
+  height: 260px;
+  border-radius: 28px;
+  padding: 6px;
+  background: linear-gradient(135deg, #f59e0b, #ec4899, #3b82f6);
+  box-shadow: 0 16px 36px rgba(225, 29, 72, 0.22);
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.photo-frame:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+.photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 22px;
+  background: #f1f5f9;
+  display: block;
+}
+.photo-tag {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  color: #1e1b4b;
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  border: 2px solid #fbcfe8;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .hero-card {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 24px 18px;
+  }
+  .hero-desc {
+    margin: 0 auto 20px;
+  }
+  .hero-actions {
+    justify-content: center;
+  }
+}
+
+/* Section Header */
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 20px;
+}
+.section-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 900;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Core Subjects Grid */
+.subjects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 20px;
+  margin-bottom: 36px;
+}
+.subject-card {
+  background: white;
+  border-radius: 26px;
+  border: 3px solid #e2e8f0;
+  box-shadow: var(--shadow-sm);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+.subject-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Subject Specific Themes */
+/* 1. English (Active) */
+.subject-card.english {
+  border-color: #bfdbfe;
+  background: linear-gradient(180deg, #ffffff 0%, #eff6ff 100%);
+}
+.subject-card.english:hover {
+  border-color: #3b82f6;
+}
+/* 2. Islamic Studies */
+.subject-card.islamic {
+  border-color: #a7f3d0;
+  background: linear-gradient(180deg, #ffffff 0%, #ecfdf5 100%);
+}
+.subject-card.islamic:hover {
+  border-color: #10b981;
+}
+/* 3. Arabic */
+.subject-card.arabic {
+  border-color: #fde68a;
+  background: linear-gradient(180deg, #ffffff 0%, #fffbeb 100%);
+}
+.subject-card.arabic:hover {
+  border-color: #f59e0b;
+}
+/* 4. Math */
+.subject-card.math {
+  border-color: #bae6fd;
+  background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
+}
+.subject-card.math:hover {
+  border-color: #0284c7;
+}
+/* 5. Science */
+.subject-card.science {
+  border-color: #e9d5ff;
+  background: linear-gradient(180deg, #ffffff 0%, #faf5ff 100%);
+}
+.subject-card.science:hover {
+  border-color: #a855f7;
+}
+
+/* Card Elements */
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.subject-icon-box {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+.icon-box-english { background: #dbeafe; color: #1d4ed8; }
+.icon-box-islamic { background: #d1fae5; color: #047857; }
+.icon-box-arabic  { background: #fef3c7; color: #b45309; }
+.icon-box-math    { background: #e0f2fe; color: #0369a1; }
+.icon-box-science { background: #f3e8ff; color: #7e22ce; }
+
+.status-badge {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+.status-active {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #86efac;
+  animation: pulseGreen 2s infinite;
+}
+@keyframes pulseGreen {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.75; }
+}
+.status-soon {
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #cbd5e1;
+}
+
+.subject-name {
+  margin: 0 0 6px;
+  font-size: 21px;
+  font-weight: 900;
+  color: #0f172a;
+}
+.subject-name-en {
+  font-size: 13px;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 10px;
+  display: block;
+}
+.subject-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0 0 18px;
+}
+.subject-features {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
+}
+.feature-item span.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #cbd5e1;
+}
+.subject-card.english .feature-item span.dot { background: #3b82f6; }
+
+/* Action Button inside Card */
+.btn-subject-action {
+  width: 100%;
+  padding: 12px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.btn-action-english {
+  background: #2563eb;
+  color: white;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+}
+.btn-action-english:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
+}
+.btn-action-disabled {
+  background: #f1f5f9;
+  color: #94a3b8;
+  cursor: pointer;
+}
+.btn-action-disabled:hover {
+  background: #e2e8f0;
+  color: #64748b;
+}
+
+/* English Book Spotlight Section */
+.book-spotlight {
+  background: white;
+  border-radius: 28px;
+  border: 3px solid #c7d2fe;
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.book-info {
+  flex: 1;
+  min-width: 260px;
+}
+.book-badge {
+  background: #e0e7ff;
+  color: #3730a3;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 12px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+.book-title {
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 900;
+  color: #1e1b4b;
+}
+.book-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0;
+}
+.book-action-box {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Toast Notification */
+.toast-bar {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120px);
+  background: #1e1b4b;
+  color: white;
+  padding: 12px 26px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.3);
+  z-index: 100000;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.toast-bar.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* Footer */
+footer {
+  background: white;
+  border-top: 1px solid #e2e8f0;
+  padding: 22px 18px;
+  text-align: center;
+  color: #64748b;
+  font-size: 13px;
+  margin-top: auto;
+}
+footer strong {
+  color: #1e1b4b;
+}
+
+
+/* Child Exit Lock & Auto-Fullscreen Styles */
+#child-exit-lock-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(14px);
+  z-index: 99999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+#child-exit-lock-overlay.exit-lock-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.exit-lock-card {
+  background: white;
+  border: 3px solid #f59e0b;
+  border-radius: 28px;
+  padding: 26px 20px;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  animation: cardPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes cardPop {
+  0% { transform: scale(0.88); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.exit-lock-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 10px;
+  background: #fef3c7;
+  border: 2px solid #f59e0b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+.exit-lock-title {
+  font-size: 20px;
+  font-weight: 900;
+  color: #1e1b4b;
+  margin: 0 0 6px;
+}
+.exit-lock-sub {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0 0 16px;
+}
+.btn-resume-learning {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+  transition: all 0.2s ease;
+}
+.btn-resume-learning:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+}
+.pin-dots-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.pin-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2.5px solid #cbd5e1;
+  background: white;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.pin-dot.filled {
+  background: #f59e0b;
+  border-color: #d97706;
+  transform: scale(1.25);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
+}
+.pin-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  max-width: 270px;
+  margin: 0 auto 14px;
+}
+.pin-btn {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  font-size: 20px;
+  font-weight: 900;
+  color: #1e293b;
+  padding: 10px 0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.pin-btn:hover {
+  background: #eef2ff;
+  border-color: #818cf8;
+  color: #4338ca;
+  transform: translateY(-2px);
+}
+.pin-btn:active {
+  transform: scale(0.94);
+  background: #c7d2fe;
+}
+.pin-btn.action-btn {
+  font-size: 13px;
+  font-weight: 800;
+  color: #475569;
+}
+.pin-btn.unlock-btn {
+  background: linear-gradient(135deg, #e11d48, #be123c);
+  border-color: #be123c;
+  color: white;
+}
+.pin-btn.unlock-btn:hover {
+  background: linear-gradient(135deg, #be123c, #9f1239);
+}
+.lock-hint-bar {
+  font-size: 12px;
+  font-weight: 700;
+  color: #92400e;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+  border-radius: 12px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.btn-change-pin {
+  background: transparent;
+  border: none;
+  color: #b45309;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+.btn-change-pin:hover {
+  color: #78350f;
+}
+
+
+
+</style>
+  <!-- PWA & Mobile Web App Meta -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4338ca">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="منصة فاطمة">
+  <meta name="mobile-web-app-capable" content="yes">
+</head>
+<body>
+
+
+<!-- Child Exit Lock Overlay -->
+<div id="child-exit-lock-overlay" class="exit-lock-hidden">
+  <div class="exit-lock-card">
+    <div class="exit-lock-icon">🔒</div>
+    <h2 class="exit-lock-title">قفل خروج الأطفال • Exit Protection</h2>
+    <p class="exit-lock-sub" id="exit-lock-msg">
+      ⚠️ تم رصد محاولة خروج! المنصة محمية بقفل أمان الأطفال لمنع الخروج لسطح المكتب.<br>
+      <strong>أدخل رمز PIN لولي الأمر للخروج، أو اضغطي على زر المتابعة:</strong>
+    </p>
+
+    <!-- Return to Learning button -->
+    <button class="btn-resume-learning" onclick="CHILD_EXIT_LOCK.resumeLearning()">
+      <span>🎮</span> <span>العودة لمتابعة التعلم يا فاطمة (شاشة كاملة)</span> <span>🚀</span>
+    </button>
+
+    <div style="margin: 14px 0 8px; font-size:13px; font-weight:800; color:#475569">
+      أو أدخل رمز PIN لولي الأمر للسماح بالخروج:
+    </div>
+
+    <!-- 4 PIN Dots -->
+    <div class="pin-dots-row">
+      <div class="pin-dot" id="exit-pin-dot-0"></div>
+      <div class="pin-dot" id="exit-pin-dot-1"></div>
+      <div class="pin-dot" id="exit-pin-dot-2"></div>
+      <div class="pin-dot" id="exit-pin-dot-3"></div>
+    </div>
+
+    <!-- Keypad -->
+    <div class="pin-keypad">
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('1')">1</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('2')">2</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('3')">3</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('4')">4</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('5')">5</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('6')">6</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('7')">7</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('8')">8</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('9')">9</button>
+      <button class="pin-btn action-btn" onclick="CHILD_EXIT_LOCK.backspace()">⌫ مسح</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('0')">0</button>
+      <button class="pin-btn unlock-btn" onclick="CHILD_EXIT_LOCK.verifyPin()">🔓 تأكيد الخروج</button>
+    </div>
+
+    <!-- Hint & Change PIN -->
+    <div class="lock-hint-bar">
+      <span>🔑 رمز PIN الافتراضي: <strong id="exit-default-pin-lbl">1234</strong></span>
+      <button class="btn-change-pin" onclick="CHILD_EXIT_LOCK.changePinPrompt()">⚙️ تغيير الرمز</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+<canvas id="confetti-canvas"></canvas>
+
+<!-- Top Header -->
+<header>
+  <div class="header-wrap">
+    <div class="header-brand">
+      <div class="avatar-ring" id="avatar-trigger" title="انقر لسماع رسالة فاطمة 💖">
+        <img src="fatima_circle.png" alt="Fatima" class="avatar-img" onerror="this.src='fatima_avatar.jpg'">
+      </div>
+      <div class="header-title">
+        <h1>منصة فاطمة التعليمية • Fatima</h1>
+        <p>بطلة الصف الثالث الابتدائي • نحو التفوق والتميز 🌟</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <div class="stars-pill" title="رصيد نجوم بطلتنا فاطمة">
+        ⭐ <span id="stars-display">0</span>
+      </div>
+      <button class="btn-sound-greet" id="btn-greet">
+        <span>🔊</span> <span>رسالة ترحيب لفاطمة</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Hero Banner for Fatima -->
+  <section class="hero-card">
+    <div class="hero-text">
+      <div class="hero-badge">🌟 منصة مخصصة للبطلة المتميزة</div>
+      <h2 class="hero-title">مرحباً بكِ يا بطلتنا <span>فاطمة!</span></h2>
+      <p class="hero-desc">
+        هذه منصتكِ التعليمية الخاصة صُممت بحب لترافقكِ خطوة بخطوة في رحلة التفوق المدرسي للصف الثالث الابتدائي.
+        هنا ستتعلمين بطريقة ممتعة وناطقة وتفاعلية بالصور والألعاب! 🚀
+      </p>
+      <div class="hero-actions">
+        <a href="Grade3_English_Curriculum.html" class="btn-hero-primary" id="btn-start-curriculum">
+          <span>📘</span> <span>المنهج الأساسي (الصف الثالث)</span>
+        </a>
+        <a href="English_Spelling_Digital_Flashcards.html" class="btn-hero-secondary" id="btn-start-foundation" style="border-color:#38bdf8; color:#0369a1">
+          <span>🌱</span> <span>مسار التأسيس والفونكس</span>
+        </a>
+        <a href="Grade3_English_Curriculum.html#testking" onclick="localStorage.setItem('open_testking', 'true')" class="btn-hero-secondary" style="border-color:#f59e0b; background:#fef3c7; color:#92400e; font-weight:900;">
+          <span>👑</span> <span>امتحانات Test King</span>
+        </a>
+        <button class="btn-hero-secondary" id="btn-cheer">
+          <span>🎉</span> <span>تشجيع الأبطال</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Enhanced Photo Frame -->
+    <div class="hero-photo-wrap">
+      <div class="photo-frame" id="photo-click" title="انقري هنا يا فاطمة!">
+        <img src="fatima_hero.jpg" alt="فاطمة البطلة" class="photo-img" onerror="this.src='fatima_avatar.jpg'">
+      </div>
+      <div class="photo-tag">👑 فاطمة المتميزة</div>
+    </div>
+  </section>
+
+  <!-- Core Subjects Section -->
+  <section>
+    <div class="section-head">
+      <div>
+        <h3 class="section-title">📚 المواد الدراسية الأساسية</h3>
+        <div class="section-subtitle">منهاج شامل وتفاعلي للتعلم الممتع</div>
+      </div>
+    </div>
+
+    <div class="subjects-grid">
+      <!-- 1. English Language (ACTIVE) -->
+      <div class="subject-card english">
+        <div>
+          <div class="card-top">
+            <div class="subject-icon-box icon-box-english">🇬🇧</div>
+            <span class="status-badge status-active">جاهز ومفعّل (مساران) 🚀</span>
+          </div>
+          <h4 class="subject-name">اللغة الإنجليزية</h4>
+          <span class="subject-name-en">English Language • Foundation & SMILE 3</span>
+          <p class="subject-desc">
+            منهج شامل يجمع بين <strong>التأسيس الصوتي المتقن</strong> و<strong>المنهج الأساسي المعتمد</strong> للصف الثالث الابتدائي.
+          </p>
+          <div class="subject-features">
+            <div class="feature-item"><span class="dot"></span> <strong>📘 المنهج الأساسي:</strong> 6 وحدات ناطقة لكتاب SMILE 3</div>
+            <div class="feature-item"><span class="dot"></span> <strong>🌱 مسار التأسيس:</strong> 71 بطاقة فونكس وتهجئة ناطقة</div>
+            <div class="feature-item"><span class="dot"></span> ألعاب تركيب الكلمات وتحديات الاستماع</div>
+            <div class="feature-item"><span class="dot"></span> محادثات تفاعلية وقواعد وتمارين لكل وحدة</div>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px">
+          <a href="Grade3_English_Curriculum.html" class="btn-subject-action btn-action-english">
+            <span>📘</span> <span>دخول المنهج الأساسي (SMILE 3)</span>
+          </a>
+          <a href="English_Spelling_Digital_Flashcards.html" class="btn-subject-action" style="background:#eff6ff; color:#1d4ed8; border:1.5px solid #bfdbfe">
+            <span>🌱</span> <span>دخول مسار التأسيس والفونكس</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. Islamic Studies -->
+      <div class="subject-card islamic">
+        <div>
+          <div class="card-top">
+            <div class="subject-icon-box icon-box-islamic">🕌</div>
+            <span class="status-badge status-soon">قريباً بإذن الله</span>
+          </div>
+          <h4 class="subject-name">التربية الإسلامية</h4>
+          <span class="subject-name-en">Islamic Studies</span>
+          <p class="subject-desc">
+            سور القرآن الكريم المقررة، سيرة النبي ﷺ، الآداب والأذكار اليومية وقصص الأنبياء.
+          </p>
+          <div class="subject-features">
+            <div class="feature-item"><span class="dot"></span> تلاوة القرآن الكريم بالصوت العذب</div>
+            <div class="feature-item"><span class="dot"></span> بطاقات الأحاديث النبوية المصورة</div>
+            <div class="feature-item"><span class="dot"></span> أذكار المسلم الصغير التفاعلية</div>
+          </div>
+        </div>
+        <button class="btn-subject-action btn-action-disabled" onclick="notifySoon('التربية الإسلامية')">
+          <span>⏳</span> <span>يتم إعداد الدروس لفاطمة</span>
+        </button>
+      </div>
+
+      <!-- 3. Arabic Language -->
+      <div class="subject-card arabic">
+        <div>
+          <div class="card-top">
+            <div class="subject-icon-box icon-box-arabic">📖</div>
+            <span class="status-badge status-soon">قريباً بإذن الله</span>
+          </div>
+          <h4 class="subject-name">اللغة العربية</h4>
+          <span class="subject-name-en">Arabic Language • لغتي</span>
+          <p class="subject-desc">
+            القراءة السليمة، الإملاء والقواعد، معاني الكلمات، والقصص المشوقة باللغة العربية الفصحى.
+          </p>
+          <div class="subject-features">
+            <div class="feature-item"><span class="dot"></span> نصوص القراءة التفاعلية الناطقة</div>
+            <div class="feature-item"><span class="dot"></span> بنك الإملاء والتراكيب اللغوية</div>
+            <div class="feature-item"><span class="dot"></span> قصص مصورة ومسلية للأبطال</div>
+          </div>
+        </div>
+        <button class="btn-subject-action btn-action-disabled" onclick="notifySoon('اللغة العربية')">
+          <span>⏳</span> <span>يتم إعداد الدروس لفاطمة</span>
+        </button>
+      </div>
+
+      <!-- 4. Mathematics -->
+      <div class="subject-card math">
+        <div>
+          <div class="card-top">
+            <div class="subject-icon-box icon-box-math">🔢</div>
+            <span class="status-badge status-soon">قريباً بإذن الله</span>
+          </div>
+          <h4 class="subject-name">الرياضيات</h4>
+          <span class="subject-name-en">Smart Mathematics</span>
+          <p class="subject-desc">
+            جدول الضرب التفاعلي، العمليات الحسابية الذكية، القياس والهندسة، والألغاز المنطقية.
+          </p>
+          <div class="subject-features">
+            <div class="feature-item"><span class="dot"></span> لعبة تحدي جدول الضرب السريع</div>
+            <div class="feature-item"><span class="dot"></span> مسائل الحساب التفاعلية بالصور</div>
+            <div class="feature-item"><span class="dot"></span> كسب النجوم وحل الألغاز الرياضية</div>
+          </div>
+        </div>
+        <button class="btn-subject-action btn-action-disabled" onclick="notifySoon('الرياضيات')">
+          <span>⏳</span> <span>يتم إعداد الدروس لفاطمة</span>
+        </button>
+      </div>
+
+      <!-- 5. General Science -->
+      <div class="subject-card science">
+        <div>
+          <div class="card-top">
+            <div class="subject-icon-box icon-box-science">🔬</div>
+            <span class="status-badge status-soon">قريباً بإذن الله</span>
+          </div>
+          <h4 class="subject-name">العلوم</h4>
+          <span class="subject-name-en">General Science & Discovery</span>
+          <p class="subject-desc">
+            استكشاف الكائنات الحية، عالم النبات والحيوان، حواس الإنسان، والتجارب العلمية الممتعة.
+          </p>
+          <div class="subject-features">
+            <div class="feature-item"><span class="dot"></span> صور توضيحية ثلاثية الأبعاد</div>
+            <div class="feature-item"><span class="dot"></span> دورة حياة الكائنات والبيئة</div>
+            <div class="feature-item"><span class="dot"></span> بطاقات التجارب والملاحظة الذكية</div>
+          </div>
+        </div>
+        <button class="btn-subject-action btn-action-disabled" onclick="notifySoon('العلوم')">
+          <span>⏳</span> <span>يتم إعداد الدروس لفاطمة</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Spotlight Banner for Grade 3 English Book -->
+    <div class="book-spotlight" style="border-color:#818cf8; background:linear-gradient(135deg, #ffffff 0%, #f5f3ff 100%)">
+      <div class="book-info">
+        <span class="book-badge" style="background:#dcfce7; color:#15803d">✅ تم دمج المنهج بنجاح</span>
+        <h4 class="book-title">منهج كتاب اللغة الإنجليزية (SMILE Book 3 - Grade 3)</h4>
+        <p class="book-desc">
+          تم تحويل كافة وحدات كتاب المنهج الرسمي (الوحدات الست: الدروس، المحادثات، الصوتيات، الأناشيد، والتمارين التفاعلية) إلى نظام ناطق ومصور خاص بفاطمة!
+        </p>
+      </div>
+      <div class="book-action-box">
+        <a href="Grade3_English_Curriculum.html" class="btn-hero-primary" style="padding:10px 20px; font-size:15px">
+          <span>📘</span> <span>فتح منهج الصف الثالث (SMILE 3)</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="toast-bar" id="toast-bar">مرحباً بكِ يا فاطمة! 🌟</div>
+
+<footer>
+  <p>منصة فاطمة التعليمية • <strong>Fatima Learning Platform</strong> • صُنعت خصيصاً لتفوق بطلتنا فاطمة 💖</p>
+</footer>
+
+<script>
+// --- AUDIO FX & SYNTHESIS ---
+let audioCtx = null;
+function getAudioContext() {
+  if (!audioCtx) {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (AudioContextClass) audioCtx = new AudioContextClass();
+  }
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+  return audioCtx;
+}
+
+function playTone(type) {
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+    if (type === 'cheer') {
+      [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+        gain.gain.setValueAtTime(0.2, now + idx * 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.35);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now + idx * 0.08);
+        osc.stop(now + idx * 0.08 + 0.36);
+      });
+    } else {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.frequency.setValueAtTime(440, now);
+      osc.frequency.exponentialRampToValueAtTime(880, now + 0.1);
+      gain.gain.setValueAtTime(0.2, now);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.1);
+    }
+  } catch(e) {}
+}
+
+// --- SPEECH GREETING (ناطق) ---
+function speakGreeting(text, lang = 'ar-SA') {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  const voices = window.speechSynthesis.getVoices();
+  const targetVoice = voices.find(v => v.lang.startsWith(lang.slice(0, 2))) || null;
+  if (targetVoice) utter.voice = targetVoice;
+  utter.rate = 0.95;
+  utter.pitch = 1.1;
+  window.speechSynthesis.speak(utter);
+}
+
+// --- TOAST MSG ---
+let toastTimer = null;
+function showToast(msg) {
+  const bar = document.getElementById('toast-bar');
+  bar.textContent = msg;
+  bar.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    bar.classList.remove('show');
+  }, 2800);
+}
+
+// --- CONFETTI ---
+const canvas = document.getElementById('confetti-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let animId = null;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+function triggerConfetti() {
+  const colors = ['#f43f5e', '#ec4899', '#8b5cf6', '#3b82f6', '#10b981', '#f59e0b'];
+  for (let i = 0; i < 60; i++) {
+    particles.push({
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 3,
+      vx: (Math.random() - 0.5) * 14,
+      vy: (Math.random() - 0.8) * 14,
+      size: Math.random() * 8 + 6,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      rot: Math.random() * 360,
+      vRot: (Math.random() - 0.5) * 10,
+      op: 1
+    });
+  }
+  if (!animId) renderConfetti();
+}
+
+function renderConfetti() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach((p, idx) => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.35;
+    p.rot += p.vRot;
+    p.op -= 0.015;
+
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate((p.rot * Math.PI) / 180);
+    ctx.fillStyle = p.color;
+    ctx.globalAlpha = Math.max(0, p.op);
+    ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+    ctx.restore();
+
+    if (p.op <= 0) particles.splice(idx, 1);
+  });
+
+  if (particles.length > 0) {
+    animId = requestAnimationFrame(renderConfetti);
+  } else {
+    animId = null;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+}
+
+// --- STARS SYNC ---
+function syncStars() {
+  const currentStars = localStorage.getItem('flashcard_stars') || '0';
+  document.getElementById('stars-display').textContent = currentStars;
+}
+syncStars();
+
+// --- EVENTS ---
+function welcomeFatima() {
+  playTone('cheer');
+  triggerConfetti();
+  showToast('أهلاً بكِ يا بطلتنا فاطمة! نحن فخورون بكِ جداً! 💖');
+  speakGreeting('مرحباً بكِ يا بطلتنا الذكية فاطمة في منصتكِ التعليمية! هيا نتعلم ونبدع معاً!');
+}
+
+document.getElementById('avatar-trigger').onclick = welcomeFatima;
+document.getElementById('photo-click').onclick = () => {
+  playTone('cheer');
+  triggerConfetti();
+  showToast('فاطمة الرائعة، أميرة الصف الثالث الابتدائي! 👑✨');
+  speakGreeting('Keep shining, Fatima! You are a brilliant superstar!', 'en-US');
+};
+document.getElementById('btn-greet').onclick = welcomeFatima;
+document.getElementById('btn-cheer').onclick = () => {
+  playTone('cheer');
+  triggerConfetti();
+  showToast('أنتِ الأفضل يا فاطمة! استمري في التألق! 🌟🎉');
+  speakGreeting('أحسنتِ يا فاطمة! أنتِ بطلة مجتهدة ومميزة دائماً!');
+};
+
+function notifySoon(subj) {
+  playTone('pop');
+  showToast(`مادة ${subj} قيد التجهيز خصيصاً لفاطمة وستكون متاحة قريباً! ⏳`);
+  speakGreeting(`مادة ${subj} قيد التجهيز لكِ يا فاطمة وستكون جاهزة قريباً بإذن الله!`);
+}
+
+
+// --- CHILD EXIT LOCK & AUTO-FULLSCREEN CONTROLLER ---
+const CHILD_EXIT_LOCK = {
+  currentPinInput: "",
+  isAuthorizedExit: false,
+  getSavedPin() {
+    return localStorage.getItem('fatima_child_pin') || '1234';
+  },
+  setSavedPin(newPin) {
+    localStorage.setItem('fatima_child_pin', newPin);
+  },
+  init() {
+    const lbl = document.getElementById('exit-default-pin-lbl');
+    if (lbl) lbl.textContent = this.getSavedPin();
+
+    // 1. Auto-request fullscreen on very first click/touch anywhere on the page
+    const tryEnterFS = () => {
+      this.requestFullscreen();
+    };
+    document.addEventListener('click', tryEnterFS, { once: true });
+    document.addEventListener('touchstart', tryEnterFS, { once: true });
+    document.addEventListener('keydown', tryEnterFS, { once: true });
+
+    // 2. Monitor fullscreen changes to catch unauthorized exits (e.g. Esc key pressed)
+    document.addEventListener('fullscreenchange', () => this.handleFullscreenChange());
+    document.addEventListener('webkitfullscreenchange', () => this.handleFullscreenChange());
+
+    // 3. Update nudge banner visibility
+    
+    
+
+    // 4. Beforeunload listener to prevent closing the tab directly without warning
+    window.addEventListener('beforeunload', (e) => {
+      if (!this.isAuthorizedExit) {
+        e.preventDefault();
+        e.returnValue = 'المنصة محمية بقفل الأطفال! يرجى إدخال رمز PIN للخروج.';
+        return e.returnValue;
+      }
+    });
+  },
+  requestFullscreen() {
+    try {
+      const elem = document.documentElement;
+      if (!document.fullscreenElement) {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen().catch(() => {});
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen();
+        }
+      }
+      this.hideExitLock();
+    } catch (e) {}
+  },
+  handleFullscreenChange() {
+    const isFS = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement);
+    
+    if (!isFS && !this.isAuthorizedExit) {
+      // Child attempted to exit fullscreen! Show exit lock immediately
+      this.showExitLock("⚠️ تم رصد محاولة خروج! المنصة محمية بقفل أمان الأطفال لمنع الخروج إلى سطح المكتب.<br><strong>أدخل رمز PIN لولي الأمر للسماح بالخروج، أو اضغطي على زر المتابعة:</strong>");
+    }
+  },
+  
+  promptExit() {
+    this.showExitLock("🚪 خروج ولي الأمر: يرجى إدخال رمز PIN المكون من 4 أرقام لتأكيد الخروج من المنصة:");
+  },
+  showExitLock(msg) {
+    const overlay = document.getElementById('child-exit-lock-overlay');
+    if (!overlay) return;
+    overlay.classList.remove('exit-lock-hidden');
+    this.currentPinInput = "";
+    this.updateDots();
+    if (msg) {
+      const msgElem = document.getElementById('exit-lock-msg');
+      if (msgElem) msgElem.innerHTML = msg;
+    }
+  },
+  hideExitLock() {
+    const overlay = document.getElementById('child-exit-lock-overlay');
+    if (overlay) overlay.classList.add('exit-lock-hidden');
+  },
+  resumeLearning() {
+    if (typeof playSound === 'function') playSound('pop');
+    else if (typeof playTone === 'function') playTone('pop');
+    else if (typeof playSoundFX === 'function') playSoundFX('flip');
+    this.isAuthorizedExit = false;
+    this.hideExitLock();
+    this.requestFullscreen();
+  },
+  pressKey(digit) {
+    if (this.currentPinInput.length < 4) {
+      this.currentPinInput += digit;
+      if (typeof playSound === 'function') playSound('pop');
+      else if (typeof playTone === 'function') playTone('pop');
+      else if (typeof playSoundFX === 'function') playSoundFX('flip');
+      this.updateDots();
+      if (this.currentPinInput.length === 4) {
+        setTimeout(() => this.verifyPin(), 250);
+      }
+    }
+  },
+  backspace() {
+    if (this.currentPinInput.length > 0) {
+      this.currentPinInput = this.currentPinInput.slice(0, -1);
+      this.updateDots();
+    }
+  },
+  updateDots() {
+    for (let i = 0; i < 4; i++) {
+      const dot = document.getElementById(`exit-pin-dot-${i}`);
+      if (dot) {
+        dot.classList.toggle('filled', i < this.currentPinInput.length);
+      }
+    }
+  },
+  verifyPin() {
+    const correctPin = this.getSavedPin();
+    if (this.currentPinInput === correctPin) {
+      // Authorized Exit by Parent!
+      this.isAuthorizedExit = true;
+      if (typeof playSound === 'function') playSound('success');
+      else if (typeof playTone === 'function') playTone('cheer');
+      else if (typeof playSoundFX === 'function') playSoundFX('cheer');
+      this.hideExitLock();
+
+      // Exit fullscreen safely
+      if (document.fullscreenElement && document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+      }
+
+      alert("تم التحقق بنجاح! تم فتح قفل الأطفال ويمكنك الآن إغلاق المنصة أو التبديل للنوافذ الأخرى.");
+      try {
+        window.close();
+      } catch (e) {}
+    } else {
+      // Wrong PIN
+      if (typeof playSound === 'function') playSound('wrong');
+      else if (typeof playTone === 'function') playTone('wrong');
+      else if (typeof playSoundFX === 'function') playSoundFX('wrong');
+      const card = document.querySelector('.exit-lock-card');
+      if (card) {
+        card.style.animation = 'shake 0.4s ease';
+        setTimeout(() => card.style.animation = '', 450);
+      }
+      const msgElem = document.getElementById('exit-lock-msg');
+      if (msgElem) {
+        msgElem.innerHTML = '<span style="color:#e11d48; font-weight:900">❌ رمز PIN غير صحيح! حاولي مجدداً، أو اضغطي على زر متابعة التعلم.</span>';
+      }
+      this.currentPinInput = "";
+      this.updateDots();
+    }
+  },
+  changePinPrompt() {
+    const current = prompt("أدخل رمز PIN الحالي للتحقق:", "");
+    if (current === this.getSavedPin()) {
+      const nextPin = prompt("أدخل رمز PIN الجديد المكون من 4 أرقام:", "");
+      if (nextPin && /^\d{4}$/.test(nextPin)) {
+        this.setSavedPin(nextPin);
+        alert(`تم تغيير رمز PIN بنجاح إلى: ${nextPin}`);
+        const defaultLbl = document.getElementById('exit-default-pin-lbl');
+        if (defaultLbl) defaultLbl.textContent = nextPin;
+      } else {
+        alert("يجب أن يتكون رمز PIN من 4 أرقام عددية فقط!");
+      }
+    } else if (current !== null) {
+      alert("رمز PIN الحالي غير صحيح!");
+    }
+  }
+};
+
+
+
+
+CHILD_EXIT_LOCK.init();
+
+
+// --- PWA SERVICE WORKER REGISTRATION ---
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW registration:', err));
+  });
+}
+
+</script>
+
+
+</body>
+</html>

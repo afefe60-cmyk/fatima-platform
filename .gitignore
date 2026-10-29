@@ -1,0 +1,6 @@
+# Ignore deploy archives and local helper files
+*.zip
+*.backup.html
+*.bat
+.DS_Store
+Thumbs.db

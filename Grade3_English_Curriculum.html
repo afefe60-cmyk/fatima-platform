@@ -1,0 +1,3236 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>منهج اللغة الإنجليزية - الصف الثالث الابتدائي • Fatima SMILE 3</title>
+<style>
+:root {
+  --navy: #1e1b4b;
+  --primary: #4338ca;
+  --blue: #2563eb;
+  --blue-light: #eff6ff;
+  --emerald: #059669;
+  --emerald-light: #ecfdf5;
+  --amber: #d97706;
+  --amber-light: #fffbeb;
+  --rose: #e11d48;
+  --rose-light: #fff1f2;
+  --purple: #7c3aed;
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --radius: 22px;
+  --shadow: 0 10px 25px rgba(30, 27, 75, 0.08);
+  --shadow-hover: 0 16px 36px rgba(30, 27, 75, 0.14);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, system-ui;
+  background: var(--bg);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#confetti-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+/* Header */
+header {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4338ca 100%);
+  color: white;
+  padding: 14px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+.header-wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.brand-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.avatar-thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid #fef08a;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.brand-text h1 {
+  margin: 0;
+  font-size: clamp(17px, 3.5vw, 24px);
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.brand-text p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #c7d2fe;
+}
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn-nav-portal {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: white;
+  text-decoration: none;
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+.btn-nav-portal:hover {
+  background: white;
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+.stars-badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 800;
+  color: #fef08a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+/* Breadcrumb Sub-nav */
+.top-subnav {
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 10px 20px;
+}
+.subnav-wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  font-weight: 700;
+}
+.path-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+}
+.path-links a {
+  color: var(--blue);
+  text-decoration: none;
+}
+.mode-switches {
+  display: flex;
+  gap: 8px;
+}
+.btn-mode-pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1.5px solid #cbd5e1;
+  background: #f8fafc;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+.btn-mode-pill.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Main */
+main {
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+  flex: 1;
+}
+
+/* Unit Selector Tabs */
+.unit-scroll-row {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  scrollbar-width: thin;
+}
+.unit-tab {
+  background: white;
+  border: 2px solid #cbd5e1;
+  border-radius: 16px;
+  padding: 12px 18px;
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  min-width: 155px;
+}
+.unit-tab:hover {
+  transform: translateY(-2px);
+  border-color: #93c5fd;
+}
+.unit-tab.active {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 6px 16px rgba(67, 56, 202, 0.3);
+}
+.tab-num {
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--blue);
+  background: #eff6ff;
+  padding: 2px 10px;
+  border-radius: 12px;
+}
+.unit-tab.active .tab-num {
+  background: rgba(255,255,255,0.25);
+  color: #fef08a;
+}
+.tab-name {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+/* Unit Banner with Real Book Illustration */
+.unit-banner-card {
+  background: white;
+  border-radius: 26px;
+  border: 3px solid #e0e7ff;
+  box-shadow: var(--shadow);
+  margin-bottom: 22px;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+.unit-banner-img-box {
+  flex: 1.2;
+  min-width: 320px;
+  max-height: 240px;
+  position: relative;
+  background: #f1f5f9;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.unit-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.unit-banner-info {
+  flex: 1.8;
+  min-width: 300px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.unit-badge-pill {
+  font-size: 12px;
+  font-weight: 800;
+  background: #fdf2f8;
+  color: #be185d;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid #fbcfe8;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+.unit-title-ar {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 900;
+  color: #1e1b4b;
+}
+.unit-desc-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0 0 16px;
+}
+.unit-banner-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.btn-unit-sound {
+  background: #eff6ff;
+  border: 2px solid #bfdbfe;
+  color: #1d4ed8;
+  padding: 8px 16px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+.btn-unit-sound:hover {
+  background: #dbeafe;
+  transform: translateY(-2px);
+}
+
+/* Nav Sub-Tabs (Modes within the Unit) */
+.subtabs-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+.subtab-btn {
+  background: white;
+  border: 2px solid #e2e8f0;
+  padding: 10px 18px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #475569;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+.subtab-btn:hover {
+  border-color: #93c5fd;
+  color: var(--blue);
+}
+.subtab-btn.active {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: white;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+}
+
+/* 1. Vocabulary Grid with Real Images */
+.vocab-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 16px;
+}
+.real-vocab-card {
+  background: white;
+  border-radius: 20px;
+  border: 3px solid #e2e8f0;
+  padding: 14px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+.real-vocab-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.16);
+}
+.vocab-real-img-box {
+  width: 100%;
+  height: 130px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e2e8f0;
+}
+.vocab-real-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+.real-vocab-card:hover .vocab-real-img {
+  transform: scale(1.08);
+}
+.vocab-word-en {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--navy);
+  letter-spacing: 0.5px;
+}
+.vocab-word-ar {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0284c7;
+}
+.btn-card-listen {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 2. Word Builder Game (لعبة تركيب الكلمات مع الصورة) */
+.builder-box {
+  background: white;
+  border-radius: 26px;
+  border: 3px solid #cbd5e1;
+  padding: 30px 20px;
+  max-width: 650px;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.builder-image-wrap {
+  width: 220px;
+  height: 160px;
+  margin: 0 auto 16px;
+  border-radius: 20px;
+  border: 3px solid #f59e0b;
+  overflow: hidden;
+  background: #fffbeb;
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.builder-image-wrap:hover {
+  transform: scale(1.05);
+}
+.builder-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.slots-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+  min-height: 64px;
+  direction: ltr !important;
+}
+.slot-letter {
+  width: 54px;
+  height: 62px;
+  border-radius: 14px;
+  border: 3px dashed #94a3b8;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--navy);
+  transition: all 0.2s ease;
+}
+.slot-letter.filled {
+  border-style: solid;
+  border-color: var(--blue);
+  background: #eff6ff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+  transform: translateY(-2px);
+}
+.tiles-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+  direction: ltr !important;
+}
+.tile-btn {
+  width: 56px;
+  height: 62px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  border: none;
+  font-size: 30px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+.tile-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(29, 78, 216, 0.4);
+}
+.tile-btn:active {
+  transform: translateY(1px);
+}
+.tile-btn.used {
+  opacity: 0.25;
+  pointer-events: none;
+  transform: scale(0.9);
+}
+
+/* 3. Picture Match Quiz (تحدي الصور الحقيقية) */
+.quiz-match-box {
+  background: white;
+  border-radius: 26px;
+  border: 3px solid #cbd5e1;
+  padding: 28px 20px;
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.quiz-target-word-lbl {
+  font-size: 28px;
+  font-weight: 900;
+  color: #db2777;
+  letter-spacing: 1px;
+}
+.quiz-pics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 24px 0 16px;
+}
+.quiz-pic-card {
+  background: #f8fafc;
+  border: 3px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.quiz-pic-card:hover {
+  border-color: #60a5fa;
+  background: #eff6ff;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.14);
+}
+.quiz-pic-img {
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+.quiz-pic-card.correct {
+  border-color: var(--emerald) !important;
+  background: #ecfdf5 !important;
+  animation: correctBounce 0.5s ease;
+}
+@keyframes correctBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+.quiz-pic-card.wrong {
+  border-color: var(--rose) !important;
+  background: #fff1f2 !important;
+  animation: shakeWrong 0.4s ease;
+}
+@keyframes shakeWrong {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+/* 4. Dialogues */
+.dialogue-card {
+  background: white;
+  border-radius: 20px;
+  border: 2.5px solid #e0e7ff;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.bubble-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+.dialogue-bubble {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.dialogue-bubble:hover {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  transform: translateX(-4px);
+}
+
+/* 5. Phonics */
+.phonics-banner-box {
+  background: linear-gradient(135deg, #fdf2f8 0%, #fff1f2 100%);
+  border: 3px dashed #f472b6;
+  border-radius: 22px;
+  padding: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.phonics-chips-wrap {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+.phonics-word-chip {
+  background: white;
+  border: 2px solid #fbcfe8;
+  color: #be185d;
+  padding: 8px 18px;
+  border-radius: 14px;
+  font-size: 18px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.phonics-word-chip:hover {
+  background: #fce7f3;
+  transform: translateY(-2px);
+}
+
+/* Toast */
+.toast-msg {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120px);
+  background: #1e1b4b;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 800;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  z-index: 10000;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.toast-msg.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+footer {
+  background: white;
+  border-top: 1px solid #e2e8f0;
+  padding: 18px;
+  text-align: center;
+  font-size: 13px;
+  color: #64748b;
+  margin-top: auto;
+}
+
+/* Days of the Week Dedicated Game Styles */
+.days-game-box {
+  background: white;
+  border-radius: 26px;
+  border: 3px solid #fde68a;
+  padding: 24px 20px;
+  box-shadow: var(--shadow);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.days-game-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+.days-game-header h2 {
+  font-size: clamp(20px, 4vw, 26px);
+  font-weight: 900;
+  color: #78350f;
+  margin: 0 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.days-game-header p {
+  color: #92400e;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+}
+.days-sub-modes {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 18px 0;
+  flex-wrap: wrap;
+}
+.btn-day-submode {
+  background: white;
+  border: 2px solid #cbd5e1;
+  padding: 9px 18px;
+  border-radius: 20px;
+  font-weight: 800;
+  font-size: 14px;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-day-submode:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+.btn-day-submode.active {
+  background: #f59e0b;
+  border-color: #d97706;
+  color: white;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+}
+
+/* Blackboard poster */
+.blackboard-section {
+  background: #064e3b;
+  border: 8px solid #78350f;
+  border-radius: 18px;
+  padding: 18px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  margin-bottom: 20px;
+}
+.blackboard-img-wrap {
+  max-width: 540px;
+  margin: 0 auto 14px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+}
+.blackboard-img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.blackboard-days-bar {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.btn-bb-day {
+  background: rgba(255,255,255,0.15);
+  border: 1.5px solid rgba(255,255,255,0.4);
+  color: #fef08a;
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-bb-day:hover {
+  background: white;
+  color: #064e3b;
+}
+
+/* Sequence Game */
+.seq-slots-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 10px;
+  margin: 20px 0;
+  direction: ltr;
+}
+.seq-slot {
+  background: #f8fafc;
+  border: 2px dashed #94a3b8;
+  border-radius: 16px;
+  min-height: 95px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 6px;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+.seq-slot.filled {
+  border-style: solid;
+  border-color: #10b981;
+  background: #ecfdf5;
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.2);
+  transform: scale(1.03);
+}
+.seq-slot-num {
+  font-size: 11px;
+  font-weight: 800;
+  color: #64748b;
+  position: absolute;
+  top: 6px;
+  left: 8px;
+}
+.seq-slot-day {
+  font-size: 15px;
+  font-weight: 900;
+  color: #065f46;
+  margin-top: 4px;
+  text-align: center;
+}
+.seq-slot-ar {
+  font-size: 12px;
+  color: #047857;
+  font-weight: 700;
+}
+
+/* Days chips */
+.days-chips-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 18px 0;
+  direction: ltr;
+}
+.day-chip-btn {
+  background: white;
+  border: 2px solid #3b82f6;
+  color: #1d4ed8;
+  padding: 10px 18px;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.day-chip-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  background: #eff6ff;
+}
+.day-chip-btn.used {
+  opacity: 0.35;
+  pointer-events: none;
+  border-color: #cbd5e1;
+  color: #94a3b8;
+  box-shadow: none;
+  transform: none;
+}
+.day-chip-btn.wrong-shake {
+  animation: shake 0.4s ease;
+  border-color: #e11d48;
+  color: #e11d48;
+  background: #ffe4e6;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+/* School Day vs Free Day Mode */
+.sf-quiz-box {
+  background: #f8fafc;
+  border-radius: 20px;
+  border: 2px solid #e2e8f0;
+  padding: 24px;
+  text-align: center;
+  max-width: 580px;
+  margin: 0 auto;
+}
+.sf-card-preview {
+  width: 220px;
+  height: 160px;
+  margin: 0 auto 16px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  border: 3px solid #4338ca;
+  background: white;
+}
+.sf-card-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.sf-question-text {
+  font-size: 20px;
+  font-weight: 900;
+  color: #1e1b4b;
+  margin-bottom: 6px;
+  direction: ltr;
+}
+.sf-question-ar {
+  font-size: 14px;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 16px;
+}
+.sf-options-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.btn-sf-choice {
+  flex: 1;
+  min-width: 180px;
+  max-width: 240px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.btn-sf-choice.school {
+  background: #eff6ff;
+  border-color: #3b82f6;
+  color: #1d4ed8;
+}
+.btn-sf-choice.school:hover {
+  background: #3b82f6;
+  color: white;
+  transform: translateY(-3px);
+}
+.btn-sf-choice.free {
+  background: #ecfdf5;
+  border-color: #10b981;
+  color: #047857;
+}
+.btn-sf-choice.free:hover {
+  background: #10b981;
+  color: white;
+  transform: translateY(-3px);
+}
+.sf-sub-label {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+
+
+/* Child Exit Lock & Auto-Fullscreen Styles */
+#child-exit-lock-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(14px);
+  z-index: 99999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+#child-exit-lock-overlay.exit-lock-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.exit-lock-card {
+  background: white;
+  border: 3px solid #f59e0b;
+  border-radius: 28px;
+  padding: 26px 20px;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  animation: cardPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes cardPop {
+  0% { transform: scale(0.88); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.exit-lock-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 10px;
+  background: #fef3c7;
+  border: 2px solid #f59e0b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+.exit-lock-title {
+  font-size: 20px;
+  font-weight: 900;
+  color: #1e1b4b;
+  margin: 0 0 6px;
+}
+.exit-lock-sub {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0 0 16px;
+}
+.btn-resume-learning {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+  transition: all 0.2s ease;
+}
+.btn-resume-learning:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+}
+.pin-dots-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.pin-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2.5px solid #cbd5e1;
+  background: white;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.pin-dot.filled {
+  background: #f59e0b;
+  border-color: #d97706;
+  transform: scale(1.25);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
+}
+.pin-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  max-width: 270px;
+  margin: 0 auto 14px;
+}
+.pin-btn {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  font-size: 20px;
+  font-weight: 900;
+  color: #1e293b;
+  padding: 10px 0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.pin-btn:hover {
+  background: #eef2ff;
+  border-color: #818cf8;
+  color: #4338ca;
+  transform: translateY(-2px);
+}
+.pin-btn:active {
+  transform: scale(0.94);
+  background: #c7d2fe;
+}
+.pin-btn.action-btn {
+  font-size: 13px;
+  font-weight: 800;
+  color: #475569;
+}
+.pin-btn.unlock-btn {
+  background: linear-gradient(135deg, #e11d48, #be123c);
+  border-color: #be123c;
+  color: white;
+}
+.pin-btn.unlock-btn:hover {
+  background: linear-gradient(135deg, #be123c, #9f1239);
+}
+.lock-hint-bar {
+  font-size: 12px;
+  font-weight: 700;
+  color: #92400e;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+  border-radius: 12px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.btn-change-pin {
+  background: transparent;
+  border: none;
+  color: #b45309;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+.btn-change-pin:hover {
+  color: #78350f;
+}
+
+
+
+
+/* --- TEST KING EXAMINATION HUB STYLES --- */
+.tk-hub-wrap {
+  max-width: 960px;
+  margin: 0 auto;
+}
+.tk-hero-banner {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #b45309 100%);
+  border-radius: 26px;
+  padding: 26px 20px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(180, 83, 9, 0.25);
+  margin-bottom: 22px;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid #fde68a;
+}
+.tk-hero-banner h2 {
+  font-size: clamp(22px, 4.5vw, 28px);
+  font-weight: 900;
+  margin: 0 0 8px;
+  color: #fef08a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.tk-hero-banner p {
+  font-size: 14.5px;
+  color: #fef3c7;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.tk-models-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.tk-model-card {
+  background: white;
+  border-radius: 22px;
+  border: 2px solid #e2e8f0;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+.tk-model-card:hover {
+  transform: translateY(-5px);
+  border-color: #f59e0b;
+  box-shadow: 0 16px 36px rgba(245, 158, 11, 0.2);
+}
+.tk-model-card.featured {
+  border: 3px solid #f59e0b;
+  background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%);
+}
+.tk-model-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 800;
+  background: #eff6ff;
+  color: #2563eb;
+  margin-bottom: 12px;
+  align-self: flex-start;
+}
+.tk-model-card.featured .tk-model-badge {
+  background: #fef3c7;
+  color: #b45309;
+}
+.tk-model-title {
+  font-size: 17.5px;
+  font-weight: 900;
+  color: #0f172a;
+  margin: 0 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tk-model-desc {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0 0 16px;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+.btn-start-model {
+  background: linear-gradient(135deg, #4338ca, #312e81);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(67, 56, 202, 0.3);
+}
+.btn-start-model:hover {
+  background: linear-gradient(135deg, #3730a3, #1e1b4b);
+  transform: translateY(-2px);
+}
+.tk-model-card.featured .btn-start-model {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+}
+
+/* Arena View */
+.tk-arena-box {
+  background: white;
+  border-radius: 26px;
+  border: 3px solid #cbd5e1;
+  padding: 24px 20px;
+  box-shadow: var(--shadow);
+}
+.tk-arena-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid #f1f5f9;
+}
+.tk-bar-pill {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #334155;
+}
+.tk-progress-track {
+  width: 100%;
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.tk-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #f59e0b, #10b981);
+  width: 10%;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+.tk-q-card {
+  text-align: center;
+  padding: 8px 0;
+}
+.tk-q-en {
+  font-size: clamp(20px, 4vw, 25px);
+  font-weight: 900;
+  color: #1e1b4b;
+  margin-bottom: 6px;
+  direction: ltr;
+}
+.tk-q-ar {
+  font-size: 15px;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 16px;
+}
+.tk-q-img-wrap {
+  width: 220px;
+  height: 160px;
+  margin: 0 auto 18px;
+  border-radius: 18px;
+  border: 3px solid #f59e0b;
+  overflow: hidden;
+  background: #fffbeb;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.tk-q-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tk-options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+  direction: ltr;
+}
+.tk-opt-btn {
+  background: #f8fafc;
+  border: 2px solid #cbd5e1;
+  border-radius: 16px;
+  padding: 14px 18px;
+  font-size: 16px;
+  font-weight: 800;
+  color: #1e293b;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-align: center;
+}
+.tk-opt-btn:hover {
+  background: #eff6ff;
+  border-color: #3b82f6;
+  transform: translateY(-2px);
+}
+.tk-opt-btn.correct {
+  background: #ecfdf5 !important;
+  border-color: #10b981 !important;
+  color: #047857 !important;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+  pointer-events: none;
+}
+.tk-opt-btn.wrong {
+  background: #ffe4e6 !important;
+  border-color: #e11d48 !important;
+  color: #be123c !important;
+  pointer-events: none;
+}
+.tk-explanation-box {
+  background: #fef3c7;
+  border: 2px solid #fde68a;
+  border-radius: 16px;
+  padding: 14px 18px;
+  font-size: 15px;
+  font-weight: 800;
+  color: #92400e;
+  margin-top: 16px;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Printable Certificate Styles */
+.tk-certificate-wrap {
+  background: linear-gradient(135deg, #fffbeb 0%, #ffffff 50%, #fef3c7 100%);
+  border: 12px double #b45309;
+  border-radius: 28px;
+  padding: 36px 28px;
+  max-width: 720px;
+  margin: 0 auto 24px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(180, 83, 9, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+.tk-cert-crown {
+  font-size: 48px;
+  margin-bottom: 6px;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+}
+.tk-cert-title-en {
+  font-size: 26px;
+  font-weight: 900;
+  color: #78350f;
+  letter-spacing: 1px;
+  margin: 0 0 2px;
+}
+.tk-cert-title-ar {
+  font-size: 18px;
+  font-weight: 800;
+  color: #b45309;
+  margin: 0 0 16px;
+}
+.tk-cert-avatar-wrap {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  border: 5px solid #f59e0b;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.4);
+  background: white;
+}
+.tk-cert-avatar-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tk-cert-student {
+  font-size: 24px;
+  font-weight: 900;
+  color: #1e1b4b;
+  margin-bottom: 12px;
+}
+.tk-cert-text {
+  font-size: 15px;
+  color: #334155;
+  line-height: 1.8;
+  max-width: 580px;
+  margin: 0 auto 20px;
+  font-weight: 700;
+}
+.tk-cert-footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 2px dashed #cbd5e1;
+  padding-top: 16px;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 800;
+}
+.tk-cert-stamp {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 3px double #059669;
+  color: #059669;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 900;
+  transform: rotate(-10deg);
+}
+
+@media print {
+  body * { visibility: hidden !important; }
+  .tk-certificate-wrap, .tk-certificate-wrap * { visibility: visible !important; }
+  .tk-certificate-wrap {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-width: 8px !important;
+    box-shadow: none !important;
+  }
+}
+
+</style>
+  <!-- PWA & Mobile Web App Meta -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4338ca">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="منصة فاطمة">
+  <meta name="mobile-web-app-capable" content="yes">
+</head>
+<body>
+
+
+<!-- Child Exit Lock Overlay -->
+<div id="child-exit-lock-overlay" class="exit-lock-hidden">
+  <div class="exit-lock-card">
+    <div class="exit-lock-icon">🔒</div>
+    <h2 class="exit-lock-title">قفل خروج الأطفال • Exit Protection</h2>
+    <p class="exit-lock-sub" id="exit-lock-msg">
+      ⚠️ تم رصد محاولة خروج! المنصة محمية بقفل أمان الأطفال لمنع الخروج لسطح المكتب.<br>
+      <strong>أدخل رمز PIN لولي الأمر للخروج، أو اضغطي على زر المتابعة:</strong>
+    </p>
+
+    <!-- Return to Learning button -->
+    <button class="btn-resume-learning" onclick="CHILD_EXIT_LOCK.resumeLearning()">
+      <span>🎮</span> <span>العودة لمتابعة التعلم يا فاطمة (شاشة كاملة)</span> <span>🚀</span>
+    </button>
+
+    <div style="margin: 14px 0 8px; font-size:13px; font-weight:800; color:#475569">
+      أو أدخل رمز PIN لولي الأمر للسماح بالخروج:
+    </div>
+
+    <!-- 4 PIN Dots -->
+    <div class="pin-dots-row">
+      <div class="pin-dot" id="exit-pin-dot-0"></div>
+      <div class="pin-dot" id="exit-pin-dot-1"></div>
+      <div class="pin-dot" id="exit-pin-dot-2"></div>
+      <div class="pin-dot" id="exit-pin-dot-3"></div>
+    </div>
+
+    <!-- Keypad -->
+    <div class="pin-keypad">
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('1')">1</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('2')">2</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('3')">3</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('4')">4</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('5')">5</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('6')">6</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('7')">7</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('8')">8</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('9')">9</button>
+      <button class="pin-btn action-btn" onclick="CHILD_EXIT_LOCK.backspace()">⌫ مسح</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('0')">0</button>
+      <button class="pin-btn unlock-btn" onclick="CHILD_EXIT_LOCK.verifyPin()">🔓 تأكيد الخروج</button>
+    </div>
+
+    <!-- Hint & Change PIN -->
+    <div class="lock-hint-bar">
+      <span>🔑 رمز PIN الافتراضي: <strong id="exit-default-pin-lbl">1234</strong></span>
+      <button class="btn-change-pin" onclick="CHILD_EXIT_LOCK.changePinPrompt()">⚙️ تغيير الرمز</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+<canvas id="confetti-canvas"></canvas>
+
+<!-- Top Header -->
+<header>
+  <div class="header-wrap">
+    <div class="brand-box">
+      <a href="index.html" title="العودة لمنصة فاطمة الرئيسية">
+        <img src="fatima_circle.png" alt="Fatima" class="avatar-thumb" onerror="this.src='fatima_avatar.jpg'">
+      </a>
+      <div class="brand-text">
+        <h1>منهج الصف الثالث • SMILE 3 English</h1>
+        <p>المنهج الأساسي لبطلتنا فاطمة • ناطق وتفاعلي بالصور الحقيقية 📘✨</p>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <a href="index.html" class="btn-nav-portal">🏠 الرئيسية</a>
+      <a href="English_Spelling_Digital_Flashcards.html" class="btn-nav-portal">🌱 مسار التأسيس (Phonics)</a>
+      
+      <button class="btn-nav-portal" id="btn-fullscreen-toggle" title="تكبير الشاشة بالكامل" onclick="CHILD_EXIT_LOCK.requestFullscreen()">
+        ⛶ ملء الشاشة
+      </button>
+      <button class="btn-nav-portal" id="btn-lock-toggle" style="background:rgba(225,29,72,0.25); border-color:#f43f5e" title="خروج ولي الأمر برمز PIN" onclick="CHILD_EXIT_LOCK.promptExit()">
+        🚪 خروج (PIN)
+      </button>
+      <div class="stars-badge">⭐ <span id="stars-val">0</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="top-subnav">
+  <div class="subnav-wrap">
+    <div class="path-links">
+      <a href="index.html">منصة فاطمة</a>
+      <span>›</span>
+      <a href="index.html#subjects">اللغة الإنجليزية</a>
+      <span>›</span>
+      <span style="color:var(--text-main)">المنهج الأساسي (كتاب SMILE 3)</span>
+    </div>
+    <div class="mode-switches">
+      <a href="English_Spelling_Digital_Flashcards.html" class="btn-mode-pill">🌱 1. مسار التأسيس والفونكس</a>
+      <span class="btn-mode-pill active">📘 2. مسار المنهج الأساسي (الصف الثالث)</span>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- Unit Selector Tabs -->
+  <div class="unit-scroll-row" id="unit-tabs-row">
+    <!-- Injected dynamically -->
+  </div>
+
+  <!-- Unit Top Banner with Real Book Illustration -->
+  <div class="unit-banner-card">
+    <div class="unit-banner-img-box">
+      <img src="images/smile/u1_classroom.jpg" alt="Unit Banner" class="unit-banner-img" id="u-banner-img">
+    </div>
+    <div class="unit-banner-info">
+      <div>
+        <span class="unit-badge-pill" id="u-badge">Unit 1 • الوحدة الأولى</span>
+        <h2 class="unit-title-ar" id="u-title-ar">مرحباً بعودتك للإنجليزية (Welcome Back to English)</h2>
+        <p class="unit-desc-text" id="u-desc">Classroom rules, days of the week, school items</p>
+      </div>
+      <div class="unit-banner-actions">
+        <button class="btn-unit-sound" id="btn-read-unit-title">
+          <span>🔊</span> <span>استمع لاسم الوحدة</span>
+        </button>
+        <button class="btn-unit-sound" id="btn-chant-unit" style="background:#fef3c7; border-color:#fde68a; color:#b45309">
+          <span>🎵</span> <span>أنشودة الوحدة</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Unit Sub-tabs Bar -->
+  <div class="subtabs-bar">
+    <button class="subtab-btn active" data-sub="vocab">🖼️ الكلمات بالصور الحقيقية</button>
+    <button class="subtab-btn" data-sub="days" id="subtab-days-btn" style="background:#fef3c7; border-color:#f59e0b; color:#92400e; font-weight:900">📅 لعبة أيام الأسبوع (Days of the Week)</button>
+    <button class="subtab-btn" data-sub="builder">🧩 لعبة ركّب الكلمة بالصورة</button>
+    <button class="subtab-btn" data-sub="quiz">🎯 تحدي الصور الحقيقية والسمع</button>
+    <button class="subtab-btn" data-sub="dialogue">💬 محادثات وقواعد المنهج</button>
+    <button class="subtab-btn" data-sub="phonics">🎵 صوتيات الوحدة (Phonics)</button>
+    <button class="subtab-btn" data-sub="testking" id="subtab-testking-btn" style="background: linear-gradient(135deg, #fef3c7, #fde68a); border-color: #f59e0b; color: #78350f; font-weight: 900;">👑 نماذج امتحانات Test King</button>
+  </div>
+
+  <!-- 1. Real Image Vocabulary Panel -->
+  <div id="panel-vocab" class="content-panel">
+    <div class="vocab-cards-grid" id="vocab-grid"></div>
+  </div>
+
+  <!-- 2. Days of the Week Dedicated Game Panel -->
+  <div id="panel-days" class="content-panel" style="display:none">
+    <div class="days-game-box">
+      <div class="days-game-header">
+        <h2><span>📅</span> <span>أيام الأسبوع لبطلتنا فاطمة • Days of the Week</span> <span>🌟</span></h2>
+        <p>منهج اللغة الإنجليزية للصف الثالث (SMILE Book 3 • Unit 1 Lesson 2)</p>
+      </div>
+
+      <!-- Mode Selector -->
+      <div class="days-sub-modes">
+        <button class="btn-day-submode active" id="btn-mode-seq" onclick="switchDaySubMode('seq')">🧩 1. ترتيب الأيام بالتسلسل</button>
+        <button class="btn-day-submode" id="btn-mode-sf" onclick="switchDaySubMode('sf')">🎒 2. تحدي: يوم دراسي أم عطلة؟</button>
+        <button class="btn-day-submode" id="btn-mode-board" onclick="switchDaySubMode('board')">📖 3. سبورة الصف والنشيد</button>
+      </div>
+
+      <!-- Mode 1: Sequence Order Game -->
+      <div id="days-view-seq">
+        <div style="background:#fef3c7; border:2px solid #fde68a; border-radius:16px; padding:12px 18px; text-align:center; margin-bottom:16px">
+          <span style="font-size:16px; font-weight:800; color:#92400e">
+            🎯 رتبي أيام الأسبوع بالترتيب الصحيح يا فاطمة من الأحد (Sunday) حتى السبت (Saturday):
+          </span>
+        </div>
+
+        <!-- 7 Ordered Slots -->
+        <div class="seq-slots-row" id="days-slots-container"></div>
+
+        <!-- Scrambled Day Chips -->
+        <div class="days-chips-row" id="days-chips-container"></div>
+
+        <div id="days-seq-feedback" style="min-height:36px; text-align:center; font-size:18px; font-weight:800; margin-top:12px"></div>
+
+        <div style="display:flex; justify-content:center; gap:12px; margin-top:16px">
+          <button class="btn-unit-sound" onclick="initDaysSequenceGame()">🔄 إعادة الترتيب</button>
+          <button class="btn-unit-sound" onclick="playDaysChant()" style="background:#fef3c7; border-color:#fde68a; color:#b45309">🎵 استمع للنشيد</button>
+        </div>
+      </div>
+
+      <!-- Mode 2: School Day vs Free Day Quiz -->
+      <div id="days-view-sf" style="display:none">
+        <div class="sf-quiz-box">
+          <div class="sf-card-preview" id="sf-img-wrap">
+            <img src="images/smile/day_friday.jpg" alt="Day Card" id="sf-day-img">
+          </div>
+          <div class="sf-question-text" id="sf-question-en">Is Friday a school day or a free day?</div>
+          <div class="sf-question-ar" id="sf-question-ar">هل يوم الجمعة يوم دراسي أم يوم عطلة؟</div>
+
+          <button class="btn-unit-sound" id="sf-hear-q-btn" onclick="speakCurrentSFQuestion()" style="margin-bottom:14px">
+            <span>🔊</span> <span>استمع للسؤال</span>
+          </button>
+
+          <div class="sf-options-row">
+            <button class="btn-sf-choice school" onclick="checkSFAnswer('school')">
+              <span>🎒 School Day</span>
+              <span class="sf-sub-label">(يوم دراسي)</span>
+            </button>
+            <button class="btn-sf-choice free" onclick="checkSFAnswer('free')">
+              <span>🕌 Free Day</span>
+              <span class="sf-sub-label">(يوم عطلة)</span>
+            </button>
+          </div>
+
+          <div id="sf-feedback-msg" style="min-height:32px; font-size:17px; font-weight:800; margin-top:14px"></div>
+
+          <div style="margin-top:16px">
+            <button class="btn-unit-sound" onclick="nextSFQuestion()" style="background:#4338ca; border-color:#4338ca; color:white">
+              <span>⏩</span> <span>يوم آخر</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode 3: Classroom Blackboard & Chant -->
+      <div id="days-view-board" style="display:none">
+        <div class="blackboard-section">
+          <h3 style="margin:0 0 10px; font-size:18px; color:#fef08a">📖 لوحة الصف الدراسي من كتاب SMILE 3 (الصفحة 10)</h3>
+          <div class="blackboard-img-wrap">
+            <img src="images/smile/u1_days_blackboard.jpg" alt="Days Blackboard" onerror="this.src='fatima_hero.jpg'">
+          </div>
+          <button class="btn-unit-sound" onclick="playDaysChant()" style="background:#fef3c7; border-color:#fde68a; color:#78350f; font-weight:900; margin-bottom:12px">
+            <span>🎵</span> <span>استمع إلى نشيد أيام الأسبوع (The Days Chant)</span>
+          </button>
+          <div style="font-size:13px; color:#a7f3d0; margin-bottom:10px">اضغطي على أي يوم لسماع نطقه بالإنجليزية:</div>
+          <div class="blackboard-days-bar" id="bb-days-buttons"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Word Builder Game Panel -->
+  <div id="panel-builder" class="content-panel" style="display:none">
+    <div class="builder-box">
+      <div class="builder-image-wrap" id="builder-img-trigger" title="انقري لسماع الكلمة!">
+        <img src="images/smile/item_scissors.jpg" alt="Word Image" class="builder-img" id="builder-target-img">
+      </div>
+      <div style="font-size:17px; font-weight:800; color:#334155; margin-bottom:12px">
+        <span>انظري إلى صورة الكتاب واستمعي ثم ركبي الحروف:</span>
+        <button class="btn-unit-sound" id="builder-hear-btn" style="margin-right:8px; padding:4px 12px; font-size:13px">
+          <span>🔊</span> <span>استمع</span>
+        </button>
+      </div>
+
+      <!-- Letter Slots -->
+      <div class="slots-container" id="builder-slots"></div>
+
+      <!-- Scrambled Letter Tiles -->
+      <div class="tiles-container" id="builder-tiles"></div>
+
+      <div id="builder-feedback" style="min-height:32px; font-size:18px; font-weight:800; margin-top:10px"></div>
+
+      <div style="display:flex; gap:10px; justify-content:center; margin-top:16px">
+        <button class="btn-unit-sound" id="builder-clear-btn">🔄 مسح الحروف</button>
+        <button class="btn-unit-sound" id="builder-next-btn" style="background:#4338ca; border-color:#4338ca; color:white">✨ كلمة أخرى</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Picture Quiz Game Panel -->
+  <div id="panel-quiz" class="content-panel" style="display:none">
+    <div class="quiz-match-box">
+      <div style="font-size:20px; font-weight:800; color:var(--navy); margin-bottom:6px">
+        <span>أين هي صورة:</span> <span class="quiz-target-word-lbl" id="quiz-word-lbl">SCISSORS</span>؟
+      </div>
+      <button class="btn-unit-sound" id="quiz-hear-again-btn" style="margin-bottom:16px">
+        <span>🔊</span> <span>استمع للكلمة مجدداً</span>
+      </button>
+
+      <!-- 4 Real Picture Options -->
+      <div class="quiz-pics-grid" id="quiz-pics-grid"></div>
+
+      <div id="quiz-feedback-msg" style="min-height:30px; font-size:18px; font-weight:800"></div>
+
+      <div style="margin-top:16px">
+        <button class="btn-unit-sound" id="quiz-next-q-btn" style="background:#4338ca; color:white; border-color:#4338ca">
+          <span>⏩</span> <span>السؤال التالي</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Dialogue Panel -->
+  <div id="panel-dialogue" class="content-panel" style="display:none">
+    <div id="dialogue-container"></div>
+  </div>
+
+  <!-- 5. Phonics Panel -->
+  <div id="panel-phonics" class="content-panel" style="display:none">
+    <div class="phonics-banner-box" id="phonics-container"></div>
+  </div>
+
+  <!-- 6. Test King Examination Hub Panel -->
+  <div id="panel-testking" class="content-panel" style="display:none">
+    <div class="tk-hub-wrap">
+      <!-- 1. Selection View -->
+      <div id="tk-models-view">
+        <div class="tk-hero-banner">
+          <h2><span>👑</span> <span>بنك امتحانات ملوك الاختبارات • Test King Hub</span> <span>🌟</span></h2>
+          <p>نماذج امتحانات نموذجية وشاملة وتفاعلية تغطي جميع دروس ووحدات كتاب اللغة الإنجليزية (SMILE Book 3) لبطلتنا المتميزة فاطمة!</p>
+        </div>
+
+        <div class="tk-models-grid" id="tk-models-container"></div>
+      </div>
+
+      <!-- 2. Arena Active Exam View -->
+      <div id="tk-arena-view" style="display:none">
+        <div class="tk-arena-box">
+          <div class="tk-arena-top">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span class="tk-bar-pill" id="tk-arena-badge">Model 1</span>
+              <span style="font-weight:900; font-size:16px; color:#1e1b4b" id="tk-arena-title">اسم النموذج</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span class="tk-bar-pill" id="tk-score-pill">⭐ النتيجة: 0</span>
+              <button class="btn-unit-sound" onclick="TEST_KING.exitExam()" style="padding:4px 12px; font-size:12px; background:#fee2e2; border-color:#fca5a5; color:#be123c">✕ خروج</button>
+            </div>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="tk-progress-track">
+            <div class="tk-progress-bar" id="tk-prog-bar"></div>
+          </div>
+
+          <!-- Question Body -->
+          <div class="tk-q-card">
+            <div style="font-size:13px; font-weight:800; color:#d97706; margin-bottom:4px" id="tk-q-counter">السؤال 1 من 10</div>
+            <div class="tk-q-en" id="tk-q-text-en">Question Text</div>
+            <div class="tk-q-ar" id="tk-q-text-ar">ترجمة وتوضيح السؤال</div>
+
+            <button class="btn-unit-sound" id="tk-btn-listen-q" onclick="TEST_KING.listenCurrentQ()" style="margin-bottom:14px;">
+              <span>🔊</span> <span>استمع للسؤال</span>
+            </button>
+
+            <!-- Optional Image -->
+            <div class="tk-q-img-wrap" id="tk-q-img-wrap" style="display:none;">
+              <img src="" alt="Question Image" id="tk-q-img">
+            </div>
+
+            <!-- 4 Choices -->
+            <div class="tk-options-grid" id="tk-opts-container"></div>
+
+            <!-- Feedback & Explanation -->
+            <div id="tk-feedback-box" style="display:none;" class="tk-explanation-box"></div>
+
+            <div style="margin-top:20px;">
+              <button class="btn-start-model" id="tk-btn-next" onclick="TEST_KING.nextQuestion()" style="display:none; max-width:280px; margin:0 auto;">
+                <span>⏩</span> <span>السؤال التالي</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Results & Royal Certificate View -->
+      <div id="tk-results-view" style="display:none">
+        <div style="text-align:center; margin-bottom:24px;">
+          <div style="font-size:54px;">🎉👑🌟</div>
+          <h2 style="font-size:28px; font-weight:900; color:#1e1b4b; margin:6px 0;" id="tk-res-heading">أحسنتِ يا بطلتنا فاطمة!</h2>
+          <p style="font-size:16px; color:#059669; font-weight:800;" id="tk-res-score-text">لقد اجتزتِ الاختبار بنجاح!</p>
+        </div>
+
+        <!-- The Royal Certificate -->
+        <div class="tk-certificate-wrap" id="tk-certificate">
+          <div class="tk-cert-crown">👑</div>
+          <div class="tk-cert-title-en">TEST KING EXCELLENCE CERTIFICATE</div>
+          <div class="tk-cert-title-ar">شهادة تفوق وتميز امتحاني من منصة فاطمة التعليمية</div>
+
+          <div class="tk-cert-avatar-wrap">
+            <img src="fatima_circle.png" alt="Fatima" onerror="this.src='fatima_hero.jpg'">
+          </div>
+
+          <div class="tk-cert-student">البطلة المتفوقة: فاطمة (Fatima) 🌟</div>
+          <div class="tk-cert-text" id="tk-cert-body-text">
+            يسر إدارة منصة فاطمة التعليمية منح هذه الشهادة الرسمية تقديراً لتفوقها الباهر واجتيازها بنجاح باهر نموذج:
+            <strong id="tk-cert-model-name" style="color:#b45309">Final Exam</strong>
+            من المنهج الأساسي للغة الإنجليزية (SMILE Book 3) بدرجة امتياز مع مرتبة الشرف.
+          </div>
+
+          <div class="tk-cert-footer">
+            <div>
+              <div>📅 تاريخ الإنجاز: <strong>2026</strong></div>
+              <div>📘 المنهج: <strong>SMILE Book 3 - Basic Level</strong></div>
+            </div>
+            <div class="tk-cert-stamp">
+              <span>★ رسمي ★</span>
+              <span>امتياز</span>
+              <span>100%</span>
+            </div>
+            <div>
+              <div>👑 اللقب الممنوح:</div>
+              <div style="color:#b45309; font-weight:900">ملكة الاختبارات (Test King)</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:20px;">
+          <button class="btn-start-model" onclick="window.print()" style="background:#059669; max-width:240px;">
+            <span>🖨️</span> <span>طباعة الشهادة الرسمية</span>
+          </button>
+          <button class="btn-start-model" onclick="TEST_KING.retakeCurrentModel()" style="background:#4338ca; max-width:200px;">
+            <span>🔄</span> <span>إعادة الاختبار</span>
+          </button>
+          <button class="btn-start-model" onclick="TEST_KING.exitExam()" style="background:#475569; max-width:240px;">
+            <span>📋</span> <span>اختيار نموذج آخر</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="toast-msg" id="toast-msg">أحسنتِ يا فاطمة! 🌟</div>
+
+<footer>
+  <p>منصة فاطمة التعليمية • المنهج الأساسي لكتاب اللغة الإنجليزية (SMILE Book 3) • صُمم خصيصاً لتفوق بطلتنا فاطمة 💖</p>
+</footer>
+
+<script>
+
+// --- DAYS OF THE WEEK GAME SYSTEM ---
+const DAYS_DATA = [
+  { name: "Sunday", ar: "الأحد", type: "school", typeAr: "يوم دراسي 🎒", img: "images/smile/day_sunday.jpg", chantText: "Sunday is a school day." },
+  { name: "Monday", ar: "الإثنين", type: "school", typeAr: "يوم دراسي 🎒", img: "images/smile/day_monday.jpg", chantText: "Monday is a school day." },
+  { name: "Tuesday", ar: "الثلاثاء", type: "school", typeAr: "يوم دراسي 🎒", img: "images/smile/day_tuesday.jpg", chantText: "Tuesday is a school day." },
+  { name: "Wednesday", ar: "الأربعاء", type: "school", typeAr: "يوم دراسي 🎒", img: "images/smile/day_wednesday.jpg", chantText: "Wednesday is a school day." },
+  { name: "Thursday", ar: "الخميس", type: "school", typeAr: "يوم دراسي 🎒", img: "images/smile/day_thursday.jpg", chantText: "Thursday is a school day." },
+  { name: "Friday", ar: "الجمعة", type: "free", typeAr: "يوم عطلة 🕌", img: "images/smile/day_friday.jpg", chantText: "Friday is a free day!" },
+  { name: "Saturday", ar: "السبت", type: "free", typeAr: "عطلة نهاية الأسبوع 🌟", img: "images/smile/day_saturday.jpg", chantText: "Saturday is a free day!" }
+];
+
+let daysSeqNextIdx = 0;
+let daysSeqCurrentList = [];
+let sfDayItem = null;
+
+function switchDaySubMode(mode) {
+  playSound('pop');
+  $('btn-mode-seq').classList.toggle('active', mode === 'seq');
+  $('btn-mode-sf').classList.toggle('active', mode === 'sf');
+  $('btn-mode-board').classList.toggle('active', mode === 'board');
+
+  $('days-view-seq').style.display = mode === 'seq' ? 'block' : 'none';
+  $('days-view-sf').style.display = mode === 'sf' ? 'block' : 'none';
+  $('days-view-board').style.display = mode === 'board' ? 'block' : 'none';
+
+  if (mode === 'seq') initDaysSequenceGame();
+  if (mode === 'sf') initSFQuizGame();
+  if (mode === 'board') renderBlackboardDays();
+}
+
+function initDaysGame() {
+  initDaysSequenceGame();
+  initSFQuizGame();
+  renderBlackboardDays();
+}
+
+// 1. Sequence Game
+function initDaysSequenceGame() {
+  daysSeqNextIdx = 0;
+  $('days-seq-feedback').textContent = '';
+  $('days-seq-feedback').style.color = 'inherit';
+
+  // Render 7 slots
+  const slotsCont = $('days-slots-container');
+  slotsCont.innerHTML = '';
+  DAYS_DATA.forEach((d, i) => {
+    const slot = document.createElement('div');
+    slot.className = 'seq-slot';
+    slot.id = `seq-slot-${i}`;
+    slot.innerHTML = `
+      <span class="seq-slot-num">#${i + 1}</span>
+      <div style="font-size:24px; opacity:0.35">📅</div>
+      <div style="font-size:12px; color:#94a3b8; font-weight:700">اليوم ${i + 1}</div>
+    `;
+    slotsCont.appendChild(slot);
+  });
+
+  // Render scrambled chips
+  const chipsCont = $('days-chips-container');
+  chipsCont.innerHTML = '';
+  daysSeqCurrentList = [...DAYS_DATA].sort(() => Math.random() - 0.5);
+
+  daysSeqCurrentList.forEach(d => {
+    const btn = document.createElement('button');
+    btn.className = 'day-chip-btn';
+    btn.id = `chip-day-${d.name}`;
+    btn.innerHTML = `<span>🔊</span> <span>${d.name}</span> <span style="font-size:12px; opacity:0.8">(${d.ar})</span>`;
+    btn.onclick = () => selectDaySeqChip(d, btn);
+    chipsCont.appendChild(btn);
+  });
+}
+
+function selectDaySeqChip(dayItem, btnElem) {
+  if (btnElem.classList.contains('used')) return;
+
+  const expectedDay = DAYS_DATA[daysSeqNextIdx];
+  if (dayItem.name === expectedDay.name) {
+    // Correct!
+    playSound('pop');
+    speakWord(dayItem.name);
+    btnElem.classList.add('used');
+
+    const slot = $(`seq-slot-${daysSeqNextIdx}`);
+    slot.classList.add('filled');
+    slot.innerHTML = `
+      <span class="seq-slot-num">#${daysSeqNextIdx + 1} ✓</span>
+      <div class="seq-slot-day">${dayItem.name}</div>
+      <div class="seq-slot-ar">${dayItem.ar}</div>
+      <div style="font-size:10px; color:#059669; font-weight:800; margin-top:2px">${dayItem.typeAr}</div>
+    `;
+
+    daysSeqNextIdx++;
+
+    if (daysSeqNextIdx === DAYS_DATA.length) {
+      playSound('success');
+      triggerConfetti();
+      addStar(5);
+      $('days-seq-feedback').innerHTML = `<span style="color:#059669">رائعة ومذهلة يا فاطمة! رتّبتِ جميع أيام الأسبوع بالترتيب الصحيح 🌟🎉 +5 نجوم</span>`;
+      speakWord("Excellent Fatima! You arranged all days of the week perfectly!");
+    } else {
+      $('days-seq-feedback').innerHTML = `<span style="color:#2563eb">ممتاز! الآن ما هو اليوم التالي بعد ${dayItem.name}؟</span>`;
+    }
+  } else {
+    // Wrong order
+    playSound('wrong');
+    btnElem.classList.add('wrong-shake');
+    setTimeout(() => btnElem.classList.remove('wrong-shake'), 500);
+    speakWord(dayItem.name);
+    $('days-seq-feedback').innerHTML = `<span style="color:#e11d48">هذا يوم ${dayItem.name} (${dayItem.ar})! نبحث الآن عن اليوم رقم ${daysSeqNextIdx + 1}: ${expectedDay.name} (${expectedDay.ar})</span>`;
+  }
+}
+
+// 2. School Day vs Free Day Game
+function initSFQuizGame() {
+  sfDayItem = DAYS_DATA[Math.floor(Math.random() * DAYS_DATA.length)];
+  $('sf-day-img').src = sfDayItem.img;
+  $('sf-question-en').textContent = `Is ${sfDayItem.name} a school day or a free day?`;
+  $('sf-question-ar').textContent = `هل يوم ${sfDayItem.ar} (${sfDayItem.name}) يوم دراسي أم يوم عطلة؟`;
+  $('sf-feedback-msg').textContent = '';
+  speakCurrentSFQuestion();
+}
+
+function speakCurrentSFQuestion() {
+  playSound('pop');
+  speakWord(`Is ${sfDayItem.name} a school day or a free day?`);
+}
+
+function checkSFAnswer(choice) {
+  if (choice === sfDayItem.type) {
+    playSound('success');
+    triggerConfetti();
+    addStar(2);
+    const resultText = sfDayItem.type === 'school' ? `${sfDayItem.name} is a school day! 🎒` : `${sfDayItem.name} is a free day! 🕌`;
+    $('sf-feedback-msg').innerHTML = `<span style="color:#059669">إجابة صحيحة وممتازة يا فاطمة! 🌟 ${resultText} +2 نجوم</span>`;
+    speakWord(`Brilliant Fatima! ${resultText}`);
+    setTimeout(() => nextSFQuestion(), 2400);
+  } else {
+    playSound('wrong');
+    const correctAns = sfDayItem.type === 'school' ? 'يوم دراسي (School Day)' : 'يوم عطلة (Free Day)';
+    $('sf-feedback-msg').innerHTML = `<span style="color:#e11d48">حاولي مرة أخرى يا فاطمة! يوم ${sfDayItem.ar} هو ${correctAns}</span>`;
+    speakWord(`No, ${sfDayItem.name} is a ${sfDayItem.type} day.`);
+  }
+}
+
+function nextSFQuestion() {
+  playSound('pop');
+  let nextItem;
+  do {
+    nextItem = DAYS_DATA[Math.floor(Math.random() * DAYS_DATA.length)];
+  } while (DAYS_DATA.length > 1 && nextItem.name === sfDayItem.name);
+  sfDayItem = nextItem;
+  $('sf-day-img').src = sfDayItem.img;
+  $('sf-question-en').textContent = `Is ${sfDayItem.name} a school day or a free day?`;
+  $('sf-question-ar').textContent = `هل يوم ${sfDayItem.ar} (${sfDayItem.name}) يوم دراسي أم يوم عطلة؟`;
+  $('sf-feedback-msg').textContent = '';
+  speakCurrentSFQuestion();
+}
+
+// 3. Blackboard View
+function renderBlackboardDays() {
+  const container = $('bb-days-buttons');
+  if (!container) return;
+  container.innerHTML = '';
+  DAYS_DATA.forEach(d => {
+    const btn = document.createElement('button');
+    btn.className = 'btn-bb-day';
+    btn.textContent = `${d.name} (${d.ar})`;
+    btn.onclick = () => {
+      playSound('pop');
+      speakWord(`${d.name}. ${d.chantText || ''}`);
+      showToast(`${d.name} • ${d.ar} • ${d.typeAr}`);
+    };
+    container.appendChild(btn);
+  });
+}
+
+function playDaysChant() {
+  playSound('pop');
+  const chant = "Sunday, Monday, Tuesday, Wednesday and Thursday, Friday and Saturday! Friday is a free day! Sunday is a school day!";
+  speakWord(chant, 0.85);
+  showToast("نشيد أيام الأسبوع 🎵");
+}
+
+// --- COMPREHENSIVE CURRICULUM DATASET WITH REAL BOOK IMAGES ---
+const curriculumUnits = [
+  {
+    id: 1,
+    titleEn: "Welcome Back to English",
+    titleAr: "مرحباً بعودتك للإنجليزية",
+    bannerImg: "images/smile/u1_classroom.jpg",
+    desc: "أدوات المدرسة، أيام الأسبوع، الترحيب وقواعد الصف الدراسي.",
+    chant: "Sunday, Monday, Tuesday, Wednesday and Thursday, Friday and Saturday! Friday is a free day! Sunday is a school day!",
+    vocab: [
+      { word: "SUNDAY", en: "Sunday", ar: "الأحد (يوم دراسي 🎒)", img: "images/smile/day_sunday.jpg" },
+      { word: "MONDAY", en: "Monday", ar: "الإثنين (يوم دراسي 🎒)", img: "images/smile/day_monday.jpg" },
+      { word: "TUESDAY", en: "Tuesday", ar: "الثلاثاء (يوم دراسي 🎒)", img: "images/smile/day_tuesday.jpg" },
+      { word: "WEDNESDAY", en: "Wednesday", ar: "الأربعاء (يوم دراسي 🎒)", img: "images/smile/day_wednesday.jpg" },
+      { word: "THURSDAY", en: "Thursday", ar: "الخميس (يوم دراسي 🎒)", img: "images/smile/day_thursday.jpg" },
+      { word: "FRIDAY", en: "Friday", ar: "الجمعة (يوم عطلة 🕌)", img: "images/smile/day_friday.jpg" },
+      { word: "SATURDAY", en: "Saturday", ar: "السبت (عطلة نهاية الأسبوع 🌟)", img: "images/smile/day_saturday.jpg" },
+      { word: "SCISSORS", en: "scissors", ar: "مقص", img: "images/smile/item_scissors.jpg" },
+      { word: "GLUE", en: "glue", ar: "صمغ / لاصق", img: "images/smile/item_glue.jpg" },
+      { word: "NOTEBOOK", en: "notebook", ar: "دفتر", img: "images/smile/item_notebook.jpg" },
+      { word: "PENCIL", en: "pencil", ar: "قلم رصاص", img: "images/smile/item_pencil.jpg" },
+      { word: "SHARPENER", en: "sharpener", ar: "مبراة", img: "images/smile/item_sharpener.jpg" },
+      { word: "PEN", en: "pen", ar: "قلم جاف", img: "images/smile/item_pen.jpg" },
+      { word: "BAG", en: "school bag", ar: "حقيبة مدرسية", img: "images/smile/item_bag.jpg" },
+      { word: "DESK", en: "desk", ar: "طاولة دراسية", img: "images/smile/item_desk.jpg" },
+      { word: "VOLLEYBALL", en: "volleyball", ar: "كرة طائرة", img: "images/smile/item_volleyball.jpg" }
+    ],
+    dialogues: [
+      {
+        title: "Lesson 1: الترحيب بالتلميذ الجديد حسن",
+        lines: [
+          { speaker: "Mr Gamar", textEn: "Good morning, class.", textAr: "صباح الخير يا تلاميذ الصف." },
+          { speaker: "Pupils", textEn: "Good morning, Mr Gamar.", textAr: "صباح الخير يا أستاذ قمر." },
+          { speaker: "Mr Gamar", textEn: "We've got a new pupil today. This is Hassan.", textAr: "لدينا تلميذ جديد اليوم، هذا حسن." },
+          { speaker: "Hassan", textEn: "Hello! Pleased to meet you.", textAr: "مرحباً! يسعدني لقاؤكم." }
+        ]
+      },
+      {
+        title: "Lesson 2: نشيد وأيام الأسبوع (Days of the Week)",
+        lines: [
+          { speaker: "Teacher", textEn: "Is Friday a school day or a free day?", textAr: "هل يوم الجمعة يوم دراسي أم يوم عطلة؟" },
+          { speaker: "Pupils", textEn: "Friday is a free day! We go to the mosque.", textAr: "الجمعة يوم عطلة! نذهب للمسجد." },
+          { speaker: "Teacher", textEn: "What do you do on Sunday?", textAr: "ماذا نفعل يوم الأحد؟" },
+          { speaker: "Pupils", textEn: "Sunday is a school day! We go to school.", textAr: "الأحد يوم دراسي! نذهب إلى المدرسة." }
+        ]
+      },
+      {
+        title: "Lesson 4: قواعد الصف المدرسي (Classroom Rules)",
+        lines: [
+          { speaker: "Rule 1", textEn: "We speak English in our English class.", textAr: "نتحدث بالإنجليزية في حصة اللغة الإنجليزية." },
+          { speaker: "Rule 2", textEn: "We help other pupils.", textAr: "نساعد زملاءنا في الصف." },
+          { speaker: "Rule 3", textEn: "We keep the classroom tidy.", textAr: "نحافظ على نظافة الفصل." },
+          { speaker: "Rule 4", textEn: "We walk in the classroom and don't run.", textAr: "نمشي بهدوء ولا نركض داخل الفصل." }
+        ]
+      }
+    ],
+    phonics: {
+      pattern: "air / ere • en • pl",
+      rule: "لاحظي نطق الأصوات المتشابهة في الكلمات:",
+      words: ["air", "hair", "chair", "where", "there", "pen", "hen", "ten", "plastic", "playground"]
+    }
+  },
+  {
+    id: 2,
+    titleEn: "Our Environment",
+    titleAr: "بيئتنا والمحافظة عليها",
+    bannerImg: "images/smile/u2_street.jpg",
+    desc: "الأماكن في المدينة، السؤال عن الاتجاهات، المحافظة على نظافة الحدائق والشارع.",
+    chant: "What can we do, can we do today? We can go to the park and play! The sky is blue, the grass is green, the air is clean!",
+    vocab: [
+      { word: "MUSEUM", en: "museum", ar: "متحف", img: "images/smile/item_museum.jpg" },
+      { word: "MOSQUE", en: "mosque", ar: "مسجد", img: "images/smile/item_mosque.jpg" },
+      { word: "HOSPITAL", en: "hospital", ar: "مستشفى", img: "images/smile/item_hospital.jpg" },
+      { word: "SCHOOL", en: "school", ar: "مدرسة", img: "images/smile/item_school.jpg" },
+      { word: "MARKET", en: "market", ar: "سوق", img: "images/smile/item_market.jpg" },
+      { word: "LIBRARY", en: "library", ar: "مكتبة للقراءة", img: "images/smile/item_library.jpg" },
+      { word: "PARK", en: "park", ar: "حديقة عامة", img: "images/smile/item_park.jpg" },
+      { word: "ZOO", en: "zoo", ar: "حديقة الحيوان", img: "images/smile/item_zoo.jpg" },
+      { word: "BUS", en: "bus station", ar: "محطة حافلات", img: "images/smile/item_bus_station.jpg" },
+      { word: "SHOP", en: "shop", ar: "دكان / متجر", img: "images/smile/item_shop.jpg" }
+    ],
+    dialogues: [
+      {
+        title: "Lesson 1: السؤال عن الأماكن (Asking Directions)",
+        lines: [
+          { speaker: "Boy", textEn: "Excuse me, where's the museum?", textAr: "عفواً، أين يقع المتحف؟" },
+          { speaker: "Man", textEn: "It's in Nile Street. It's near the school.", textAr: "إنه في شارع النيل، بالقرب من المدرسة." },
+          { speaker: "Boy", textEn: "Thank you very much!", textAr: "شكراً جزيلاً لك!" }
+        ]
+      },
+      {
+        title: "Lesson 4: حماية الحديقة ونظافتها",
+        lines: [
+          { speaker: "Sign 1", textEn: "Don't pick the flowers.", textAr: "لا تقطف الأزهار." },
+          { speaker: "Sign 2", textEn: "Don't drop rubbish on the ground.", textAr: "لا ترمِ القمامة على الأرض." },
+          { speaker: "Fatima", textEn: "Put your rubbish in the rubbish bin!", textAr: "ضع القمامة في سلة المهملات!" }
+        ]
+      }
+    ],
+    phonics: {
+      pattern: "i_e (Magic E) & oo",
+      rule: "Magic E تجعل صوت حرف I طويلاً وممدوداً:",
+      words: ["five", "nine", "time", "Nile", "fine", "drive", "zoo", "food", "school", "room"]
+    }
+  },
+  {
+    id: 3,
+    titleEn: "Eid El Fitr",
+    titleAr: "عيد الفطر المبارك",
+    bannerImg: "images/smile/u3_clothes_line.jpg",
+    desc: "ملابس العيد وألوانها، صنع كعك العيد، حيوانات حديقة الحيوان.",
+    chant: "Welcome to Eid everyone! A time to eat, a time to greet! Happy Eid everyone! Eid Mubarak everyone!",
+    vocab: [
+      { word: "SHIRT", en: "shirt", ar: "قميص", img: "images/smile/item_shirt.jpg" },
+      { word: "TROUSERS", en: "trousers", ar: "بنطال", img: "images/smile/item_trousers.jpg" },
+      { word: "SKIRT", en: "skirt", ar: "تنورة", img: "images/smile/item_skirt.jpg" },
+      { word: "DRESS", en: "dress", ar: "فستان العيد", img: "images/smile/item_dress.jpg" },
+      { word: "CAP", en: "cap", ar: "قبعة", img: "images/smile/item_cap.jpg" },
+      { word: "CAKE", en: "Eid cake", ar: "كعك العيد", img: "images/smile/item_cake.jpg" },
+      { word: "EGGS", en: "eggs", ar: "بيض للخبز", img: "images/smile/item_eggs.jpg" },
+      { word: "LION", en: "lion", ar: "أسد", img: "images/smile/item_lion.jpg" },
+      { word: "GIRAFFE", en: "giraffe", ar: "زرافة", img: "images/smile/item_giraffe.jpg" },
+      { word: "ELEPHANT", en: "elephant", ar: "فيل", img: "images/smile/item_elephant.jpg" }
+    ],
+    dialogues: [
+      {
+        title: "Lesson 3: تهاني وملابس العيد الجديدة",
+        lines: [
+          { speaker: "Grandma", textEn: "Eid Mubarak children! I have got Eid clothes for you.", textAr: "عيد مبارك يا أطفال! أحضرت لكم ملابس العيد." },
+          { speaker: "Children", textEn: "Thank you, Grandma! Eid Mubarak!", textAr: "شكراً يا جدتي! عيد مبارك!" },
+          { speaker: "Rayan", textEn: "I have got a beautiful new dress!", textAr: "لقد حصلت على فستان جديد جميل!" }
+        ]
+      }
+    ],
+    phonics: {
+      pattern: "ir / ur • ou",
+      rule: "تراكيب صوتية في ملابس العيد:",
+      words: ["girl", "shirt", "skirt", "turn", "hurt", "purple", "house", "mouse", "trousers", "flour"]
+    }
+  },
+  {
+    id: 4,
+    titleEn: "Family and Community",
+    titleAr: "العائلة والمجتمع والمهن",
+    bannerImg: "images/smile/u4_family_tree.jpg",
+    desc: "شجرة العائلة، المهن والوظائف، تقديم المساعدة للقرية والمجتمع.",
+    chant: "There's a tall shop in my town, people go up and people come down! The doors are swinging in and out, people are walking round and round!",
+    vocab: [
+      { word: "BAKER", en: "baker", ar: "خبّاز", img: "images/smile/item_baker.jpg" },
+      { word: "TEACHER", en: "teacher", ar: "معلمة", img: "images/smile/item_teacher.jpg" },
+      { word: "DOCTOR", en: "doctor", ar: "طبيب", img: "images/smile/item_doctor.jpg" },
+      { word: "DENTIST", en: "dentist", ar: "طبيب أسنان", img: "images/smile/item_dentist.jpg" },
+      { word: "CHEF", en: "chef", ar: "طاهٍ / طباخ", img: "images/smile/item_chef.jpg" }
+    ],
+    dialogues: [
+      {
+        title: "Lesson 7: المهن والوظائف (Jobs)",
+        lines: [
+          { speaker: "Baker", textEn: "I work in a bakery. I make bread and cakes.", textAr: "أعمل في المخبز وأصنع الخبز والكعك اللذيذ." },
+          { speaker: "Teacher", textEn: "I work with children in a school. I teach them.", textAr: "أعمل مع الأطفال في المدرسة وأعلمهم." },
+          { speaker: "Dentist", textEn: "I work in a clinic. I help people with their teeth.", textAr: "أعمل في العيادة وأساعد الناس في صحة أسنانهم." }
+        ]
+      }
+    ],
+    phonics: {
+      pattern: "ing • ch • br",
+      rule: "أصوات المهن والحركات:",
+      words: ["sing", "swing", "watching", "reading", "chair", "watch", "catch", "kitchen", "bread", "brother"]
+    }
+  },
+  {
+    id: 5,
+    titleEn: "People, Plants and Numbers",
+    titleAr: "الناس والنباتات والأرقام",
+    bannerImg: "images/smile/u5_plant_steps.jpg",
+    desc: "الأرقام 10-100، زراعة الطماطم، الفصول الأربعة، العادات الصحية.",
+    chant: "Summers are hot and winters are cold! In autumn leaves fall when they are old! The weather is warm on nice days in spring!",
+    vocab: [
+      { word: "PLANT", en: "plant pot", ar: "أصيص الزراعة", img: "images/smile/item_plant_pot.jpg" },
+      { word: "SPRING", en: "spring", ar: "الربيع", img: "images/smile/item_spring.jpg" },
+      { word: "SUMMER", en: "summer", ar: "الصيف", img: "images/smile/item_summer.jpg" },
+      { word: "AUTUMN", en: "autumn", ar: "الخريف", img: "images/smile/item_autumn.jpg" },
+      { word: "WINTER", en: "winter", ar: "الشتاء", img: "images/smile/item_winter.jpg" }
+    ],
+    dialogues: [
+      {
+        title: "Lesson 2: كيف نزرع نبات الطماطم؟",
+        lines: [
+          { speaker: "Farmer", textEn: "Get a plant pot and put soil in it.", textAr: "أحضر أصيصاً وضع فيه التربة." },
+          { speaker: "Farmer", textEn: "Put a tomato seed in the hole and water it.", textAr: "ضع بذرة الطماطم في الحفرة واسقِها." }
+        ]
+      }
+    ],
+    phonics: {
+      pattern: "oy / oi • all • ck",
+      rule: "أصوات شائعة في الطبيعة:",
+      words: ["boy", "toy", "oil", "soil", "point", "ball", "tall", "small", "wall", "kick"]
+    }
+  },
+  {
+    id: 6,
+    titleEn: "Sports and Games",
+    titleAr: "الرياضة والألعاب الترفيهية",
+    bannerImg: "images/smile/u6_sports_grid.jpg",
+    desc: "أنواع الرياضة، ألعاب الساحة (الاستغماية، الزحليقة)، اللياقة البدنية.",
+    chant: "Clap, clap, clap, stand up and wait! Clap, clap, clap and shout out eight: Eight! Stand up, clap, clap, now turn around!",
+    vocab: [
+      { word: "FOOTBALL", en: "football", ar: "كرة القدم", img: "images/smile/item_football.jpg" },
+      { word: "BASKETBALL", en: "basketball", ar: "كرة السلة", img: "images/smile/item_basketball.jpg" },
+      { word: "TABLE", en: "table tennis", ar: "تنس الطاولة", img: "images/smile/item_table_tennis.jpg" },
+      { word: "SWIMMING", en: "swimming", ar: "السباحة", img: "images/smile/item_swimming.jpg" },
+      { word: "RUNNING", en: "running", ar: "الجري", img: "images/smile/item_running.jpg" },
+      { word: "SLIDE", en: "slide", ar: "الزحليقة", img: "images/smile/item_slide.jpg" },
+      { word: "SWING", en: "swing", ar: "الأرجوحة", img: "images/smile/item_swing.jpg" },
+      { word: "HOPSCOTCH", en: "hopscotch", ar: "لعبة الحجلة", img: "images/smile/item_hopscotch.jpg" }
+    ],
+    dialogues: [
+      {
+        title: "Lesson 1: رياضتي المفضلة",
+        lines: [
+          { speaker: "Ahmed", textEn: "Hi! I like playing basketball.", textAr: "مرحباً! أنا أحب لعب كرة السلة." },
+          { speaker: "Cathy", textEn: "I like volleyball. I play every day.", textAr: "أنا أحب كرة الطائرة وألعبها يومياً." }
+        ]
+      }
+    ],
+    phonics: {
+      pattern: "u / oo • ss • ea",
+      rule: "أصوات الحركة والرياضة:",
+      words: ["foot", "cook", "good", "book", "pull", "grass", "dress", "class", "healthy"]
+    }
+  }
+];
+
+// --- APP STATE ---
+let activeUnitIdx = 0;
+let activeSubtab = 'vocab';
+let stars = parseInt(localStorage.getItem('flashcard_stars') || '0', 10);
+
+// Builder Game State
+let builderTargetItem = null;
+let builderLettersGuessed = [];
+let builderAvailableTiles = [];
+
+// Quiz Game State
+let quizTargetItem = null;
+
+const $ = id => document.getElementById(id);
+
+// --- AUDIO SPEECH ENGINE ---
+let enVoice = null;
+function initVoices() {
+  if (!('speechSynthesis' in window)) return;
+  const voices = window.speechSynthesis.getVoices();
+  enVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Samantha') || v.name.includes('Google') || v.name.includes('Jenny') || v.name.includes('Zira')))
+         || voices.find(v => v.lang.startsWith('en-US'))
+         || voices.find(v => v.lang.startsWith('en'))
+         || null;
+}
+if ('speechSynthesis' in window) {
+  window.speechSynthesis.onvoiceschanged = initVoices;
+  initVoices();
+}
+
+function speakWord(text, rate = 0.92) {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  if (enVoice) utter.voice = enVoice;
+  utter.rate = rate;
+  utter.pitch = 1.05;
+  window.speechSynthesis.speak(utter);
+}
+
+// --- TONES FX ---
+let audioCtx = null;
+function playSound(type) {
+  try {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!audioCtx && AudioContextClass) audioCtx = new AudioContextClass();
+    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+    if (!audioCtx) return;
+    const now = audioCtx.currentTime;
+    if (type === 'success') {
+      [523.25, 659.25, 783.99, 1046.50].forEach((f, i) => {
+        const osc = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        osc.frequency.setValueAtTime(f, now + i*0.07);
+        g.gain.setValueAtTime(0.2, now + i*0.07);
+        g.gain.exponentialRampToValueAtTime(0.001, now + i*0.07 + 0.35);
+        osc.connect(g);
+        g.connect(audioCtx.destination);
+        osc.start(now + i*0.07);
+        osc.stop(now + i*0.07 + 0.36);
+      });
+    } else if (type === 'pop') {
+      const osc = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      osc.frequency.setValueAtTime(450, now);
+      osc.frequency.exponentialRampToValueAtTime(800, now + 0.08);
+      g.gain.setValueAtTime(0.2, now);
+      g.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+      osc.connect(g);
+      g.connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 0.08);
+    } else if (type === 'wrong') {
+      const osc = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(220, now);
+      osc.frequency.linearRampToValueAtTime(140, now + 0.2);
+      g.gain.setValueAtTime(0.2, now);
+      g.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+      osc.connect(g);
+      g.connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 0.2);
+    }
+  } catch(e) {}
+}
+
+// --- STARS & TOAST ---
+function updateStars() {
+  $('stars-val').textContent = stars;
+  localStorage.setItem('flashcard_stars', stars.toString());
+}
+function addStar(n = 1) {
+  stars += n;
+  updateStars();
+}
+
+let toastTimer = null;
+function showToast(msg) {
+  const t = $('toast-msg');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+// --- CONFETTI ---
+const canvas = $('confetti-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let animId = null;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+function triggerConfetti() {
+  const colors = ['#f43f5e', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6'];
+  for (let i = 0; i < 60; i++) {
+    particles.push({
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 3,
+      vx: (Math.random() - 0.5) * 14,
+      vy: (Math.random() - 0.8) * 14,
+      size: Math.random() * 8 + 6,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      rot: Math.random() * 360,
+      vRot: (Math.random() - 0.5) * 10,
+      op: 1
+    });
+  }
+  if (!animId) renderConfetti();
+}
+
+function renderConfetti() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach((p, idx) => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.35;
+    p.rot += p.vRot;
+    p.op -= 0.015;
+
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate((p.rot * Math.PI) / 180);
+    ctx.fillStyle = p.color;
+    ctx.globalAlpha = Math.max(0, p.op);
+    ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+    ctx.restore();
+
+    if (p.op <= 0) particles.splice(idx, 1);
+  });
+
+  if (particles.length > 0) {
+    animId = requestAnimationFrame(renderConfetti);
+  } else {
+    animId = null;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+}
+
+// --- RENDER UNIT TABS ---
+function renderUnitTabs() {
+  const container = $('unit-tabs-row');
+  container.innerHTML = '';
+  curriculumUnits.forEach((u, idx) => {
+    const tab = document.createElement('div');
+    tab.className = `unit-tab ${idx === activeUnitIdx ? 'active' : ''}`;
+    tab.innerHTML = `
+      <span class="tab-num">Unit ${u.id}</span>
+      <span class="tab-name">${u.titleEn}</span>
+    `;
+    tab.onclick = () => selectUnit(idx);
+    container.appendChild(tab);
+  });
+}
+
+function selectUnit(idx) {
+  playSound('pop');
+  activeUnitIdx = idx;
+  renderUnitTabs();
+  renderUnitContent();
+}
+
+function renderUnitContent() {
+  const u = curriculumUnits[activeUnitIdx];
+  // Banner
+  $('u-badge').textContent = `Unit ${u.id} • الوحدة ${u.id}`;
+  $('u-title-ar').textContent = `${u.titleAr} (${u.titleEn})`;
+  $('u-desc').textContent = u.desc;
+  $('u-banner-img').src = u.bannerImg;
+
+  // 0. Update Days Tab Visibility
+  const daysTabBtn = $('subtab-days-btn');
+  if (daysTabBtn) {
+    if (activeUnitIdx === 0) {
+      daysTabBtn.style.display = 'inline-flex';
+    } else {
+      daysTabBtn.style.display = 'none';
+      if (activeSubtab === 'days') {
+        document.querySelector('.subtab-btn[data-sub="vocab"]').click();
+      }
+    }
+  }
+
+  // 1. Render Real Vocab Cards
+  const vocabBox = $('vocab-grid');
+  vocabBox.innerHTML = '';
+  u.vocab.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'real-vocab-card';
+    card.innerHTML = `
+      <div class="vocab-real-img-box">
+        <img src="${item.img}" alt="${item.en}" class="vocab-real-img" onerror="this.src='fatima_hero.jpg'">
+      </div>
+      <div class="vocab-word-en">${item.en}</div>
+      <div class="vocab-word-ar">${item.ar}</div>
+      <div class="btn-card-listen"><span>🔊</span> <span>استمع</span></div>
+    `;
+    card.onclick = () => {
+      playSound('pop');
+      speakWord(item.en);
+      showToast(`${item.en} • ${item.ar}`);
+    };
+    vocabBox.appendChild(card);
+  });
+
+  // 2. Init Word Builder Game
+  initBuilderGame();
+
+  // 3. Init Picture Quiz Game
+  initQuizGame();
+
+  // 4. Render Dialogues
+  const diagBox = $('dialogue-container');
+  diagBox.innerHTML = '';
+  u.dialogues.forEach(d => {
+    const card = document.createElement('div');
+    card.className = 'dialogue-card';
+    let linesHtml = '';
+    d.lines.forEach(line => {
+      linesHtml += `
+        <div class="dialogue-bubble" onclick="playSound('pop'); speakWord('${line.textEn.replace(/'/g, "\\'")}')">
+          <div style="flex:1">
+            <div style="font-size:12px; font-weight:800; color:var(--primary); margin-bottom:2px">👤 ${line.speaker}</div>
+            <div style="font-size:16px; font-weight:800; color:#1e293b; direction:ltr; text-align:left">“${line.textEn}”</div>
+            <div style="font-size:12px; font-weight:600; color:#64748b; margin-top:2px">${line.textAr}</div>
+          </div>
+          <button class="btn-unit-sound" style="padding:4px 10px; font-size:12px">🔊 استمع</button>
+        </div>
+      `;
+    });
+    card.innerHTML = `
+      <h3 style="margin:0 0 10px; font-size:16px; font-weight:900; color:var(--primary)">📖 ${d.title}</h3>
+      <div class="bubble-row">${linesHtml}</div>
+    `;
+    diagBox.appendChild(card);
+  });
+
+  // 5. Render Phonics
+  const phonicsBox = $('phonics-container');
+  let wordsHtml = '';
+  u.phonics.words.forEach(w => {
+    wordsHtml += `<div class="phonics-word-chip" onclick="playSound('pop'); speakWord('${w}')">🔊 ${w}</div>`;
+  });
+  phonicsBox.innerHTML = `
+    <div style="font-size:24px; font-weight:900; color:#be185d; margin-bottom:6px">🎵 نمط الصوتيات: ${u.phonics.pattern}</div>
+    <p style="font-size:15px; color:#475569; margin:0">${u.phonics.rule}</p>
+    <div class="phonics-chips-wrap">${wordsHtml}</div>
+    <p style="font-size:13px; color:#9d174d; font-weight:700">اضغطي على أي كلمة يا فاطمة للاستماع للنطق الصوتي بدقة!</p>
+  `;
+}
+
+// --- GAME 1: WORD BUILDER WITH REAL BOOK PICTURES ---
+function initBuilderGame(itemIdx = null) {
+  const u = curriculumUnits[activeUnitIdx];
+  if (itemIdx !== null) {
+    builderTargetItem = u.vocab[itemIdx];
+  } else {
+    builderTargetItem = u.vocab[Math.floor(Math.random() * u.vocab.length)];
+  }
+
+  $('builder-target-img').src = builderTargetItem.img;
+  $('builder-feedback').textContent = '';
+  $('builder-feedback').style.color = 'inherit';
+  builderLettersGuessed = [];
+
+  const cleanLetters = builderTargetItem.word.replace(/[^A-Z]/gi, '').toUpperCase().split('');
+  builderTargetLetters = cleanLetters;
+
+  // Render empty slots
+  const slotsRow = $('builder-slots');
+  slotsRow.innerHTML = '';
+  cleanLetters.forEach(() => {
+    const slot = document.createElement('div');
+    slot.className = 'slot-letter';
+    slotsRow.appendChild(slot);
+  });
+
+  // Prepare scrambled tiles (+ 2 distractor letters)
+  const lettersPool = [...cleanLetters];
+  const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  while (lettersPool.length < cleanLetters.length + 2) {
+    lettersPool.push(alpha[Math.floor(Math.random() * alpha.length)]);
+  }
+  lettersPool.sort(() => Math.random() - 0.5);
+  builderAvailableTiles = lettersPool.map((l, i) => ({ id: i, letter: l, used: false }));
+
+  renderBuilderTiles();
+  speakWord(builderTargetItem.en);
+}
+
+function renderBuilderTiles() {
+  const container = $('builder-tiles');
+  container.innerHTML = '';
+  builderAvailableTiles.forEach(tile => {
+    const btn = document.createElement('button');
+    btn.className = `tile-btn ${tile.used ? 'used' : ''}`;
+    btn.textContent = tile.letter;
+    btn.onclick = () => selectBuilderTile(tile);
+    container.appendChild(btn);
+  });
+}
+
+function selectBuilderTile(tile) {
+  if (tile.used || builderLettersGuessed.length >= builderTargetLetters.length) return;
+  playSound('pop');
+  speakWord(tile.letter);
+
+  tile.used = true;
+  builderLettersGuessed.push(tile);
+
+  const slots = document.querySelectorAll('.slot-letter');
+  builderLettersGuessed.forEach((item, idx) => {
+    slots[idx].textContent = item.letter;
+    slots[idx].classList.add('filled');
+  });
+
+  renderBuilderTiles();
+
+  if (builderLettersGuessed.length === builderTargetLetters.length) {
+    const formed = builderLettersGuessed.map(t => t.letter).join('');
+    const target = builderTargetLetters.join('');
+    if (formed === target) {
+      playSound('success');
+      triggerConfetti();
+      addStar(2);
+      $('builder-feedback').textContent = `رائع جداً يا فاطمة! ركّبتِ الكلمة بنجاح: ${target} ⭐ +2`;
+      $('builder-feedback').style.color = '#059669';
+      speakWord(`Brilliant Fatima! ${target}! Excellent!`);
+    } else {
+      playSound('wrong');
+      $('builder-feedback').textContent = `حاولي مرة أخرى يا بطلة! اضغطي على "مسح الحروف" لإعادة المحاولة.`;
+      $('builder-feedback').style.color = '#e11d48';
+    }
+  }
+}
+
+function clearBuilder() {
+  playSound('pop');
+  builderLettersGuessed = [];
+  builderAvailableTiles.forEach(t => t.used = false);
+  document.querySelectorAll('.slot-letter').forEach(s => {
+    s.textContent = '';
+    s.classList.remove('filled');
+  });
+  renderBuilderTiles();
+  $('builder-feedback').textContent = '';
+}
+
+$('builder-img-trigger').onclick = () => { playSound('pop'); speakWord(builderTargetItem.en); };
+$('builder-hear-btn').onclick = () => { playSound('pop'); speakWord(builderTargetItem.en); };
+$('builder-clear-btn').onclick = clearBuilder;
+$('builder-next-btn').onclick = () => { playSound('pop'); initBuilderGame(); };
+
+// --- GAME 2: PICTURE QUIZ WITH 4 REAL BOOK PICTURES ---
+function initQuizGame() {
+  const u = curriculumUnits[activeUnitIdx];
+  quizTargetItem = u.vocab[Math.floor(Math.random() * u.vocab.length)];
+  $('quiz-word-lbl').textContent = quizTargetItem.en.toUpperCase();
+  $('quiz-feedback-msg').textContent = '';
+
+  // Get 3 distractors from all units
+  let allOtherItems = [];
+  curriculumUnits.forEach(un => {
+    allOtherItems.push(...un.vocab.filter(v => v.en !== quizTargetItem.en));
+  });
+  allOtherItems.sort(() => Math.random() - 0.5);
+
+  const choices = [quizTargetItem, allOtherItems[0], allOtherItems[1], allOtherItems[2]];
+  choices.sort(() => Math.random() - 0.5);
+
+  const grid = $('quiz-pics-grid');
+  grid.innerHTML = '';
+  choices.forEach(opt => {
+    const card = document.createElement('div');
+    card.className = 'quiz-pic-card';
+    card.innerHTML = `
+      <img src="${opt.img}" alt="${opt.en}" class="quiz-pic-img" onerror="this.src='fatima_hero.jpg'">
+      <div style="font-size:16px; font-weight:900; color:var(--navy); direction:ltr">${opt.en}</div>
+    `;
+    card.onclick = () => checkQuizPic(opt, card);
+    grid.appendChild(card);
+  });
+
+  speakWord(`Can you find the picture for: ${quizTargetItem.en}?`);
+}
+
+function checkQuizPic(selected, cardElem) {
+  if (selected.en === quizTargetItem.en) {
+    cardElem.classList.add('correct');
+    playSound('success');
+    triggerConfetti();
+    addStar(2);
+    $('quiz-feedback-msg').innerHTML = `<span style="color:#059669">إجابة ممتازة وصحيحة يا فاطمة! 🌟 +2 نجوم</span>`;
+    speakWord(`Yes Fatima! That is ${quizTargetItem.en}! Excellent!`);
+    setTimeout(() => initQuizGame(), 2200);
+  } else {
+    cardElem.classList.add('wrong');
+    playSound('wrong');
+    $('quiz-feedback-msg').innerHTML = `<span style="color:#e11d48">هذه صورة ${selected.ar}، ابحثي عن: ${quizTargetItem.en}</span>`;
+    speakWord(`That is ${selected.en}. Find ${quizTargetItem.en}!`);
+    setTimeout(() => cardElem.classList.remove('wrong'), 700);
+  }
+}
+
+$('quiz-hear-again-btn').onclick = () => { playSound('pop'); speakWord(quizTargetItem.en); };
+$('quiz-next-q-btn').onclick = () => { playSound('pop'); initQuizGame(); };
+
+// --- SWITCH SUBTABS ---
+document.querySelectorAll('.subtab-btn').forEach(btn => {
+  btn.onclick = () => {
+    playSound('pop');
+    document.querySelectorAll('.subtab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeSubtab = btn.getAttribute('data-sub');
+
+    $('panel-vocab').style.display = activeSubtab === 'vocab' ? 'block' : 'none';
+    $('panel-days').style.display = activeSubtab === 'days' ? 'block' : 'none';
+    $('panel-builder').style.display = activeSubtab === 'builder' ? 'block' : 'none';
+    $('panel-quiz').style.display = activeSubtab === 'quiz' ? 'block' : 'none';
+    $('panel-dialogue').style.display = activeSubtab === 'dialogue' ? 'block' : 'none';
+    $('panel-phonics').style.display = activeSubtab === 'phonics' ? 'block' : 'none';
+    $('panel-testking').style.display = activeSubtab === 'testking' ? 'block' : 'none';
+
+    if (activeSubtab === 'testking') {
+      TEST_KING.exitExam();
+    }
+
+    if (activeSubtab === 'days') {
+      initDaysGame();
+    }
+  };
+});
+
+// Banner sounds
+$('btn-read-unit-title').onclick = () => {
+  playSound('pop');
+  const u = curriculumUnits[activeUnitIdx];
+  speakWord(`Unit ${u.id}: ${u.titleEn}. ${u.desc}`);
+};
+let currentUnitAudio = null;
+
+function playUnitSong(unitId) {
+  const u = curriculumUnits[activeUnitIdx];
+  const audioSrc = `audio/songs/unit${unitId}_song.mp3`;
+  
+  if (currentUnitAudio) {
+    currentUnitAudio.pause();
+    currentUnitAudio.currentTime = 0;
+  }
+
+  const audio = new Audio(audioSrc);
+  audio.play().then(() => {
+    currentUnitAudio = audio;
+    showToast(`🎵 جاري تشغيل أغنية Unit ${unitId} الموسيقية 🎶`);
+  }).catch(() => {
+    // Fallback to speech synthesis chant if mp3 not downloaded yet
+    speakWord(u.chant, 0.88);
+    showToast(`أنشودة Unit ${unitId} 🎵`);
+  });
+}
+
+$('btn-chant-unit').onclick = () => {
+  playSound('pop');
+  const u = curriculumUnits[activeUnitIdx];
+  if (currentUnitAudio && !currentUnitAudio.paused) {
+    currentUnitAudio.pause();
+    showToast(`تم إيقاف الأغنية ⏸️`);
+  } else {
+    playUnitSong(u.id);
+  }
+};
+
+// Init
+updateStars();
+renderUnitTabs();
+renderUnitContent();
+
+
+// --- CHILD EXIT LOCK & AUTO-FULLSCREEN CONTROLLER ---
+const CHILD_EXIT_LOCK = {
+  currentPinInput: "",
+  isAuthorizedExit: false,
+  getSavedPin() {
+    return localStorage.getItem('fatima_child_pin') || '1234';
+  },
+  setSavedPin(newPin) {
+    localStorage.setItem('fatima_child_pin', newPin);
+  },
+  init() {
+    const lbl = document.getElementById('exit-default-pin-lbl');
+    if (lbl) lbl.textContent = this.getSavedPin();
+
+    // 1. Auto-request fullscreen on very first click/touch anywhere on the page
+    const tryEnterFS = () => {
+      this.requestFullscreen();
+    };
+    document.addEventListener('click', tryEnterFS, { once: true });
+    document.addEventListener('touchstart', tryEnterFS, { once: true });
+    document.addEventListener('keydown', tryEnterFS, { once: true });
+
+    // 2. Monitor fullscreen changes to catch unauthorized exits (e.g. Esc key pressed)
+    document.addEventListener('fullscreenchange', () => this.handleFullscreenChange());
+    document.addEventListener('webkitfullscreenchange', () => this.handleFullscreenChange());
+
+    // 3. Update nudge banner visibility
+    
+    
+
+    // 4. Beforeunload listener to prevent closing the tab directly without warning
+    window.addEventListener('beforeunload', (e) => {
+      if (!this.isAuthorizedExit) {
+        e.preventDefault();
+        e.returnValue = 'المنصة محمية بقفل الأطفال! يرجى إدخال رمز PIN للخروج.';
+        return e.returnValue;
+      }
+    });
+  },
+  requestFullscreen() {
+    try {
+      const elem = document.documentElement;
+      if (!document.fullscreenElement) {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen().catch(() => {});
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen();
+        }
+      }
+      this.hideExitLock();
+    } catch (e) {}
+  },
+  handleFullscreenChange() {
+    const isFS = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement);
+    
+    if (!isFS && !this.isAuthorizedExit) {
+      // Child attempted to exit fullscreen! Show exit lock immediately
+      this.showExitLock("⚠️ تم رصد محاولة خروج! المنصة محمية بقفل أمان الأطفال لمنع الخروج إلى سطح المكتب.<br><strong>أدخل رمز PIN لولي الأمر للسماح بالخروج، أو اضغطي على زر المتابعة:</strong>");
+    }
+  },
+  
+  promptExit() {
+    this.showExitLock("🚪 خروج ولي الأمر: يرجى إدخال رمز PIN المكون من 4 أرقام لتأكيد الخروج من المنصة:");
+  },
+  showExitLock(msg) {
+    const overlay = document.getElementById('child-exit-lock-overlay');
+    if (!overlay) return;
+    overlay.classList.remove('exit-lock-hidden');
+    this.currentPinInput = "";
+    this.updateDots();
+    if (msg) {
+      const msgElem = document.getElementById('exit-lock-msg');
+      if (msgElem) msgElem.innerHTML = msg;
+    }
+  },
+  hideExitLock() {
+    const overlay = document.getElementById('child-exit-lock-overlay');
+    if (overlay) overlay.classList.add('exit-lock-hidden');
+  },
+  resumeLearning() {
+    if (typeof playSound === 'function') playSound('pop');
+    else if (typeof playTone === 'function') playTone('pop');
+    else if (typeof playSoundFX === 'function') playSoundFX('flip');
+    this.isAuthorizedExit = false;
+    this.hideExitLock();
+    this.requestFullscreen();
+  },
+  pressKey(digit) {
+    if (this.currentPinInput.length < 4) {
+      this.currentPinInput += digit;
+      if (typeof playSound === 'function') playSound('pop');
+      else if (typeof playTone === 'function') playTone('pop');
+      else if (typeof playSoundFX === 'function') playSoundFX('flip');
+      this.updateDots();
+      if (this.currentPinInput.length === 4) {
+        setTimeout(() => this.verifyPin(), 250);
+      }
+    }
+  },
+  backspace() {
+    if (this.currentPinInput.length > 0) {
+      this.currentPinInput = this.currentPinInput.slice(0, -1);
+      this.updateDots();
+    }
+  },
+  updateDots() {
+    for (let i = 0; i < 4; i++) {
+      const dot = document.getElementById(`exit-pin-dot-${i}`);
+      if (dot) {
+        dot.classList.toggle('filled', i < this.currentPinInput.length);
+      }
+    }
+  },
+  verifyPin() {
+    const correctPin = this.getSavedPin();
+    if (this.currentPinInput === correctPin) {
+      // Authorized Exit by Parent!
+      this.isAuthorizedExit = true;
+      if (typeof playSound === 'function') playSound('success');
+      else if (typeof playTone === 'function') playTone('cheer');
+      else if (typeof playSoundFX === 'function') playSoundFX('cheer');
+      this.hideExitLock();
+
+      // Exit fullscreen safely
+      if (document.fullscreenElement && document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+      }
+
+      alert("تم التحقق بنجاح! تم فتح قفل الأطفال ويمكنك الآن إغلاق المنصة أو التبديل للنوافذ الأخرى.");
+      try {
+        window.close();
+      } catch (e) {}
+    } else {
+      // Wrong PIN
+      if (typeof playSound === 'function') playSound('wrong');
+      else if (typeof playTone === 'function') playTone('wrong');
+      else if (typeof playSoundFX === 'function') playSoundFX('wrong');
+      const card = document.querySelector('.exit-lock-card');
+      if (card) {
+        card.style.animation = 'shake 0.4s ease';
+        setTimeout(() => card.style.animation = '', 450);
+      }
+      const msgElem = document.getElementById('exit-lock-msg');
+      if (msgElem) {
+        msgElem.innerHTML = '<span style="color:#e11d48; font-weight:900">❌ رمز PIN غير صحيح! حاولي مجدداً، أو اضغطي على زر متابعة التعلم.</span>';
+      }
+      this.currentPinInput = "";
+      this.updateDots();
+    }
+  },
+  changePinPrompt() {
+    const current = prompt("أدخل رمز PIN الحالي للتحقق:", "");
+    if (current === this.getSavedPin()) {
+      const nextPin = prompt("أدخل رمز PIN الجديد المكون من 4 أرقام:", "");
+      if (nextPin && /^\d{4}$/.test(nextPin)) {
+        this.setSavedPin(nextPin);
+        alert(`تم تغيير رمز PIN بنجاح إلى: ${nextPin}`);
+        const defaultLbl = document.getElementById('exit-default-pin-lbl');
+        if (defaultLbl) defaultLbl.textContent = nextPin;
+      } else {
+        alert("يجب أن يتكون رمز PIN من 4 أرقام عددية فقط!");
+      }
+    } else if (current !== null) {
+      alert("رمز PIN الحالي غير صحيح!");
+    }
+  }
+};
+
+
+
+
+
+// --- TEST KING EXAMINATION DATASET & CONTROLLER ---
+const TEST_KING_DATA = [{"id": 1, "title": "Model 1: Unit 1 & 2 • مدرسة نظيفة وبيئة آمنة", "desc": "أدوات المدرسة، أيام الأسبوع، قواعد الصف، والأماكن في المدينة وحماية البيئة", "badge": "الوحدة 1 و 2", "icon": "🎒", "questions": [{"q": "What day comes after Tuesday?", "qAr": "ما هو اليوم الذي يأتي مباشرة بعد يوم الثلاثاء (Tuesday)؟", "audio": "What day comes after Tuesday?", "type": "choice", "options": ["Wednesday", "Sunday", "Friday", "Monday"], "answer": "Wednesday", "explain": "بعد يوم الثلاثاء (Tuesday) يأتي يوم الأربعاء (Wednesday)."}, {"q": "Look at the picture. What is this school item?", "qAr": "انظري للصورة: ما اسم هذه الأداة المدرسية؟", "img": "images/smile/item_scissors.jpg", "audio": "Look at the picture. What is this school item?", "type": "pic", "options": ["scissors", "glue", "notebook", "pencil"], "answer": "scissors", "explain": "المقص باللغة الإنجليزية هو scissors."}, {"q": "Is Friday a school day or a free day?", "qAr": "هل يوم الجمعة يوم دراسي أم يوم عطلة في المنهج؟", "audio": "Is Friday a school day or a free day?", "type": "choice", "options": ["Friday is a free day", "Friday is a school day", "Friday is a notebook", "Friday is a desk"], "answer": "Friday is a free day", "explain": "يوم الجمعة هو يوم عطلة وصلاة (Free day)."}, {"q": "Classroom Rule: We walk in the classroom and don't ...", "qAr": "قواعد الصف: نمشي بهدوء داخل الفصل الدراسي ولا ...", "audio": "We walk in the classroom and don't...", "type": "choice", "options": ["run", "read", "write", "listen"], "answer": "run", "explain": "القاعدة تنص: We walk in the classroom and don't run (لا نركض)."}, {"q": "Excuse me, where's the museum? It's in ...", "qAr": "عفواً، أين يقع المتحف؟ (كما في درس شارع النيل):", "audio": "Excuse me, where's the museum?", "type": "choice", "options": ["Nile Street", "Classroom 3", "The desk", "My bag"], "answer": "Nile Street", "explain": "في كتاب SMILE 3: المتحف يقع في شارع النيل (Nile Street)."}, {"q": "Park Rule: Don't drop ... on the ground!", "qAr": "قواعد الحديقة: لا ترمِ ... على الأرض!", "img": "images/smile/u2_dont_drop_rubbish.jpg", "audio": "Don't drop rubbish on the ground!", "type": "pic", "options": ["rubbish", "water", "books", "flowers"], "answer": "rubbish", "explain": "لا ترمِ القمامة: Don't drop rubbish on the ground."}, {"q": "Where should you put rubbish?", "qAr": "أين يجب أن نضع القمامة والعلب الفارغة؟", "audio": "Where should you put rubbish?", "type": "choice", "options": ["In the rubbish bin", "On the street", "Under the chair", "In the bag"], "answer": "In the rubbish bin", "explain": "في سلة المهملات: In the rubbish bin."}, {"q": "Which word has the sound /air/ as in hair?", "qAr": "صوتيات: أي الكلمات التالية تحتوي على الصوت /air/ مثل كلمة hair؟", "audio": "Which word has the sound air?", "type": "choice", "options": ["chair", "pen", "desk", "book"], "answer": "chair", "explain": "كلمة chair (كرسي) تشترك في نفس صوت /air/."}, {"q": "Choose the odd one out (الكلمة المختلفة):", "qAr": "اختر الكلمة المختلفة عن باقي المجموعة:", "audio": "Choose the odd one out.", "type": "choice", "options": ["hospital", "school", "library", "scissors"], "answer": "scissors", "explain": "scissors أداة مدرسية بينما باقي الكلمات أماكن في المدينة."}, {"q": "In the classroom, we keep the room ...", "qAr": "في الصف المدرسي نحافظ دائماً على الفصل ...", "audio": "We keep the classroom...", "type": "choice", "options": ["tidy", "noisy", "dirty", "dark"], "answer": "tidy", "explain": "نحافظ على نظافة وترتيب الفصل: We keep the classroom tidy."}]}, {"id": 2, "title": "Model 2: Unit 3 & 4 • العيد السعيد وعائلتي ومجتمعي", "desc": "ملابس العيد، وصفة الكيك، شجرة العائلة، المهن والوظائف، والاتجاهات", "badge": "الوحدة 3 و 4", "icon": "🎉", "questions": [{"q": "What do we say on Eid morning?", "qAr": "ماذا نقول في صباح يوم عيد الفطر السعيد؟", "audio": "What do we say on Eid morning?", "type": "choice", "options": ["Eid Mubarak!", "Good night!", "Excuse me!", "Good bye!"], "answer": "Eid Mubarak!", "explain": "في العيد نقول لجميع الأهل والأصدقاء: Eid Mubarak!"}, {"q": "Look at the picture. What is this new Eid clothing?", "qAr": "انظري للصورة: ما هو لباس العيد الجديد هذا؟", "img": "images/smile/item_dress.jpg", "audio": "What is this clothing?", "type": "pic", "options": ["dress", "shoes", "trousers", "cap"], "answer": "dress", "explain": "فستان باللغة الإنجليزية هو dress."}, {"q": "To make an Eid cake, we need sugar, flour, oil and ...", "qAr": "لصنع كعك العيد اللذيذ، نحتاج السكر والدقيق والزيت و ...", "img": "images/smile/item_eggs.jpg", "audio": "What do we need to make an Eid cake?", "type": "pic", "options": ["eggs", "pencils", "rubbish", "chairs"], "answer": "eggs", "explain": "نحتاج البيض: eggs."}, {"q": "Complete: I ... got a new shirt for Eid.", "qAr": "قواعد: أكمل الجملة بالصيغة الصحيحة: I ... got a new shirt.", "audio": "I have got a new shirt.", "type": "choice", "options": ["have", "has", "is", "are"], "answer": "have", "explain": "الضمير I يأخذ دائماً have got."}, {"q": "My father's father is my ...", "qAr": "شجرة العائلة: والد أبي هو ...", "audio": "My father's father is my...", "type": "choice", "options": ["granddad", "uncle", "brother", "cousin"], "answer": "granddad", "explain": "والد الأب هو الجد: granddad (أو grandfather)."}, {"q": "My mother's brother is my ...", "qAr": "شجرة العائلة: أخو أمي هو ...", "audio": "My mother's brother is my...", "type": "choice", "options": ["uncle", "dad", "sister", "grandma"], "answer": "uncle", "explain": "أخو الأم أو الأب هو الخال أو العم: uncle."}, {"q": "He works at the hospital and helps sick people. He is a ...", "qAr": "المهن: يعمل في المستشفى ويساعد المرضى، إنه ...", "img": "images/smile/item_doctor.jpg", "audio": "He is a doctor.", "type": "pic", "options": ["doctor", "baker", "dentist", "teacher"], "answer": "doctor", "explain": "الطبيب هو: doctor."}, {"q": "She teaches pupils in the school. She is a ...", "qAr": "المهن: تُعلّم التلاميذ في المدرسة، إنها ...", "img": "images/smile/item_teacher.jpg", "audio": "She is a teacher.", "type": "pic", "options": ["teacher", "chef", "driver", "dentist"], "answer": "teacher", "explain": "المعلمة هي: teacher."}, {"q": "He checks your teeth. He is a ...", "qAr": "المهن: يفحص ويعالج الأسنان، إنه ...", "img": "images/smile/item_dentist.jpg", "audio": "He is a dentist.", "type": "pic", "options": ["dentist", "baker", "doctor", "farmer"], "answer": "dentist", "explain": "طبيب الأسنان هو: dentist."}, {"q": "Which word has the sound /sh/ as in shop?", "qAr": "صوتيات: أي الكلمات التالية تبدأ بالصوت /sh/ مثل shop؟", "audio": "Which word has the sound sh?", "type": "choice", "options": ["shirt", "chair", "tea", "cake"], "answer": "shirt", "explain": "كلمة shirt تبدأ بصوت /sh/."}]}, {"id": 3, "title": "Model 3: Unit 5 & 6 • الأرقام والزراعة والفصول والرياضة", "desc": "الأرقام حتى 100، زراعة النبتة، فصول السنة، الطعام الصحي، والألعاب الرياضية", "badge": "الوحدة 5 و 6", "icon": "⚽", "questions": [{"q": "How do you write the number 40 in words?", "qAr": "الأرقام: كيف نكتب الرقم 40 باللغة الإنجليزية؟", "audio": "How do you write the number 40?", "type": "choice", "options": ["forty", "fourteen", "four", "four hundred"], "answer": "forty", "explain": "الرقم 40 يُكتب: forty."}, {"q": "Look at the picture. To grow a plant, put the seed in the ...", "qAr": "انظري للصورة: لزراعة نبات نضع البذرة داخل ...", "img": "images/smile/item_plant_pot.jpg", "audio": "Put the seed in the soil.", "type": "pic", "options": ["soil", "cola", "desk", "bag"], "answer": "soil", "explain": "نضع البذرة في التربة: soil."}, {"q": "In which season is the weather hot and sunny?", "qAr": "فصول السنة: في أي فصل يكون الطقس حاراً ومشمساً؟", "img": "images/smile/item_summer.jpg", "audio": "In which season is the weather hot and sunny?", "type": "pic", "options": ["summer", "winter", "autumn", "spring"], "answer": "summer", "explain": "فصل الصيف هو: summer."}, {"q": "In autumn, leaves ... from the trees.", "qAr": "في فصل الخريف (autumn)، أوراق الشجر ... من الأشجار:", "img": "images/smile/item_autumn.jpg", "audio": "In autumn, leaves fall from trees.", "type": "pic", "options": ["fall", "swim", "fly", "jump"], "answer": "fall", "explain": "تسقط الأوراق: leaves fall from the trees."}, {"q": "Which food is healthy for your body?", "qAr": "صحة الجسم: أي الأطعمة التالية صحي ومفيد لجسمك؟", "audio": "Which food is healthy?", "type": "choice", "options": ["fresh fruit and milk", "cola and chocolate", "too many sweets", "junk food"], "answer": "fresh fruit and milk", "explain": "الفواكه الطازجة والحليب طعام صحي (Healthy food)."}, {"q": "Do you drink cola? — No, I ... drink cola.", "qAr": "ظروف التكرار: هل تشرب الكولا؟ — لا، أنا ... أشرب الكولا:", "audio": "No, I never drink cola.", "type": "choice", "options": ["never", "always", "every", "often"], "answer": "never", "explain": "أبداً لا أشرب الكولا: I never drink cola."}, {"q": "Look at the picture. What sport is this?", "qAr": "انظري للصورة: ما هي هذه الرياضة المائية؟", "img": "images/smile/item_swimming.jpg", "audio": "What sport is this?", "type": "pic", "options": ["swimming", "football", "karate", "basketball"], "answer": "swimming", "explain": "السباحة هي: swimming."}, {"q": "Look at the picture. Children are playing on the ...", "qAr": "انظري للصورة: الأطفال يلعبون على ... في الحديقة:", "img": "images/smile/item_slide.jpg", "audio": "Children are playing on the slide.", "type": "pic", "options": ["slide", "desk", "car", "bus"], "answer": "slide", "explain": "الزحليقة هي: slide."}, {"q": "Where is the ball? It is ... the chair.", "qAr": "حروف الجر: أين الكرة إذا كانت تحت الكرسي؟", "audio": "It is under the chair.", "type": "choice", "options": ["under", "on", "in", "above"], "answer": "under", "explain": "تحت الكرسي: under the chair."}, {"q": "Which word has the sound /ch/ as in children?", "qAr": "صوتيات: أي الكلمات التالية تحتوي على الصوت /ch/؟", "audio": "Which word has the sound ch?", "type": "choice", "options": ["chocolate", "school", "share", "ship"], "answer": "chocolate", "explain": "كلمة chocolate تبدأ بصوت /ch/."}]}, {"id": 4, "title": "Model 4: Phonics & Grammar King • ملك القواعد والصوتيات", "desc": "التركيز على القواعد الصوتية والنحوية الشاملة لكافة وحدات الصف الثالث", "badge": "القواعد والصوتيات", "icon": "🎵", "questions": [{"q": "Complete: She ... got a new red skirt.", "qAr": "قواعد have/has: أكمل مع الضمير She:", "audio": "She has got a new red skirt.", "type": "choice", "options": ["has", "have", "are", "do"], "answer": "has", "explain": "الضمائر She و He تأخذ دائماً has got."}, {"q": "Complete: They ... got school bags.", "qAr": "قواعد have/has: أكمل مع الضمير They:", "audio": "They have got school bags.", "type": "choice", "options": ["have", "has", "is", "was"], "answer": "have", "explain": "الضمير They يأخذ have got."}, {"q": "What is the plural of 'child'?", "qAr": "قواعد الجمع الشاذ: ما هو جمع كلمة child (طفل)؟", "audio": "What is the plural of child?", "type": "choice", "options": ["children", "childs", "childes", "childrens"], "answer": "children", "explain": "جمع child هو children (أطفال)."}, {"q": "What is the plural of 'person'?", "qAr": "قواعد الجمع: ما هو جمع كلمة person (شخص)؟", "audio": "What is the plural of person?", "type": "choice", "options": ["people", "persons", "peoples", "persones"], "answer": "people", "explain": "جمع person في المنهج هو people (ناس/أشخاص)."}, {"q": "Which word has the sound /ee/ as in green?", "qAr": "صوتيات: أي الكلمات تحتوي على صوت ee الممدود مثل green؟", "audio": "Which word has the sound ee?", "type": "choice", "options": ["street", "bread", "head", "bed"], "answer": "street", "explain": "كلمة street (شارع) تحتوي على صوت /ee/ الممدود."}, {"q": "Which word has the sound /dr/ as in drink?", "qAr": "صوتيات: أي الكلمات تبدأ بالصوت المركب /dr/؟", "audio": "Which word has the sound dr?", "type": "choice", "options": ["drop", "stop", "hop", "crop"], "answer": "drop", "explain": "كلمة drop (يسقط) تبدأ بالصوت /dr/."}, {"q": "Choose the odd one out (الكلمة الشاذة):", "qAr": "اختر الكلمة المختلفة عن باقي المجموعة:", "audio": "Choose the odd one out.", "type": "choice", "options": ["winter", "summer", "autumn", "pen"], "answer": "pen", "explain": "pen قلم جاف بينما بقية الكلمات هي فصول السنة الأربعة."}, {"q": "Choose the odd one out (الكلمة الشاذة):", "qAr": "اختر الكلمة المختلفة:", "audio": "Choose the odd one out.", "type": "choice", "options": ["Sunday", "Monday", "Doctor", "Thursday"], "answer": "Doctor", "explain": "Doctor مهنة بينما باقي الكلمات أيام الأسبوع."}, {"q": "Complete: What are you doing? — I am ... a story.", "qAr": "قواعد المضارع المستمر: أنا أقرأ قصة:", "audio": "I am reading a story.", "type": "choice", "options": ["reading", "read", "reads", "reader"], "answer": "reading", "explain": "مع am نستخدم الفعل مضافاً له ing: reading."}, {"q": "Complete: We always wash our hands ... eating.", "qAr": "حروف الجر: نغسل أيدينا دائماً ... تناول الطعام:", "audio": "We always wash our hands before eating.", "type": "choice", "options": ["before", "after", "under", "in"], "answer": "before", "explain": "قبل الأكل: before eating."}]}, {"id": 5, "title": "Model 5: Grand Final Test King Exam • الامتحان النهائي الشامل", "desc": "الامتحان النهائي الشامل لجميع وحدات منهج الصف الثالث (SMILE Book 3) مع شهادة التميز الكبرى", "badge": "الامتحان النهائي الشامل 🏆", "icon": "👑", "questions": [{"q": "In SMILE Book 3, what day is Friday?", "qAr": "في منهج الصف الثالث، ما هو يوم الجمعة (Friday)؟", "audio": "What day is Friday?", "type": "choice", "options": ["Friday is a free day", "Friday is a school day", "Friday is a book", "Friday is a museum"], "answer": "Friday is a free day", "explain": "الجمعة يوم عطلة: Friday is a free day."}, {"q": "Look at the picture. What is this?", "qAr": "انظري للصورة: ما اسم هذا الشيء المدرسي؟", "img": "images/smile/item_notebook.jpg", "audio": "What is this item?", "type": "pic", "options": ["notebook", "glue", "ruler", "bag"], "answer": "notebook", "explain": "دفتر بالإنجليزية هو: notebook."}, {"q": "Where is the museum in Unit 2?", "qAr": "أين يقع المتحف في درس الأماكن؟", "audio": "Where is the museum?", "type": "choice", "options": ["It's in Nile Street", "It's on the moon", "It's in the kitchen", "It's under the chair"], "answer": "It's in Nile Street", "explain": "في شارع النيل: In Nile Street."}, {"q": "What should we do with our rubbish in the park?", "qAr": "ماذا نفعل بالقمامة في الحديقة العامة؟", "audio": "What should we do with rubbish?", "type": "choice", "options": ["Put it in the rubbish bin", "Drop it on grass", "Leave it under trees", "Throw it in the river"], "answer": "Put it in the rubbish bin", "explain": "نضعها في سلة المهملات: Put it in the rubbish bin."}, {"q": "On Eid morning, what do we say to our grandfather?", "qAr": "في صباح يوم العيد ماذا نقول للجد؟", "audio": "What do we say on Eid morning?", "type": "choice", "options": ["Eid Mubarak!", "Good morning Mr Gamar", "See you on Tuesday", "Don't run"], "answer": "Eid Mubarak!", "explain": "نهنئه بالعيد: Eid Mubarak!"}, {"q": "Look at the picture. What job is this person doing?", "qAr": "انظري للصورة: ما هي وظيفة هذا الشخص؟", "img": "images/smile/item_baker.jpg", "audio": "What job is this?", "type": "pic", "options": ["baker", "teacher", "dentist", "doctor"], "answer": "baker", "explain": "الخباز هو: baker."}, {"q": "My father's sister is my ...", "qAr": "شجرة العائلة: أخت أبي هي ...", "audio": "My father's sister is my aunt.", "type": "choice", "options": ["aunt", "uncle", "mother", "daughter"], "answer": "aunt", "explain": "أخت الأب أو الأم هي العمة أو الخالة: aunt."}, {"q": "Look at the picture. What season is it when it is cold and raining?", "qAr": "انظري للصورة: أي فصل من فصول السنة هذا؟", "img": "images/smile/item_winter.jpg", "audio": "What season is this?", "type": "pic", "options": ["winter", "summer", "spring", "autumn"], "answer": "winter", "explain": "فصل الشتاء البارد هو: winter."}, {"q": "How much is 50 + 50?", "qAr": "الأرقام: كم ناتج خمسين زائد خمسين بالإنجليزية؟", "audio": "What is fifty plus fifty?", "type": "choice", "options": ["one hundred", "ninety", "eighty", "seventy"], "answer": "one hundred", "explain": "المجموع 100 وهو: one hundred."}, {"q": "Do you eat lots of fresh fruit?", "qAr": "هل تتناول الكثير من الفاكهة الطازجة؟ الإجابة الصحية:", "audio": "Do you eat lots of fresh fruit?", "type": "choice", "options": ["Yes, I eat lots of fruit", "No, I never eat food", "I like dirty water", "Fruit is bad"], "answer": "Yes, I eat lots of fruit", "explain": "نعم أتناول الكثير من الفواكه: Yes, I eat lots of fruit."}, {"q": "Look at the picture. What game is this girl playing?", "qAr": "انظري للصورة: ما هي هذه اللعبة الشعبية الممتعة بالقفز؟", "img": "images/smile/item_hopscotch.jpg", "audio": "What game is this?", "type": "pic", "options": ["hopscotch", "football", "karate", "chess"], "answer": "hopscotch", "explain": "لعبة الحجلة والقفز هي: hopscotch."}, {"q": "Complete the rule: We ... English in our English class.", "qAr": "قواعد الصف: نحن ... الإنجليزية في حصة الإنجليزية:", "audio": "We speak English in our English class.", "type": "choice", "options": ["speak", "sleep", "forget", "cry"], "answer": "speak", "explain": "نتحدث الإنجليزية: We speak English."}, {"q": "Which sound is heard in the word 'chair' and 'chocolate'?", "qAr": "صوتيات: ما هو الصوت المشترك في chair و chocolate؟", "audio": "Which sound is in chair and chocolate?", "type": "choice", "options": ["/ch/", "/sh/", "/th/", "/ph/"], "answer": "/ch/", "explain": "الصوت المشترك هو /ch/."}, {"q": "Choose the odd one out (الكلمة المختلفة):", "qAr": "اختر الكلمة الشاذة عن المجموعة:", "audio": "Choose the odd one out.", "type": "choice", "options": ["football", "basketball", "volleyball", "table"], "answer": "table", "explain": "table طاولة بينما بقية الكلمات هي رياضات بالكرة."}, {"q": "Why is Fatima a brilliant student?", "qAr": "سؤال التشجيع الخاص: لماذا فاطمة بطلة ومتميزة دائماً؟", "audio": "Fatima is a brilliant superstar student!", "type": "choice", "options": ["Because she studies hard and learns with joy! 🌟", "She doesn't like learning", "She sleeps all day", "None"], "answer": "Because she studies hard and learns with joy! 🌟", "explain": "لأن بطلتنا فاطمة مجتهدة وذكية ومتفوقة دائماً! 💖"}]}];
+
+const TEST_KING = {
+  activeModel: null,
+  qIndex: 0,
+  score: 0,
+  answered: false,
+
+  init() {
+    this.renderModelsGrid();
+  },
+
+  renderModelsGrid() {
+    const cont = $('tk-models-container');
+    if (!cont) return;
+    cont.innerHTML = '';
+    TEST_KING_DATA.forEach(m => {
+      const card = document.createElement('div');
+      card.className = `tk-model-card ${m.id === 5 ? 'featured' : ''}`;
+      card.innerHTML = `
+        <div>
+          <span class="tk-model-badge">${m.badge}</span>
+          <h3 class="tk-model-title"><span>${m.icon}</span> <span>${m.title}</span></h3>
+          <p class="tk-model-desc">${m.desc}</p>
+        </div>
+        <div>
+          <div style="font-size:12px; font-weight:800; color:#64748b; margin-bottom:10px;">📝 عدد الأسئلة: ${m.questions.length} سؤال تفاعلي ناطق</div>
+          <button class="btn-start-model" onclick="TEST_KING.startModel(${m.id})">
+            <span>🚀</span> <span>بدء الاختبار</span>
+          </button>
+        </div>
+      `;
+      cont.appendChild(card);
+    });
+  },
+
+  startModel(modelId) {
+    playSound('pop');
+    this.activeModel = TEST_KING_DATA.find(m => m.id === modelId);
+    this.qIndex = 0;
+    this.score = 0;
+    this.answered = false;
+
+    $('tk-models-view').style.display = 'none';
+    $('tk-results-view').style.display = 'none';
+    $('tk-arena-view').style.display = 'block';
+
+    $('tk-arena-badge').textContent = this.activeModel.badge;
+    $('tk-arena-title').textContent = this.activeModel.title;
+
+    this.renderCurrentQuestion();
+  },
+
+  renderCurrentQuestion() {
+    this.answered = false;
+    const q = this.activeModel.questions[this.qIndex];
+    const total = this.activeModel.questions.length;
+
+    $('tk-q-counter').textContent = `السؤال ${this.qIndex + 1} من ${total}`;
+    $('tk-score-pill').textContent = `⭐ النتيجة: ${this.score} / ${total}`;
+
+    const progPct = ((this.qIndex + 1) / total) * 100;
+    $('tk-prog-bar').style.width = `${progPct}%`;
+
+    $('tk-q-text-en').textContent = q.q;
+    $('tk-q-text-ar').textContent = q.qAr;
+
+    // Image
+    const imgWrap = $('tk-q-img-wrap');
+    if (q.img) {
+      imgWrap.style.display = 'block';
+      $('tk-q-img').src = q.img;
+    } else {
+      imgWrap.style.display = 'none';
+    }
+
+    // Choices
+    const optsCont = $('tk-opts-container');
+    optsCont.innerHTML = '';
+    const scrambledOpts = [...q.options].sort(() => Math.random() - 0.5);
+
+    scrambledOpts.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'tk-opt-btn';
+      btn.textContent = opt;
+      btn.onclick = () => this.handleAnswer(opt, btn);
+      optsCont.appendChild(btn);
+    });
+
+    $('tk-feedback-box').style.display = 'none';
+    $('tk-btn-next').style.display = 'none';
+
+    this.listenCurrentQ();
+  },
+
+  listenCurrentQ() {
+    const q = this.activeModel.questions[this.qIndex];
+    if (q && q.audio) {
+      speakWord(q.audio);
+    }
+  },
+
+  handleAnswer(selected, btnElem) {
+    if (this.answered) return;
+    this.answered = true;
+    const q = this.activeModel.questions[this.qIndex];
+
+    const allBtns = document.querySelectorAll('.tk-opt-btn');
+
+    if (selected === q.answer) {
+      // Correct!
+      this.score++;
+      btnElem.classList.add('correct');
+      playSound('success');
+      triggerConfetti();
+      addStar(2);
+      speakWord("Excellent Fatima! That is correct!");
+      $('tk-score-pill').textContent = `⭐ النتيجة: ${this.score} / ${this.activeModel.questions.length}`;
+      $('tk-feedback-box').innerHTML = `🌟 إجابة صحيحة وممتازة يا فاطمة! <br><span style="font-weight:600">${q.explain}</span>`;
+      $('tk-feedback-box').style.display = 'block';
+    } else {
+      // Wrong
+      btnElem.classList.add('wrong');
+      playSound('wrong');
+      speakWord("Good try Fatima! Keep learning!");
+      allBtns.forEach(b => {
+        if (b.textContent === q.answer) b.classList.add('correct');
+      });
+      $('tk-feedback-box').innerHTML = `💡 الإجابة الصحيحة هي: <strong>${q.answer}</strong><br><span style="font-weight:600">${q.explain}</span>`;
+      $('tk-feedback-box').style.display = 'block';
+    }
+
+    const total = this.activeModel.questions.length;
+    const nextBtn = $('tk-btn-next');
+    nextBtn.style.display = 'flex';
+    if (this.qIndex + 1 === total) {
+      nextBtn.innerHTML = '<span>🏆</span> <span>عرض النتيجة والشهادة الرسمية</span>';
+    } else {
+      nextBtn.innerHTML = '<span>⏩</span> <span>السؤال التالي</span>';
+    }
+  },
+
+  nextQuestion() {
+    playSound('pop');
+    this.qIndex++;
+    if (this.qIndex < this.activeModel.questions.length) {
+      this.renderCurrentQuestion();
+    } else {
+      this.showFinalResults();
+    }
+  },
+
+  showFinalResults() {
+    $('tk-arena-view').style.display = 'none';
+    $('tk-results-view').style.display = 'block';
+
+    const total = this.activeModel.questions.length;
+    const pct = Math.round((this.score / total) * 100);
+
+    playSound('cheer');
+    triggerConfetti();
+    addStar(10);
+
+    $('tk-res-heading').textContent = pct >= 80 ? '👑 مبروك يا فاطمة! ملكة الاختبارات الحقيقية!' : 'أحسنتِ المحاولة يا بطلتنا فاطمة! 🌟';
+    $('tk-res-score-text').textContent = `حصلتِ على: ${this.score} من ${total} (${pct}%) • +10 نجوم تفوق! ⭐`;
+    $('tk-cert-model-name').textContent = this.activeModel.title;
+
+    speakWord(`Congratulations Fatima! You completed ${this.activeModel.title} with ${pct} percent! You are a brilliant Test King Champion!`);
+  },
+
+  retakeCurrentModel() {
+    if (this.activeModel) {
+      this.startModel(this.activeModel.id);
+    }
+  },
+
+  exitExam() {
+    playSound('pop');
+    $('tk-arena-view').style.display = 'none';
+    $('tk-results-view').style.display = 'none';
+    $('tk-models-view').style.display = 'block';
+    this.renderModelsGrid();
+  }
+};
+
+TEST_KING.init();
+
+// Auto open Test King if hash or storage requested
+if (window.location.hash === '#testking' || localStorage.getItem('open_testking') === 'true') {
+  localStorage.removeItem('open_testking');
+  setTimeout(() => {
+    const tkBtn = $('subtab-testking-btn');
+    if (tkBtn) tkBtn.click();
+  }, 300);
+}
+
+CHILD_EXIT_LOCK.init();
+
+
+// --- PWA SERVICE WORKER REGISTRATION ---
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW registration:', err));
+  });
+}
+
+</script>
+
+
+</body>
+</html>

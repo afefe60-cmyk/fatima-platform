@@ -1,0 +1,2481 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>English Spelling & Phonics - Interactive Audio & Visual Flashcards</title>
+<style>
+:root {
+  --navy: #153258;
+  --blue: #2563eb;
+  --blue-light: #eff6ff;
+  --pink: #ec4899;
+  --pink-light: #fdf2f8;
+  --teal: #0d9488;
+  --teal-light: #f0fdfa;
+  --amber: #f59e0b;
+  --amber-light: #fffbeb;
+  --purple: #8b5cf6;
+  --purple-light: #f5f3ff;
+  --emerald: #10b981;
+  --emerald-light: #ecfdf5;
+  --bg: #f4f8fd;
+  --card-bg: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-radius: 20px;
+  --shadow: 0 12px 32px rgba(22, 59, 101, 0.1);
+  --shadow-hover: 0 18px 40px rgba(22, 59, 101, 0.16);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+header {
+  background: linear-gradient(135deg, #132d4e 0%, #1e4a7a 50%, #2563eb 100%);
+  color: white;
+  padding: 16px 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  position: relative;
+  overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 140px; height: 140px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.header-container {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand-icon {
+  font-size: 34px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  animation: bounceSlow 3s infinite ease-in-out;
+}
+@keyframes bounceSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+h1 {
+  margin: 0;
+  font-size: clamp(20px, 4vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+header p {
+  margin: 3px 0 0;
+  font-size: 13px;
+  color: #bfdbfe;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.star-badge {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  padding: 6px 14px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 15px;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fef08a;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.star-badge span.num {
+  font-size: 18px;
+  color: #fff;
+}
+.icon-btn {
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 17px;
+  transition: all 0.2s ease;
+}
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.06);
+}
+
+/* Nav Tabs */
+.tabs-nav {
+  max-width: 960px;
+  margin: 16px auto 0;
+  padding: 0 16px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  background: white;
+  border: 2px solid #e2e8f0;
+  color: #475569;
+  padding: 10px 18px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+.tab-btn:hover {
+  border-color: #93c5fd;
+  color: var(--blue);
+  transform: translateY(-1px);
+}
+.tab-btn.active {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: white;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.28);
+}
+
+/* Main Container */
+main {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 16px;
+  flex: 1;
+}
+
+/* Filters & Audio Options bar */
+.options-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: white;
+  padding: 12px 18px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin-bottom: 20px;
+}
+.category-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.cat-pill {
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #334155;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.cat-pill:hover {
+  background: #f1f5f9;
+}
+.cat-pill.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: white;
+}
+.audio-settings {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+.toggle-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  padding: 5px 12px;
+  border-radius: 20px;
+  transition: all 0.15s ease;
+}
+.toggle-chip.active {
+  background: #e0f2fe;
+  border-color: #38bdf8;
+  color: #0369a1;
+}
+
+/* 3D Flashcard Section */
+.card-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-scene {
+  width: 100%;
+  max-width: 520px;
+  min-height: 400px;
+  perspective: 1200px;
+  margin: 0 auto;
+}
+.card-box {
+  width: 100%;
+  min-height: 400px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+.card-box.flipped {
+  transform: rotateY(180deg);
+}
+.card-face {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  backface-visibility: hidden;
+  background: var(--card-bg);
+  border-radius: 28px;
+  border: 3.5px solid #b8d5ee;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 20px;
+  user-select: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.card-box:hover .card-face {
+  box-shadow: var(--shadow-hover);
+}
+.card-face.back-face {
+  transform: rotateY(180deg);
+}
+
+/* Category Badge */
+.card-header-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.card-category-badge {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  background: var(--teal-light);
+  color: var(--teal);
+  border: 1px solid rgba(13, 148, 136, 0.25);
+}
+.flip-hint-badge {
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Visual Illustration Box */
+.visual-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+  position: relative;
+}
+.visual-illustration {
+  width: 150px;
+  height: 150px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #f0f7ff 0%, #e0effe 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  position: relative;
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.12), inset 0 2px 6px rgba(255,255,255,0.8);
+  border: 3px solid #dbeafe;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+.visual-illustration:hover {
+  transform: scale(1.08) rotate(2deg);
+}
+.visual-illustration:active {
+  transform: scale(0.95);
+}
+.sound-ripple {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: #3b82f6;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+  animation: pulseRipple 2s infinite;
+}
+@keyframes pulseRipple {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+/* Card Typography */
+.card-word-front {
+  font-size: clamp(52px, 13vw, 84px);
+  font-weight: 900;
+  color: var(--navy);
+  letter-spacing: -1px;
+  margin: 6px 0;
+  text-align: center;
+  line-height: 1.1;
+}
+.card-word-back {
+  font-size: clamp(34px, 8vw, 54px);
+  font-weight: 900;
+  color: var(--pink);
+  margin: 6px 0;
+  text-align: center;
+  letter-spacing: 2px;
+}
+.spelling-chips {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.spelling-chip {
+  background: #fdf2f8;
+  color: #be185d;
+  border: 2px solid #fbcfe8;
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 4px rgba(236, 72, 153, 0.1);
+  transition: transform 0.15s ease;
+}
+.spelling-chip:hover {
+  transform: translateY(-2px);
+  background: #fce7f3;
+}
+.phonics-banner {
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1.5px dashed #86efac;
+  padding: 8px 18px;
+  border-radius: 14px;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 6px 0;
+}
+.card-hint-text {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  text-align: center;
+  margin-top: 4px;
+}
+.card-hint-ar {
+  font-size: 13px;
+  color: #0284c7;
+  font-weight: 600;
+  margin-top: 3px;
+  direction: rtl;
+}
+
+/* Audio Action Buttons on Card */
+.audio-action-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
+}
+.btn-speech {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1.5px solid #bfdbfe;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+.btn-speech:hover {
+  background: #dbeafe;
+  border-color: #93c5fd;
+  transform: translateY(-1px);
+}
+.btn-speech.btn-mic {
+  background: #fef2f2;
+  color: #dc2626;
+  border-color: #fecaca;
+}
+.btn-speech.btn-mic:hover {
+  background: #fee2e2;
+}
+.btn-speech.btn-mic.listening {
+  background: #ef4444;
+  color: white;
+  animation: pulseMic 1s infinite alternate;
+}
+@keyframes pulseMic {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.06); }
+}
+
+/* Navigation Controls */
+.controls-panel {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 22px 0 10px;
+  max-width: 600px;
+  width: 100%;
+}
+.btn-main {
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  border-radius: 14px;
+  padding: 12px 22px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.btn-main:active {
+  transform: scale(0.97);
+}
+.btn-primary {
+  background: var(--navy);
+  color: white;
+}
+.btn-primary:hover {
+  background: #1e4a7a;
+  box-shadow: 0 6px 16px rgba(21, 50, 88, 0.25);
+  transform: translateY(-1px);
+}
+.btn-secondary {
+  background: white;
+  border: 2px solid #cbd5e1;
+  color: var(--navy);
+}
+.btn-secondary:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+}
+.btn-accent {
+  background: var(--pink);
+  color: white;
+}
+.btn-accent:hover {
+  background: #db2777;
+  box-shadow: 0 6px 16px rgba(236, 72, 153, 0.3);
+  transform: translateY(-1px);
+}
+.progress-indicator {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  margin: 10px 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+/* Mode 2: Word Builder Game */
+.game-container {
+  background: white;
+  border-radius: 28px;
+  border: 3px solid #cbd5e1;
+  box-shadow: var(--shadow);
+  padding: 30px 20px;
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+}
+.game-image-box {
+  width: 170px;
+  height: 170px;
+  margin: 0 auto 16px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border: 4px solid #f59e0b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 90px;
+  box-shadow: 0 12px 28px rgba(245, 158, 11, 0.2);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.game-image-box:hover {
+  transform: scale(1.08) rotate(-2deg);
+}
+.game-prompt {
+  font-size: 18px;
+  color: #475569;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+.slots-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0;
+  min-height: 70px;
+  direction: ltr !important;
+}
+.letter-slot {
+  width: 60px;
+  height: 68px;
+  border-radius: 14px;
+  border: 3px dashed #94a3b8;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--navy);
+  transition: all 0.2s ease;
+}
+.letter-slot.filled {
+  border-style: solid;
+  border-color: var(--blue);
+  background: #eff6ff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+  transform: translateY(-2px);
+}
+.tiles-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 24px 0 16px;
+  flex-wrap: wrap;
+}
+.letter-tile {
+  width: 62px;
+  height: 68px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  border: none;
+  font-size: 34px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(29, 78, 216, 0.3), inset 0 2px 4px rgba(255,255,255,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+.letter-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(29, 78, 216, 0.38);
+}
+.letter-tile:active {
+  transform: translateY(2px);
+}
+.letter-tile.used {
+  opacity: 0.3;
+  pointer-events: none;
+  transform: scale(0.9);
+}
+.game-feedback {
+  min-height: 36px;
+  font-size: 19px;
+  font-weight: 800;
+  margin: 12px 0;
+}
+.game-feedback.success {
+  color: var(--emerald);
+  animation: bounceSuccess 0.5s ease;
+}
+@keyframes bounceSuccess {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+/* Mode 3: Picture Quiz Game */
+.quiz-container {
+  background: white;
+  border-radius: 28px;
+  border: 3px solid #cbd5e1;
+  box-shadow: var(--shadow);
+  padding: 28px 20px;
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+.quiz-header {
+  margin-bottom: 20px;
+}
+.quiz-question {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.quiz-audio-btn {
+  background: #eff6ff;
+  border: 2px solid #93c5fd;
+  color: #1d4ed8;
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+.quiz-audio-btn:hover {
+  background: #dbeafe;
+  transform: scale(1.04);
+}
+.quiz-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 24px 0 16px;
+}
+@media (max-width: 480px) {
+  .quiz-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}
+.quiz-card {
+  background: #f8fafc;
+  border: 3px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 20px 10px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.quiz-card:hover {
+  border-color: #60a5fa;
+  background: #eff6ff;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.12);
+}
+.quiz-card-img {
+  font-size: 64px;
+  transition: transform 0.2s ease;
+}
+.quiz-card:hover .quiz-card-img {
+  transform: scale(1.12);
+}
+.quiz-card-label {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--navy);
+}
+.quiz-card.correct {
+  border-color: var(--emerald);
+  background: #ecfdf5;
+  animation: quizCorrect 0.6s ease;
+}
+@keyframes quizCorrect {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+.quiz-card.wrong {
+  border-color: #ef4444;
+  background: #fef2f2;
+  animation: shakeWrong 0.4s ease;
+}
+@keyframes shakeWrong {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+/* Mode 4: Gallery View */
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 14px;
+  padding-bottom: 30px;
+}
+.gallery-card {
+  background: white;
+  border-radius: 18px;
+  border: 2px solid #e2e8f0;
+  padding: 14px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+.gallery-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.14);
+}
+.gallery-img {
+  font-size: 46px;
+  margin-bottom: 6px;
+  transition: transform 0.2s ease;
+}
+.gallery-card:hover .gallery-img {
+  transform: scale(1.15);
+}
+.gallery-front {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--navy);
+}
+.gallery-badge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--teal);
+  background: var(--teal-light);
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 4px;
+}
+
+/* Confetti Canvas */
+#confetti-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Toast Message */
+.toast-msg {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #1e293b;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.toast-msg.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* Modal Popup */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+.modal-overlay.active {
+  display: flex;
+}
+.modal-content {
+  background: white;
+  border-radius: 28px;
+  max-width: 480px;
+  width: 100%;
+  padding: 28px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes modalPop {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.modal-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: #f1f5f9;
+  border: none;
+  font-size: 20px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Footer / Instructions */
+footer {
+  text-align: center;
+  padding: 20px 16px;
+  color: var(--text-muted);
+  font-size: 13px;
+  border-top: 1px solid #e2e8f0;
+  background: white;
+  margin-top: 20px;
+}
+.keyboard-tips {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.kbd {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 2px 7px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+/* Print Styling */
+@media print {
+  header, .tabs-nav, .options-bar, .controls-panel, .audio-action-row, footer, .modal-overlay, #confetti-canvas {
+    display: none !important;
+  }
+  body { background: white; }
+  .card-face {
+    box-shadow: none !important;
+    border: 2px solid #333 !important;
+    page-break-inside: avoid;
+    margin-bottom: 20px;
+    position: relative !important;
+    transform: none !important;
+  }
+  .card-scene, .card-box {
+    transform: none !important;
+    min-height: auto;
+  }
+}
+  .home-portal-btn {
+    background: rgba(255, 255, 255, 0.22);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+  }
+  .home-portal-btn:hover {
+    background: white;
+    color: var(--navy);
+    transform: translateY(-2px);
+  }
+  .header-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid #fef08a;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    object-fit: cover;
+  }
+
+
+/* Child Exit Lock & Auto-Fullscreen Styles */
+#child-exit-lock-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(14px);
+  z-index: 99999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+#child-exit-lock-overlay.exit-lock-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.exit-lock-card {
+  background: white;
+  border: 3px solid #f59e0b;
+  border-radius: 28px;
+  padding: 26px 20px;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  animation: cardPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes cardPop {
+  0% { transform: scale(0.88); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.exit-lock-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 10px;
+  background: #fef3c7;
+  border: 2px solid #f59e0b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+.exit-lock-title {
+  font-size: 20px;
+  font-weight: 900;
+  color: #1e1b4b;
+  margin: 0 0 6px;
+}
+.exit-lock-sub {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0 0 16px;
+}
+.btn-resume-learning {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+  transition: all 0.2s ease;
+}
+.btn-resume-learning:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+}
+.pin-dots-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.pin-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2.5px solid #cbd5e1;
+  background: white;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.pin-dot.filled {
+  background: #f59e0b;
+  border-color: #d97706;
+  transform: scale(1.25);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
+}
+.pin-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  max-width: 270px;
+  margin: 0 auto 14px;
+}
+.pin-btn {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  font-size: 20px;
+  font-weight: 900;
+  color: #1e293b;
+  padding: 10px 0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.pin-btn:hover {
+  background: #eef2ff;
+  border-color: #818cf8;
+  color: #4338ca;
+  transform: translateY(-2px);
+}
+.pin-btn:active {
+  transform: scale(0.94);
+  background: #c7d2fe;
+}
+.pin-btn.action-btn {
+  font-size: 13px;
+  font-weight: 800;
+  color: #475569;
+}
+.pin-btn.unlock-btn {
+  background: linear-gradient(135deg, #e11d48, #be123c);
+  border-color: #be123c;
+  color: white;
+}
+.pin-btn.unlock-btn:hover {
+  background: linear-gradient(135deg, #be123c, #9f1239);
+}
+.lock-hint-bar {
+  font-size: 12px;
+  font-weight: 700;
+  color: #92400e;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+  border-radius: 12px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.btn-change-pin {
+  background: transparent;
+  border: none;
+  color: #b45309;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+.btn-change-pin:hover {
+  color: #78350f;
+}
+
+
+
+</style>
+  <!-- PWA & Mobile Web App Meta -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4338ca">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="منصة فاطمة">
+  <meta name="mobile-web-app-capable" content="yes">
+</head>
+<body>
+
+
+<!-- Child Exit Lock Overlay -->
+<div id="child-exit-lock-overlay" class="exit-lock-hidden">
+  <div class="exit-lock-card">
+    <div class="exit-lock-icon">🔒</div>
+    <h2 class="exit-lock-title">قفل خروج الأطفال • Exit Protection</h2>
+    <p class="exit-lock-sub" id="exit-lock-msg">
+      ⚠️ تم رصد محاولة خروج! المنصة محمية بقفل أمان الأطفال لمنع الخروج لسطح المكتب.<br>
+      <strong>أدخل رمز PIN لولي الأمر للخروج، أو اضغطي على زر المتابعة:</strong>
+    </p>
+
+    <!-- Return to Learning button -->
+    <button class="btn-resume-learning" onclick="CHILD_EXIT_LOCK.resumeLearning()">
+      <span>🎮</span> <span>العودة لمتابعة التعلم يا فاطمة (شاشة كاملة)</span> <span>🚀</span>
+    </button>
+
+    <div style="margin: 14px 0 8px; font-size:13px; font-weight:800; color:#475569">
+      أو أدخل رمز PIN لولي الأمر للسماح بالخروج:
+    </div>
+
+    <!-- 4 PIN Dots -->
+    <div class="pin-dots-row">
+      <div class="pin-dot" id="exit-pin-dot-0"></div>
+      <div class="pin-dot" id="exit-pin-dot-1"></div>
+      <div class="pin-dot" id="exit-pin-dot-2"></div>
+      <div class="pin-dot" id="exit-pin-dot-3"></div>
+    </div>
+
+    <!-- Keypad -->
+    <div class="pin-keypad">
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('1')">1</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('2')">2</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('3')">3</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('4')">4</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('5')">5</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('6')">6</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('7')">7</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('8')">8</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('9')">9</button>
+      <button class="pin-btn action-btn" onclick="CHILD_EXIT_LOCK.backspace()">⌫ مسح</button>
+      <button class="pin-btn" onclick="CHILD_EXIT_LOCK.pressKey('0')">0</button>
+      <button class="pin-btn unlock-btn" onclick="CHILD_EXIT_LOCK.verifyPin()">🔓 تأكيد الخروج</button>
+    </div>
+
+    <!-- Hint & Change PIN -->
+    <div class="lock-hint-bar">
+      <span>🔑 رمز PIN الافتراضي: <strong id="exit-default-pin-lbl">1234</strong></span>
+      <button class="btn-change-pin" onclick="CHILD_EXIT_LOCK.changePinPrompt()">⚙️ تغيير الرمز</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+<canvas id="confetti-canvas"></canvas>
+
+<header>
+  <div class="header-container">
+    <div class="brand">
+      <a href="index.html" title="العودة لمنصة فاطمة الرئيسية">
+        <img src="fatima_circle.png" alt="Fatima" class="header-avatar" onerror="this.src='fatima_avatar.jpg'">
+      </a>
+      <div>
+        <h1 id="app-title">منصة فاطمة • Fatima's English Phonics</h1>
+        <p id="app-subtitle">الصف الثالث الابتدائي • Interactive Audio & Visual Flashcards • بطاقات ناطقة وتفاعلية بالصور</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <a href="index.html" class="home-portal-btn" title="العودة للصفحة الرئيسية">
+        <span>🏠</span> <span>الرئيسية</span>
+      </a>
+      <div class="star-badge" title="Stars earned / النجوم المكتسبة">
+        ⭐ <span class="num" id="star-count">0</span>
+      </div>
+      
+      <button class="icon-btn" id="btn-fullscreen-toggle" title="ملء الشاشة / Fullscreen" onclick="CHILD_EXIT_LOCK.requestFullscreen()">⛶</button>
+      <button class="icon-btn" id="btn-lock-toggle" title="خروج ولي الأمر برمز PIN" onclick="CHILD_EXIT_LOCK.promptExit()" style="background:#ffe4e6; color:#be123c">🚪</button>
+      <button class="icon-btn" id="lang-btn" title="تبديل اللغة / Switch Language">🌐</button>
+      <button class="icon-btn" id="sound-btn" title="مؤثرات الصوت / Sound FX">🔔</button>
+    </div>
+  </div>
+</header>
+
+<div class="tabs-nav">
+  <button class="tab-btn active" data-tab="cards" id="tab-cards">🎴 Flashcards (البطاقات)</button>
+  <button class="tab-btn" data-tab="builder" id="tab-builder">🧩 Word Builder (ركّب الكلمة)</button>
+  <button class="tab-btn" data-tab="quiz" id="tab-quiz">🎯 Picture Quiz (تحدي الصور)</button>
+  <button class="tab-btn" data-tab="gallery" id="tab-gallery">🖼️ Picture Board (معرض الصور)</button>
+</div>
+
+<main>
+  <!-- Category & Audio Bar -->
+  <div class="options-bar">
+    <div class="category-pills" id="category-pills">
+      <button class="cat-pill active" data-cat="All" id="cat-all">All (71)</button>
+      <button class="cat-pill" data-cat="Letter" id="cat-letters">Letters (26)</button>
+      <button class="cat-pill" data-cat="Short vowel" id="cat-short">Short Vowels (21)</button>
+      <button class="cat-pill" data-cat="Letter team" id="cat-teams">Letter Teams (12)</button>
+      <button class="cat-pill" data-cat="Long vowel" id="cat-long">Long Vowels (12)</button>
+    </div>
+    <div class="audio-settings">
+      <div class="toggle-chip active" id="toggle-autospeak" title="نطق الكلمة تلقائياً عند تغيير البطاقة">
+        <span>🔊</span> <span id="label-autospeak">Auto-speak</span>
+      </div>
+      <div class="toggle-chip" id="toggle-slow" title="نطق بطيء للأطفال">
+        <span>🐢</span> <span id="label-slow">Slow Voice</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 1: FLASHCARDS -->
+  <div id="view-cards" class="view-panel">
+    <div class="card-section">
+      <div class="card-scene" id="card-scene">
+        <div class="card-box" id="card-box" tabindex="0" role="button" aria-label="Flashcard. Press Space or Click to Flip.">
+          <!-- FRONT FACE -->
+          <div class="card-face front-face" id="card-front-face">
+            <div class="card-header-badge">
+              <span class="card-category-badge" id="c-type-front">LETTER</span>
+              <span class="flip-hint-badge">🔄 <span class="hint-flip-text">Click to flip</span></span>
+            </div>
+            
+            <div class="visual-container">
+              <div class="visual-illustration" id="visual-front" title="Click to hear pronunciation!">
+                <span id="visual-emoji-front">🍎</span>
+                <div class="sound-ripple">🔊</div>
+              </div>
+            </div>
+
+            <div class="card-word-front" id="c-word-front">A a</div>
+
+            <div class="audio-action-row" onclick="event.stopPropagation()">
+              <button class="btn-speech" id="btn-speak-word">
+                <span>🔊</span> <span class="lbl-speak">Say Word</span>
+              </button>
+              <button class="btn-speech" id="btn-spell-word">
+                <span>🔤</span> <span class="lbl-spell">Spell</span>
+              </button>
+              <button class="btn-speech btn-mic" id="btn-mic-practice" title="انطق الكلمة بصوتك">
+                <span>🎤</span> <span class="lbl-mic">Say it!</span>
+              </button>
+            </div>
+
+            <div class="card-hint-text" id="c-hint-front">Tap card or picture to hear & flip.</div>
+            <div class="card-hint-ar" id="c-hint-front-ar">اضغط على البطاقة أو الصورة للاستماع والقلب</div>
+          </div>
+
+          <!-- BACK FACE -->
+          <div class="card-face back-face" id="card-back-face">
+            <div class="card-header-badge">
+              <span class="card-category-badge" id="c-type-back">LETTER</span>
+              <span class="flip-hint-badge">🔄 <span class="hint-flip-back">Click to flip back</span></span>
+            </div>
+
+            <div class="visual-container">
+              <div class="visual-illustration" id="visual-back" title="Click to hear pronunciation!">
+                <span id="visual-emoji-back">🍎</span>
+                <div class="sound-ripple">🔊</div>
+              </div>
+            </div>
+
+            <div class="card-word-back" id="c-word-back">APPLE • /ă/</div>
+
+            <div class="spelling-chips" id="spelling-tiles-container">
+              <!-- Dynamically generated spelling chips -->
+            </div>
+
+            <div class="phonics-banner" id="c-phonics-banner">Sound: /ă/ as in Apple</div>
+
+            <div class="audio-action-row" onclick="event.stopPropagation()">
+              <button class="btn-speech" id="btn-speak-phonics">
+                <span>🎵</span> <span class="lbl-phonics">Phonics Sound</span>
+              </button>
+              <button class="btn-speech" id="btn-repeat-back">
+                <span>🔊</span> <span class="lbl-repeat">Repeat</span>
+              </button>
+            </div>
+
+            <div class="card-hint-text" id="c-hint-back">Say the sound out loud!</div>
+            <div class="card-hint-ar" id="c-hint-back-ar">ردد الصوت واسم الحرف بصوت واضح</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-indicator" id="progress-indicator">Card 1 / 71</div>
+
+      <div class="controls-panel">
+        <button class="btn-main btn-secondary" id="btn-prev">⬅️ <span class="lbl-prev">Previous</span></button>
+        <button class="btn-main btn-accent" id="btn-flip">🔄 <span class="lbl-flip">Flip Card</span></button>
+        <button class="btn-main btn-primary" id="btn-next"><span class="lbl-next">Next</span> ➡️</button>
+        <button class="btn-main btn-secondary" id="btn-shuffle">🔀 <span class="lbl-shuffle">Shuffle</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: WORD BUILDER GAME -->
+  <div id="view-builder" class="view-panel" style="display:none">
+    <div class="game-container">
+      <div class="game-image-box" id="builder-image" title="Click to hear the word!">
+        <span id="builder-emoji">🐱</span>
+      </div>
+      <div class="game-prompt">
+        <span id="builder-instruction">Look at the picture, listen and build the word!</span>
+        <button class="btn-speech" id="builder-listen-btn" style="margin-left:8px">
+          <span>🔊</span> <span class="lbl-listen">Listen</span>
+        </button>
+      </div>
+      
+      <!-- Target letter slots -->
+      <div class="slots-row" id="builder-slots"></div>
+
+      <!-- Scrambled clickable letter tiles -->
+      <div class="tiles-row" id="builder-tiles"></div>
+
+      <div class="game-feedback" id="builder-feedback"></div>
+
+      <div style="display:flex; gap:10px; justify-content:center; margin-top:20px">
+        <button class="btn-main btn-secondary" id="builder-reset-btn">🔄 <span class="lbl-clear">Clear</span></button>
+        <button class="btn-main btn-primary" id="builder-next-btn">✨ <span class="lbl-next-word">Next Word</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: PICTURE QUIZ -->
+  <div id="view-quiz" class="view-panel" style="display:none">
+    <div class="quiz-container">
+      <div class="quiz-header">
+        <div class="quiz-question">
+          <span id="quiz-prompt-text">Which picture is:</span>
+          <span id="quiz-target-word" style="color:var(--pink); font-size:30px">CAT</span>
+        </div>
+        <button class="quiz-audio-btn" id="quiz-audio-trigger">
+          <span>🔊</span> <span id="quiz-audio-lbl">Hear Word Again</span>
+        </button>
+      </div>
+
+      <div class="quiz-grid" id="quiz-grid">
+        <!-- 4 interactive picture options dynamically injected -->
+      </div>
+
+      <div class="game-feedback" id="quiz-feedback"></div>
+
+      <div style="margin-top:16px">
+        <button class="btn-main btn-primary" id="quiz-skip-btn">⏩ <span class="lbl-next-quiz">Next Question</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4: GALLERY BOARD -->
+  <div id="view-gallery" class="view-panel" style="display:none">
+    <div class="gallery-container" id="gallery-grid">
+      <!-- 71 cards injected here -->
+    </div>
+  </div>
+</main>
+
+<div class="toast-msg" id="toast-msg">Awesome! +1 Star ⭐</div>
+
+<footer>
+  <p id="footer-text">English Spelling & Phonics Flashcards • Ages 5–6 • Interactive Sound & Visuals</p>
+  <div class="keyboard-tips">
+    <span><span class="kbd">Space</span> Flip</span>
+    <span><span class="kbd">←</span> Previous</span>
+    <span><span class="kbd">→</span> Next</span>
+    <span><span class="kbd">S</span> Speak</span>
+  </div>
+</footer>
+
+<script>
+// --- FULL 71 CARDS DATASET WITH RICH VISUALS, PHONICS & SOUNDS ---
+const cardsData = [
+  // LETTERS & SOUNDS (26)
+  { type: "Letter", front: "A a", word: "APPLE", sound: "/ă/", icon: "🍎", hint: "Say the letter name A, then its sound /ă/ as in Apple.", hintAr: "اسم الحرف A وصوته /ă/ مثل Apple (تفاحة).", spelling: ["A","P","P","L","E"] },
+  { type: "Letter", front: "B b", word: "BALL", sound: "/b/", icon: "⚽", hint: "Say the letter name B, then its sound /b/ as in Ball.", hintAr: "اسم الحرف B وصوته /b/ مثل Ball (كرة).", spelling: ["B","A","L","L"] },
+  { type: "Letter", front: "C c", word: "CAT", sound: "/k/", icon: "🐱", hint: "Say the letter name C, then its sound /k/ as in Cat.", hintAr: "اسم الحرف C وصوته /k/ مثل Cat (قطة).", spelling: ["C","A","T"] },
+  { type: "Letter", front: "D d", word: "DOG", sound: "/d/", icon: "🐶", hint: "Say the letter name D, then its sound /d/ as in Dog.", hintAr: "اسم الحرف D وصوته /d/ مثل Dog (كلب).", spelling: ["D","O","G"] },
+  { type: "Letter", front: "E e", word: "EGG", sound: "/ĕ/", icon: "🥚", hint: "Say the letter name E, then its sound /ĕ/ as in Egg.", hintAr: "اسم الحرف E وصوته /ĕ/ مثل Egg (بيضة).", spelling: ["E","G","G"] },
+  { type: "Letter", front: "F f", word: "FISH", sound: "/f/", icon: "🐟", hint: "Say the letter name F, then its sound /f/ as in Fish.", hintAr: "اسم الحرف F وصوته /f/ مثل Fish (سمكة).", spelling: ["F","I","S","H"] },
+  { type: "Letter", front: "G g", word: "GOAT", sound: "/g/", icon: "🐐", hint: "Say the letter name G, then its sound /g/ as in Goat.", hintAr: "اسم الحرف G وصوته /g/ مثل Goat (ماعز).", spelling: ["G","O","A","T"] },
+  { type: "Letter", front: "H h", word: "HAT", sound: "/h/", icon: "🎩", hint: "Say the letter name H, then its sound /h/ as in Hat.", hintAr: "اسم الحرف H وصوته /h/ مثل Hat (قبعة).", spelling: ["H","A","T"] },
+  { type: "Letter", front: "I i", word: "IGLOO", sound: "/ĭ/", icon: "❄️", hint: "Say the letter name I, then its sound /ĭ/ as in Igloo.", hintAr: "اسم الحرف I وصوته /ĭ/ مثل Igloo (بيت جليدي).", spelling: ["I","G","L","O","O"] },
+  { type: "Letter", front: "J j", word: "JAM", sound: "/j/", icon: "🍓", hint: "Say the letter name J, then its sound /j/ as in Jam.", hintAr: "اسم الحرف J وصوته /j/ مثل Jam (مربى).", spelling: ["J","A","M"] },
+  { type: "Letter", front: "K k", word: "KEY", sound: "/k/", icon: "🔑", hint: "Say the letter name K, then its sound /k/ as in Key.", hintAr: "اسم الحرف K وصوته /k/ مثل Key (مفتاح).", spelling: ["K","E","Y"] },
+  { type: "Letter", front: "L l", word: "LION", sound: "/l/", icon: "🦁", hint: "Say the letter name L, then its sound /l/ as in Lion.", hintAr: "اسم الحرف L وصوته /l/ مثل Lion (أسد).", spelling: ["L","I","O","N"] },
+  { type: "Letter", front: "M m", word: "MOON", sound: "/m/", icon: "🌙", hint: "Say the letter name M, then its sound /m/ as in Moon.", hintAr: "اسم الحرف M وصوته /m/ مثل Moon (قمر).", spelling: ["M","O","O","N"] },
+  { type: "Letter", front: "N n", word: "NEST", sound: "/n/", icon: "🪺", hint: "Say the letter name N, then its sound /n/ as in Nest.", hintAr: "اسم الحرف N وصوته /n/ مثل Nest (عش).", spelling: ["N","E","S","T"] },
+  { type: "Letter", front: "O o", word: "OCTOPUS", sound: "/ŏ/", icon: "🐙", hint: "Say the letter name O, then its sound /ŏ/ as in Octopus.", hintAr: "اسم الحرف O وصوته /ŏ/ مثل Octopus (أخطبوط).", spelling: ["O","C","T","O","P","U","S"] },
+  { type: "Letter", front: "P p", word: "PIG", sound: "/p/", icon: "🐷", hint: "Say the letter name P, then its sound /p/ as in Pig.", hintAr: "اسم الحرف P وصوته /p/ مثل Pig (خنزير لطيف).", spelling: ["P","I","G"] },
+  { type: "Letter", front: "Q q", word: "QUEEN", sound: "/kw/", icon: "👑", hint: "Say the letter name Q, then its sound /kw/ as in Queen.", hintAr: "اسم الحرف Q وصوته /kw/ مثل Queen (ملكة).", spelling: ["Q","U","E","E","N"] },
+  { type: "Letter", front: "R r", word: "RABBIT", sound: "/r/", icon: "🐰", hint: "Say the letter name R, then its sound /r/ as in Rabbit.", hintAr: "اسم الحرف R وصوته /r/ مثل Rabbit (أرنب).", spelling: ["R","A","B","B","I","T"] },
+  { type: "Letter", front: "S s", word: "SUN", sound: "/s/", icon: "☀️", hint: "Say the letter name S, then its sound /s/ as in Sun.", hintAr: "اسم الحرف S وصوته /s/ مثل Sun (شمس).", spelling: ["S","U","N"] },
+  { type: "Letter", front: "T t", word: "TREE", sound: "/t/", icon: "🌳", hint: "Say the letter name T, then its sound /t/ as in Tree.", hintAr: "اسم الحرف T وصوته /t/ مثل Tree (شجرة).", spelling: ["T","R","E","E"] },
+  { type: "Letter", front: "U u", word: "UMBRELLA", sound: "/ŭ/", icon: "☂️", hint: "Say the letter name U, then its sound /ŭ/ as in Umbrella.", hintAr: "اسم الحرف U وصوته /ŭ/ مثل Umbrella (مظلة).", spelling: ["U","M","B","R","E","L","L","A"] },
+  { type: "Letter", front: "V v", word: "VAN", sound: "/v/", icon: "🚐", hint: "Say the letter name V, then its sound /v/ as in Van.", hintAr: "اسم الحرف V وصوته /v/ مثل Van (شاحنة صغيرة).", spelling: ["V","A","N"] },
+  { type: "Letter", front: "W w", word: "WATCH", sound: "/w/", icon: "⌚", hint: "Say the letter name W, then its sound /w/ as in Watch.", hintAr: "اسم الحرف W وصوته /w/ مثل Watch (ساعة يد).", spelling: ["W","A","T","C","H"] },
+  { type: "Letter", front: "X x", word: "BOX", sound: "/ks/", icon: "📦", hint: "Say the letter name X, then its sound /ks/ as in Box.", hintAr: "اسم الحرف X وصوته /ks/ مثل Box (صندوق).", spelling: ["B","O","X"] },
+  { type: "Letter", front: "Y y", word: "YO-YO", sound: "/y/", icon: "🪀", hint: "Say the letter name Y, then its sound /y/ as in Yo-yo.", hintAr: "اسم الحرف Y وصوته /y/ مثل Yo-yo (يويو).", spelling: ["Y","O","Y","O"] },
+  { type: "Letter", front: "Z z", word: "ZEBRA", sound: "/z/", icon: "🦓", hint: "Say the letter name Z, then its sound /z/ as in Zebra.", hintAr: "اسم الحرف Z وصوته /z/ مثل Zebra (حمار وحشي).", spelling: ["Z","E","B","R","A"] },
+
+  // SHORT VOWELS (21)
+  { type: "Short vowel", front: "CAT", word: "CAT", sound: "short a", icon: "🐱", hint: "Blend the sounds: C - A - T. Pattern: short a.", hintAr: "ادمج الأصوات: C-A-T. نمط الحرف الصوتي القصير a.", spelling: ["C","A","T"] },
+  { type: "Short vowel", front: "MAP", word: "MAP", sound: "short a", icon: "🗺️", hint: "Blend the sounds: M - A - P. Pattern: short a.", hintAr: "ادمج الأصوات: M-A-P (خريطة). نمط short a.", spelling: ["M","A","P"] },
+  { type: "Short vowel", front: "BAG", word: "BAG", sound: "short a", icon: "🎒", hint: "Blend the sounds: B - A - G. Pattern: short a.", hintAr: "ادمج الأصوات: B-A-G (حقيبة). نمط short a.", spelling: ["B","A","G"] },
+  { type: "Short vowel", front: "HAT", word: "HAT", sound: "short a", icon: "🧢", hint: "Blend the sounds: H - A - T. Pattern: short a.", hintAr: "ادمج الأصوات: H-A-T (قبعة). نمط short a.", spelling: ["H","A","T"] },
+  { type: "Short vowel", front: "FAN", word: "FAN", sound: "short a", icon: "🪭", hint: "Blend the sounds: F - A - N. Pattern: short a.", hintAr: "ادمج الأصوات: F-A-N (مروحة). نمط short a.", spelling: ["F","A","N"] },
+  { type: "Short vowel", front: "JAM", word: "JAM", sound: "short a", icon: "🍓", hint: "Blend the sounds: J - A - M. Pattern: short a.", hintAr: "ادمج الأصوات: J-A-M (مربى). نمط short a.", spelling: ["J","A","M"] },
+  { type: "Short vowel", front: "BED", word: "BED", sound: "short e", icon: "🛏️", hint: "Blend the sounds: B - E - D. Pattern: short e.", hintAr: "ادمج الأصوات: B-E-D (سرير). نمط short e.", spelling: ["B","E","D"] },
+  { type: "Short vowel", front: "HEN", word: "HEN", sound: "short e", icon: "🐔", hint: "Blend the sounds: H - E - N. Pattern: short e.", hintAr: "ادمج الأصوات: H-E-N (دجاجة). نمط short e.", spelling: ["H","E","N"] },
+  { type: "Short vowel", front: "PEN", word: "PEN", sound: "short e", icon: "🖊️", hint: "Blend the sounds: P - E - N. Pattern: short e.", hintAr: "ادمج الأصوات: P-E-N (قلم). نمط short e.", spelling: ["P","E","N"] },
+  { type: "Short vowel", front: "RED", word: "RED", sound: "short e", icon: "🔴", hint: "Blend the sounds: R - E - D. Pattern: short e.", hintAr: "ادمج الأصوات: R-E-D (أحمر). نمط short e.", spelling: ["R","E","D"] },
+  { type: "Short vowel", front: "PIN", word: "PIN", sound: "short i", icon: "🧷", hint: "Blend the sounds: P - I - N. Pattern: short i.", hintAr: "ادمج الأصوات: P-I-N (دبوس). نمط short i.", spelling: ["P","I","N"] },
+  { type: "Short vowel", front: "SIT", word: "SIT", sound: "short i", icon: "🪑", hint: "Blend the sounds: S - I - T. Pattern: short i.", hintAr: "ادمج الأصوات: S-I-T (يجلس). نمط short i.", spelling: ["S","I","T"] },
+  { type: "Short vowel", front: "FIN", word: "FIN", sound: "short i", icon: "🦈", hint: "Blend the sounds: F - I - N. Pattern: short i.", hintAr: "ادمج الأصوات: F-I-N (زعنفة). نمط short i.", spelling: ["F","I","N"] },
+  { type: "Short vowel", front: "PIG", word: "PIG", sound: "short i", icon: "🐷", hint: "Blend the sounds: P - I - G. Pattern: short i.", hintAr: "ادمج الأصوات: P-I-G (خنزير). نمط short i.", spelling: ["P","I","G"] },
+  { type: "Short vowel", front: "DOG", word: "DOG", sound: "short o", icon: "🐶", hint: "Blend the sounds: D - O - G. Pattern: short o.", hintAr: "ادمج الأصوات: D-O-G (كلب). نمط short o.", spelling: ["D","O","G"] },
+  { type: "Short vowel", front: "HOT", word: "HOT", sound: "short o", icon: "🔥", hint: "Blend the sounds: H - O - T. Pattern: short o.", hintAr: "ادمج الأصوات: H-O-T (حار). نمط short o.", spelling: ["H","O","T"] },
+  { type: "Short vowel", front: "POT", word: "POT", sound: "short o", icon: "🍲", hint: "Blend the sounds: P - O - T. Pattern: short o.", hintAr: "ادمج الأصوات: P-O-T (قدر طهي). نمط short o.", spelling: ["P","O","T"] },
+  { type: "Short vowel", front: "SUN", word: "SUN", sound: "short u", icon: "☀️", hint: "Blend the sounds: S - U - N. Pattern: short u.", hintAr: "ادمج الأصوات: S-U-N (شمس). نمط short u.", spelling: ["S","U","N"] },
+  { type: "Short vowel", front: "CUP", word: "CUP", sound: "short u", icon: "☕", hint: "Blend the sounds: C - U - P. Pattern: short u.", hintAr: "ادمج الأصوات: C-U-P (كوب). نمط short u.", spelling: ["C","U","P"] },
+  { type: "Short vowel", front: "BUG", word: "BUG", sound: "short u", icon: "🐛", hint: "Blend the sounds: B - U - G. Pattern: short u.", hintAr: "ادمج الأصوات: B-U-G (حشرة). نمط short u.", spelling: ["B","U","G"] },
+  { type: "Short vowel", front: "RUN", word: "RUN", sound: "short u", icon: "🏃", hint: "Blend the sounds: R - U - N. Pattern: short u.", hintAr: "ادمج الأصوات: R-U-N (يركض). نمط short u.", spelling: ["R","U","N"] },
+
+  // LETTER TEAMS / DIGRAPHS (12)
+  { type: "Letter team", front: "SHIP", word: "SHIP", sound: "SH says /sh/", icon: "🚢", hint: "Letter team: SH sounds like /sh/ as in Ship.", hintAr: "فريق الحروف SH يُنطق /sh/ مثل سفينة.", spelling: ["S","H","I","P"] },
+  { type: "Letter team", front: "SHOP", word: "SHOP", sound: "SH says /sh/", icon: "🏪", hint: "Letter team: SH sounds like /sh/ as in Shop.", hintAr: "فريق الحروف SH يُنطق /sh/ مثل متجر.", spelling: ["S","H","O","P"] },
+  { type: "Letter team", front: "FISH", word: "FISH", sound: "SH says /sh/", icon: "🐟", hint: "Ending sound: SH sounds like /sh/ as in Fish.", hintAr: "الصوت النهائي SH مثل سمكة.", spelling: ["F","I","S","H"] },
+  { type: "Letter team", front: "CHAT", word: "CHAT", sound: "CH says /ch/", icon: "💬", hint: "Letter team: CH sounds like /ch/ as in Chat.", hintAr: "فريق الحروف CH يُنطق /ch/ مثل دردشة.", spelling: ["C","H","A","T"] },
+  { type: "Letter team", front: "CHIN", word: "CHIN", sound: "CH says /ch/", icon: "🧒", hint: "Letter team: CH sounds like /ch/ as in Chin.", hintAr: "فريق الحروف CH يُنطق /ch/ مثل ذقن.", spelling: ["C","H","I","N"] },
+  { type: "Letter team", front: "MUCH", word: "MUCH", sound: "CH says /ch/", icon: "🍫", hint: "Ending sound: CH sounds like /ch/ as in Much.", hintAr: "الصوت النهائي CH مثل كثير.", spelling: ["M","U","C","H"] },
+  { type: "Letter team", front: "THIN", word: "THIN", sound: "TH says /th/", icon: "🧵", hint: "Letter team: TH sounds like /th/ as in Thin.", hintAr: "فريق الحروف TH يُنطق /th/ (ث) مثل نحيف.", spelling: ["T","H","I","N"] },
+  { type: "Letter team", front: "THIS", word: "THIS", sound: "TH says /th/", icon: "👉", hint: "Letter team: TH sounds like /th/ as in This.", hintAr: "فريق الحروف TH يُنطق /th/ (ذ) مثل هذا.", spelling: ["T","H","I","S"] },
+  { type: "Letter team", front: "THAT", word: "THAT", sound: "TH says /th/", icon: "👈", hint: "Letter team: TH sounds like /th/ as in That.", hintAr: "فريق الحروف TH يُنطق /th/ (ذ) مثل ذلك.", spelling: ["T","H","A","T"] },
+  { type: "Letter team", front: "PHONE", word: "PHONE", sound: "PH says /f/", icon: "📱", hint: "Letter team: PH sounds like /f/ as in Phone.", hintAr: "فريق الحروف PH يُنطق كصوت /f/ مثل هاتف.", spelling: ["P","H","O","N","E"] },
+  { type: "Letter team", front: "DUCK", word: "DUCK", sound: "CK says /k/", icon: "🦆", hint: "Letter team: CK sounds like /k/ as in Duck.", hintAr: "فريق الحروف CK يُنطق كصوت /k/ مثل بطة.", spelling: ["D","U","C","K"] },
+  { type: "Letter team", front: "RING", word: "RING", sound: "NG ending", icon: "💍", hint: "Ending sound: NG as in Ring.", hintAr: "الصوت الختامي NG مثل خاتم.", spelling: ["R","I","N","G"] },
+
+  // LONG VOWELS (12)
+  { type: "Long vowel", front: "CAKE", word: "CAKE", sound: "long a (A_E)", icon: "🎂", hint: "Magic E makes the vowel say its name: Cake.", hintAr: "حرف E السحري يجعل حرف A ينطق باسمه: كعكة.", spelling: ["C","A","K","E"] },
+  { type: "Long vowel", front: "NAME", word: "NAME", sound: "long a (A_E)", icon: "🏷️", hint: "Magic E: N - A - M - E = Name.", hintAr: "نمط A_E السحري: اسم.", spelling: ["N","A","M","E"] },
+  { type: "Long vowel", front: "GAME", word: "GAME", sound: "long a (A_E)", icon: "🎮", hint: "Magic E: G - A - M - E = Game.", hintAr: "نمط A_E السحري: لعبة.", spelling: ["G","A","M","E"] },
+  { type: "Long vowel", front: "BIKE", word: "BIKE", sound: "long i (I_E)", icon: "🚲", hint: "Magic E makes I long: B - I - K - E = Bike.", hintAr: "حرف E السحري يجعل I طويلة: دراجة.", spelling: ["B","I","K","E"] },
+  { type: "Long vowel", front: "LIKE", word: "LIKE", sound: "long i (I_E)", icon: "👍", hint: "Magic E makes I long: L - I - K - E = Like.", hintAr: "نمط I_E: يحب / يعجب.", spelling: ["L","I","K","E"] },
+  { type: "Long vowel", front: "TIME", word: "TIME", sound: "long i (I_E)", icon: "⏰", hint: "Magic E makes I long: T - I - M - E = Time.", hintAr: "نمط I_E: وقت / ساعة.", spelling: ["T","I","M","E"] },
+  { type: "Long vowel", front: "HOME", word: "HOME", sound: "long o (O_E)", icon: "🏡", hint: "Magic E makes O long: H - O - M - E = Home.", hintAr: "حرف E السحري يجعل O طويلة: بيت.", spelling: ["H","O","M","E"] },
+  { type: "Long vowel", front: "NOSE", word: "NOSE", sound: "long o (O_E)", icon: "👃", hint: "Magic E makes O long: N - O - S - E = Nose.", hintAr: "نمط O_E: أنف.", spelling: ["N","O","S","E"] },
+  { type: "Long vowel", front: "CUBE", word: "CUBE", sound: "long u (U_E)", icon: "🧊", hint: "Magic E makes U long: C - U - B - E = Cube.", hintAr: "نمط U_E: مكعب.", spelling: ["C","U","B","E"] },
+  { type: "Long vowel", front: "TREE", word: "TREE", sound: "long e (EE)", icon: "🌲", hint: "Vowel team: EE says /ee/ as in Tree.", hintAr: "فريق الحروف EE يُنطق طويلة مثل شجرة.", spelling: ["T","R","E","E"] },
+  { type: "Long vowel", front: "FEET", word: "FEET", sound: "long e (EE)", icon: "🦶", hint: "Vowel team: EE says /ee/ as in Feet.", hintAr: "فريق الحروف EE يُنطق طويلة مثل قدمين.", spelling: ["F","E","E","T"] },
+  { type: "Long vowel", front: "BOAT", word: "BOAT", sound: "long o (OA)", icon: "⛵", hint: "Vowel team: OA says /o/ as in Boat.", hintAr: "فريق الحروف OA يُنطق O ممدودة مثل قارب.", spelling: ["B","O","A","T"] },
+  // DAYS OF THE WEEK (7)
+  { type: "Days of Week", front: "Sunday", word: "SUNDAY", sound: "/ˈsʌn.deɪ/", icon: "🎒", hint: "Sunday is a school day in Sudan.", hintAr: "يوم الأحد - يوم دراسي في المنهج.", spelling: ["S","U","N","D","A","Y"] },
+  { type: "Days of Week", front: "Monday", word: "MONDAY", sound: "/ˈmʌn.deɪ/", icon: "📚", hint: "Monday is a school day.", hintAr: "يوم الإثنين - يوم دراسي.", spelling: ["M","O","N","D","A","Y"] },
+  { type: "Days of Week", front: "Tuesday", word: "TUESDAY", sound: "/ˈtjuːz.deɪ/", icon: "✏️", hint: "Tuesday is a school day.", hintAr: "يوم الثلاثاء - يوم دراسي.", spelling: ["T","U","E","S","D","A","Y"] },
+  { type: "Days of Week", front: "Wednesday", word: "WEDNESDAY", sound: "/ˈwɛnz.deɪ/", icon: "📝", hint: "Wednesday is a school day.", hintAr: "يوم الأربعاء - يوم دراسي.", spelling: ["W","E","D","N","E","S","D","A","Y"] },
+  { type: "Days of Week", front: "Thursday", word: "THURSDAY", sound: "/ˈθɜːz.deɪ/", icon: "🌟", hint: "Thursday is a school day.", hintAr: "يوم الخميس - نهاية الأسبوع الدراسي.", spelling: ["T","H","U","R","S","D","A","Y"] },
+  { type: "Days of Week", front: "Friday", word: "FRIDAY", sound: "/ˈfraɪ.deɪ/", icon: "🕌", hint: "Friday is a free day for prayer.", hintAr: "يوم الجمعة - يوم عطلة وصلاة الجمعة.", spelling: ["F","R","I","D","A","Y"] },
+  { type: "Days of Week", front: "Saturday", word: "SATURDAY", sound: "/ˈsæt.ə.deɪ/", icon: "🎈", hint: "Saturday is a free weekend day.", hintAr: "يوم السبت - عطلة نهاية الأسبوع.", spelling: ["S","A","T","U","R","D","A","Y"] }
+];
+
+// --- APP STATE ---
+let currentDeck = [...cardsData];
+let currentIndex = 0;
+let isFlipped = false;
+let autoSpeakEnabled = true;
+let isSlowMode = false;
+let soundFXEnabled = true;
+let currentLanguage = 'en'; // 'en' or 'ar'
+let starsCount = parseInt(localStorage.getItem('flashcard_stars') || '0', 10);
+
+// Builder Game State
+let builderTargetCard = null;
+let builderLettersGuessed = [];
+let builderAvailableTiles = [];
+
+// Quiz Game State
+let quizTargetCard = null;
+let quizOptions = [];
+
+// DOM Helper
+const $ = id => document.getElementById(id);
+
+// --- AUDIO SYNTHESIS & SOUND FX (Web Audio API) ---
+let audioCtx = null;
+function getAudioContext() {
+  if (!audioCtx) {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (AudioContextClass) audioCtx = new AudioContextClass();
+  }
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+  return audioCtx;
+}
+
+function playSoundFX(type) {
+  if (!soundFXEnabled) return;
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+    
+    if (type === 'pop') {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(450, now);
+      osc.frequency.exponentialRampToValueAtTime(700, now + 0.08);
+      gain.gain.setValueAtTime(0.25, now);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.08);
+    } else if (type === 'flip') {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(260, now);
+      osc.frequency.linearRampToValueAtTime(380, now + 0.12);
+      gain.gain.setValueAtTime(0.18, now);
+      gain.gain.linearRampToValueAtTime(0.01, now + 0.12);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.12);
+    } else if (type === 'success') {
+      // Cheerful major chord
+      [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now + i * 0.07);
+        gain.gain.setValueAtTime(0.2, now + i * 0.07);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.07 + 0.35);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now + i * 0.07);
+        osc.stop(now + i * 0.07 + 0.36);
+      });
+    } else if (type === 'wrong') {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(220, now);
+      osc.frequency.linearRampToValueAtTime(140, now + 0.2);
+      gain.gain.setValueAtTime(0.2, now);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.2);
+    }
+  } catch (e) {
+    console.error("Audio FX error", e);
+  }
+}
+
+// --- WEB SPEECH SYNTHESIS ENGINE (ناطق) ---
+let englishVoice = null;
+function initSpeechVoices() {
+  if (!('speechSynthesis' in window)) return;
+  const voices = window.speechSynthesis.getVoices();
+  // Find highest quality English voice (preferably US or GB child/natural/female)
+  englishVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Samantha') || v.name.includes('Google') || v.name.includes('Jenny') || v.name.includes('Zira')))
+              || voices.find(v => v.lang.startsWith('en-US'))
+              || voices.find(v => v.lang.startsWith('en'))
+              || null;
+}
+if ('speechSynthesis' in window) {
+  window.speechSynthesis.onvoiceschanged = initSpeechVoices;
+  initSpeechVoices();
+}
+
+function speak(text, customRate = null, onEndCallback = null) {
+  if (!('speechSynthesis' in window)) {
+    showToast("Speech synthesis not supported in this browser.");
+    return;
+  }
+  window.speechSynthesis.cancel(); // Stop any pending speech
+  const utter = new SpeechSynthesisUtterance(text);
+  if (englishVoice) utter.voice = englishVoice;
+  utter.rate = customRate || (isSlowMode ? 0.72 : 0.95);
+  utter.pitch = 1.05; // Friendly slightly higher pitch for kids
+  if (onEndCallback) utter.onend = onEndCallback;
+  window.speechSynthesis.speak(utter);
+}
+
+function speakWordItem(item) {
+  if (!item) return;
+  if (item.type === 'Letter') {
+    const letter = item.front.charAt(0);
+    speak(`${letter}! ${item.word}!`);
+  } else {
+    speak(item.word);
+  }
+}
+
+function spellOutItem(item) {
+  if (!item) return;
+  const letters = item.spelling.join(', ');
+  speak(`${letters}... ${item.word}!`, 0.75);
+}
+
+function speakPhonicsSound(item) {
+  if (!item) return;
+  if (item.type === 'Letter') {
+    const letter = item.front.charAt(0);
+    speak(`The letter is ${letter}. The sound is ${item.sound}, as in ${item.word}.`, 0.8);
+  } else if (item.type === 'Letter team') {
+    speak(`${item.sound}, as in ${item.word}.`, 0.8);
+  } else {
+    speak(`${item.sound}, in the word ${item.word}.`, 0.8);
+  }
+}
+
+// --- SPEECH RECOGNITION (MIC PRACTICE) ---
+let recognition = null;
+let isListening = false;
+function setupSpeechRecognition() {
+  const SpeechRecognitionClass = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognitionClass) return;
+  recognition = new SpeechRecognitionClass();
+  recognition.lang = 'en-US';
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 3;
+
+  recognition.onstart = () => {
+    isListening = true;
+    $('btn-mic-practice').classList.add('listening');
+    showToast(currentLanguage === 'ar' ? 'استمع إليك الآن... انطق الكلمة!' : 'Listening... Say the word!');
+  };
+
+  recognition.onresult = (event) => {
+    const spoken = event.results[0][0].transcript.trim().toUpperCase();
+    const currentCard = currentDeck[currentIndex];
+    const target = currentCard.word.toUpperCase();
+    
+    if (spoken.includes(target) || target.includes(spoken) || spoken === currentCard.front.charAt(0)) {
+      triggerConfetti();
+      playSoundFX('success');
+      awardStar(1);
+      showToast(currentLanguage === 'ar' ? `ممتاز جداً! نطقت: ${spoken} 🌟` : `Brilliant! You said: ${spoken} 🌟`);
+    } else {
+      playSoundFX('wrong');
+      showToast(currentLanguage === 'ar' ? `قريب! سمعنا: "${spoken}"، جرّب: ${target}` : `Close! Heard "${spoken}". Try: ${target}`);
+    }
+  };
+
+  recognition.onerror = () => {
+    showToast(currentLanguage === 'ar' ? 'لم نتمكن من سماعك بوضوح، حاول مجدداً!' : 'Could not hear clearly, try again!');
+  };
+
+  recognition.onend = () => {
+    isListening = false;
+    $('btn-mic-practice').classList.remove('listening');
+  };
+}
+setupSpeechRecognition();
+
+function toggleMicPractice() {
+  if (!recognition) {
+    showToast(currentLanguage === 'ar' ? 'الميكروفون غير مدعوم في متصفحك الحالي.' : 'Microphone not supported in this browser.');
+    return;
+  }
+  if (isListening) {
+    recognition.stop();
+  } else {
+    recognition.start();
+  }
+}
+
+// --- STAR AWARDS & REWARDS ---
+function updateStarDisplay() {
+  $('star-count').textContent = starsCount;
+  localStorage.setItem('flashcard_stars', starsCount.toString());
+}
+function awardStar(amount = 1) {
+  starsCount += amount;
+  updateStarDisplay();
+}
+
+// --- TOAST NOTIFICATIONS ---
+let toastTimeout = null;
+function showToast(msg) {
+  const toast = $('toast-msg');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2600);
+}
+
+// --- CONFETTI ANIMATION ---
+const confettiCanvas = $('confetti-canvas');
+const ctxConfetti = confettiCanvas.getContext('2d');
+let confettiParticles = [];
+let confettiAnimationId = null;
+
+function resizeConfetti() {
+  confettiCanvas.width = window.innerWidth;
+  confettiCanvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeConfetti);
+resizeConfetti();
+
+function triggerConfetti() {
+  const colors = ['#f43f5e', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
+  for (let i = 0; i < 70; i++) {
+    confettiParticles.push({
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2,
+      vx: (Math.random() - 0.5) * 16,
+      vy: (Math.random() - 0.8) * 16,
+      size: Math.random() * 8 + 6,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      rotation: Math.random() * 360,
+      vRot: (Math.random() - 0.5) * 12,
+      opacity: 1
+    });
+  }
+  if (!confettiAnimationId) renderConfetti();
+}
+
+function renderConfetti() {
+  ctxConfetti.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+  confettiParticles.forEach((p, idx) => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.4; // Gravity
+    p.rotation += p.vRot;
+    p.opacity -= 0.015;
+
+    ctxConfetti.save();
+    ctxConfetti.translate(p.x, p.y);
+    ctxConfetti.rotate((p.rotation * Math.PI) / 180);
+    ctxConfetti.fillStyle = p.color;
+    ctxConfetti.globalAlpha = Math.max(0, p.opacity);
+    ctxConfetti.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+    ctxConfetti.restore();
+
+    if (p.opacity <= 0) confettiParticles.splice(idx, 1);
+  });
+
+  if (confettiParticles.length > 0) {
+    confettiAnimationId = requestAnimationFrame(renderConfetti);
+  } else {
+    confettiAnimationId = null;
+    ctxConfetti.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+  }
+}
+
+// --- RENDER 3D FLASHCARD (TAB 1) ---
+function renderCard() {
+  if (!currentDeck.length) return;
+  const card = currentDeck[currentIndex];
+
+  // Update categories & borders
+  const typeColor = card.type === 'Letter' ? '#ec4899' : card.type === 'Short vowel' ? '#0d9488' : card.type === 'Letter team' ? '#f59e0b' : '#3b82f6';
+  $('card-front-face').style.borderColor = typeColor;
+  $('card-back-face').style.borderColor = typeColor;
+
+  // Front data
+  $('c-type-front').textContent = card.type;
+  $('c-type-front').style.color = typeColor;
+  $('c-word-front').textContent = card.front;
+  $('visual-emoji-front').textContent = card.icon;
+
+  // Back data
+  $('c-type-back').textContent = card.type;
+  $('c-type-back').style.color = typeColor;
+  $('c-word-back').textContent = card.type === 'Letter' ? `${card.word} • ${card.sound}` : card.word;
+  $('visual-emoji-back').textContent = card.icon;
+  $('c-phonics-banner').textContent = `Sound: ${card.sound}`;
+
+  // Hints
+  $('c-hint-front').textContent = card.hint;
+  $('c-hint-front-ar').textContent = card.hintAr;
+  $('c-hint-back').textContent = card.hint;
+  $('c-hint-back-ar').textContent = card.hintAr;
+
+  // Spelling chips on back
+  const spellingBox = $('spelling-tiles-container');
+  spellingBox.innerHTML = '';
+  card.spelling.forEach(char => {
+    const chip = document.createElement('div');
+    chip.className = 'spelling-chip';
+    chip.textContent = char;
+    chip.onclick = (e) => {
+      e.stopPropagation();
+      playSoundFX('pop');
+      speak(char);
+    };
+    spellingBox.appendChild(chip);
+  });
+
+  // Progress
+  $('progress-indicator').textContent = `${currentIndex + 1} / ${currentDeck.length}`;
+
+  // Flipped state
+  if (isFlipped) {
+    $('card-box').classList.add('flipped');
+  } else {
+    $('card-box').classList.remove('flipped');
+  }
+
+  // Auto-speak if enabled
+  if (autoSpeakEnabled) {
+    if (isFlipped) {
+      speakWordItem(card);
+    } else {
+      speakWordItem(card);
+    }
+  }
+}
+
+function flipCard() {
+  isFlipped = !isFlipped;
+  playSoundFX('flip');
+  if (isFlipped) {
+    $('card-box').classList.add('flipped');
+    if (autoSpeakEnabled) {
+      speakWordItem(currentDeck[currentIndex]);
+    }
+  } else {
+    $('card-box').classList.remove('flipped');
+  }
+}
+
+function changeCard(delta) {
+  playSoundFX('pop');
+  currentIndex = (currentIndex + delta + currentDeck.length) % currentDeck.length;
+  isFlipped = false;
+  renderCard();
+}
+
+function shuffleDeck() {
+  playSoundFX('pop');
+  for (let i = currentDeck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [currentDeck[i], currentDeck[j]] = [currentDeck[j], currentDeck[i]];
+  }
+  currentIndex = 0;
+  isFlipped = false;
+  renderCard();
+  showToast(currentLanguage === 'ar' ? 'تم خلط البطاقات عشوائياً! 🔀' : 'Cards Shuffled! 🔀');
+}
+
+function filterCategory(cat) {
+  playSoundFX('pop');
+  if (cat === 'All') {
+    currentDeck = [...cardsData];
+  } else {
+    currentDeck = cardsData.filter(c => c.type === cat);
+  }
+  currentIndex = 0;
+  isFlipped = false;
+
+  document.querySelectorAll('.cat-pill').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-cat') === cat);
+  });
+
+  renderCard();
+  renderGallery();
+}
+
+// --- TAB 2: WORD BUILDER GAME (ركّب الكلمة بالصور) ---
+function initBuilderGame(cardIndex = null) {
+  const availableCards = currentDeck.filter(c => c.spelling && c.spelling.length <= 6);
+  if (cardIndex !== null && cardIndex < availableCards.length) {
+    builderTargetCard = availableCards[cardIndex];
+  } else {
+    builderTargetCard = availableCards[Math.floor(Math.random() * availableCards.length)];
+  }
+
+  builderLettersGuessed = [];
+  $('builder-emoji').textContent = builderTargetCard.icon;
+  $('builder-feedback').textContent = '';
+  $('builder-feedback').className = 'game-feedback';
+
+  // Render empty slots
+  const slotsRow = $('builder-slots');
+  slotsRow.innerHTML = '';
+  builderTargetCard.spelling.forEach(() => {
+    const slot = document.createElement('div');
+    slot.className = 'letter-slot';
+    slotsRow.appendChild(slot);
+  });
+
+  // Prepare scrambled tiles (correct letters + 2 distractors)
+  const letters = [...builderTargetCard.spelling];
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  while (letters.length < builderTargetCard.spelling.length + 2) {
+    const randLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+    letters.push(randLetter);
+  }
+  // Shuffle letters
+  letters.sort(() => Math.random() - 0.5);
+  builderAvailableTiles = letters.map((l, idx) => ({ id: idx, letter: l, used: false }));
+
+  renderBuilderTiles();
+  speakWordItem(builderTargetCard);
+}
+
+function renderBuilderTiles() {
+  const tilesRow = $('builder-tiles');
+  tilesRow.innerHTML = '';
+  builderAvailableTiles.forEach(tile => {
+    const btn = document.createElement('button');
+    btn.className = `letter-tile ${tile.used ? 'used' : ''}`;
+    btn.textContent = tile.letter;
+    btn.onclick = () => onSelectBuilderTile(tile);
+    tilesRow.appendChild(btn);
+  });
+}
+
+function onSelectBuilderTile(tile) {
+  if (tile.used || builderLettersGuessed.length >= builderTargetCard.spelling.length) return;
+  playSoundFX('pop');
+  speak(tile.letter);
+
+  tile.used = true;
+  builderLettersGuessed.push(tile);
+
+  // Update slot UI
+  const slots = document.querySelectorAll('.letter-slot');
+  builderLettersGuessed.forEach((item, idx) => {
+    slots[idx].textContent = item.letter;
+    slots[idx].classList.add('filled');
+  });
+
+  renderBuilderTiles();
+
+  // Check if filled
+  if (builderLettersGuessed.length === builderTargetCard.spelling.length) {
+    const wordFormed = builderLettersGuessed.map(t => t.letter).join('');
+    const target = builderTargetCard.spelling.join('');
+    if (wordFormed === target) {
+      // Success!
+      playSoundFX('success');
+      triggerConfetti();
+      awardStar(2);
+      $('builder-feedback').textContent = currentLanguage === 'ar' ? `رائع جداً! أحسنت صنعاً: ${target} ⭐ +2` : `Awesome! You spelled: ${target}! ⭐ +2`;
+      $('builder-feedback').className = 'game-feedback success';
+      speak(`${target}! Brilliant!`);
+    } else {
+      // Wrong attempt
+      playSoundFX('wrong');
+      $('builder-feedback').textContent = currentLanguage === 'ar' ? 'حاول مجدداً! اضغط على مسح لإعادة المحاولة.' : 'Try again! Click clear to retry.';
+      $('builder-feedback').className = 'game-feedback';
+    }
+  }
+}
+
+function resetBuilder() {
+  playSoundFX('pop');
+  builderLettersGuessed = [];
+  builderAvailableTiles.forEach(t => t.used = false);
+  const slots = document.querySelectorAll('.letter-slot');
+  slots.forEach(s => {
+    s.textContent = '';
+    s.classList.remove('filled');
+  });
+  renderBuilderTiles();
+  $('builder-feedback').textContent = '';
+}
+
+// --- TAB 3: PICTURE QUIZ GAME (تحدي الصور والسمع) ---
+function initQuizQuestion() {
+  quizTargetCard = currentDeck[Math.floor(Math.random() * currentDeck.length)];
+  $('quiz-target-word').textContent = quizTargetCard.word;
+  $('quiz-feedback').textContent = '';
+
+  // Pick 3 random distractors from different items
+  const distractors = cardsData.filter(c => c.word !== quizTargetCard.word);
+  distractors.sort(() => Math.random() - 0.5);
+  quizOptions = [quizTargetCard, distractors[0], distractors[1], distractors[2]];
+  quizOptions.sort(() => Math.random() - 0.5);
+
+  const grid = $('quiz-grid');
+  grid.innerHTML = '';
+  quizOptions.forEach(opt => {
+    const cardDiv = document.createElement('div');
+    cardDiv.className = 'quiz-card';
+    cardDiv.innerHTML = `
+      <div class="quiz-card-img">${opt.icon}</div>
+      <div class="quiz-card-label">${opt.word}</div>
+    `;
+    cardDiv.onclick = () => onSelectQuizOption(opt, cardDiv);
+    grid.appendChild(cardDiv);
+  });
+
+  speak(`Can you find the picture for: ${quizTargetCard.word}?`);
+}
+
+function onSelectQuizOption(selectedOpt, cardElement) {
+  if (selectedOpt.word === quizTargetCard.word) {
+    // Correct
+    cardElement.classList.add('correct');
+    playSoundFX('success');
+    triggerConfetti();
+    awardStar(2);
+    $('quiz-feedback').textContent = currentLanguage === 'ar' ? `إجابة صحيحة وممتازة! 🌟 +2 نجوم` : `Correct! Great Job! 🌟 +2 Stars`;
+    $('quiz-feedback').className = 'game-feedback success';
+    speak(`Yes! That is ${quizTargetCard.word}! Excellent!`);
+    setTimeout(() => initQuizQuestion(), 2200);
+  } else {
+    // Wrong
+    cardElement.classList.add('wrong');
+    playSoundFX('wrong');
+    $('quiz-feedback').textContent = currentLanguage === 'ar' ? `هذه صورة ${selectedOpt.word}، حاول مرة أخرى!` : `That is ${selectedOpt.word}. Try again!`;
+    $('quiz-feedback').className = 'game-feedback';
+    speak(`That is ${selectedOpt.word}. Find ${quizTargetCard.word}.`);
+    setTimeout(() => cardElement.classList.remove('wrong'), 800);
+  }
+}
+
+// --- TAB 4: GALLERY / SOUNDBOARD (معرض الصور الناطق) ---
+function renderGallery() {
+  const container = $('gallery-grid');
+  container.innerHTML = '';
+  currentDeck.forEach((card, idx) => {
+    const div = document.createElement('div');
+    div.className = 'gallery-card';
+    div.innerHTML = `
+      <div class="gallery-img">${card.icon}</div>
+      <div class="gallery-front">${card.word}</div>
+      <div class="gallery-badge">${card.type}</div>
+    `;
+    div.onclick = () => {
+      playSoundFX('pop');
+      speakWordItem(card);
+      // Switch to this card on flashcard tab
+      currentIndex = currentDeck.indexOf(card);
+      isFlipped = false;
+      renderCard();
+      showToast(`${card.word} • ${card.sound}`);
+    };
+    container.appendChild(div);
+  });
+}
+
+// --- TAB SWITCHING ---
+function switchTab(tabName) {
+  playSoundFX('pop');
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-tab') === tabName);
+  });
+  document.querySelectorAll('.view-panel').forEach(panel => panel.style.display = 'none');
+  
+  if (tabName === 'cards') {
+    $('view-cards').style.display = 'block';
+    renderCard();
+  } else if (tabName === 'builder') {
+    $('view-builder').style.display = 'block';
+    initBuilderGame();
+  } else if (tabName === 'quiz') {
+    $('view-quiz').style.display = 'block';
+    initQuizQuestion();
+  } else if (tabName === 'gallery') {
+    $('view-gallery').style.display = 'grid';
+    renderGallery();
+  }
+}
+
+// --- BILINGUAL UI TRANSLATIONS (عربي / English) ---
+const translations = {
+  en: {
+    title: "English Spelling & Phonics",
+    subtitle: "Ages 5–6 • Interactive Audio & Visual Flashcards",
+    tabCards: "🎴 Flashcards",
+    tabBuilder: "🧩 Word Builder",
+    tabQuiz: "🎯 Picture Quiz",
+    tabGallery: "🖼️ Picture Board",
+    sayWord: "Say Word",
+    spell: "Spell",
+    sayIt: "Say it!",
+    phonics: "Phonics Sound",
+    repeat: "Repeat",
+    prev: "Previous",
+    flip: "Flip Card",
+    next: "Next",
+    shuffle: "Shuffle",
+    listen: "Listen",
+    clear: "Clear",
+    nextWord: "Next Word",
+    nextQuiz: "Next Question",
+    hearAgain: "Hear Word Again",
+    promptQuiz: "Which picture is:",
+    autoSpeak: "Auto-speak",
+    slowVoice: "Slow Voice",
+    flipHint: "Click to flip"
+  },
+  ar: {
+    title: "تعليم التهجئة والصوتيات الإنجليزية",
+    subtitle: "للأعمار 5–6 سنوات • بطاقات تعليمية تفاعلية ناطقة بالصور",
+    tabCards: "🎴 البطاقات الناطقة",
+    tabBuilder: "🧩 ركّب الكلمة بالصور",
+    tabQuiz: "🎯 تحدي الصور والسمع",
+    tabGallery: "🖼️ لوحة الصور الكاملة",
+    sayWord: "نطق الكلمة",
+    spell: "تهجئة الحروف",
+    sayIt: "انطق بصوتك!",
+    phonics: "صوت الفونكس",
+    repeat: "تكرار الصوت",
+    prev: "السابق",
+    flip: "اقلب البطاقة",
+    next: "التالي",
+    shuffle: "خلط عشوائي",
+    listen: "استمع",
+    clear: "مسح",
+    nextWord: "كلمة تالية",
+    nextQuiz: "سؤال تالي",
+    hearAgain: "استمع للكلمة مجدداً",
+    promptQuiz: "أي صورة تعبّر عن:",
+    autoSpeak: "نطق تلقائي",
+    slowVoice: "نطق بطيء للأطفال",
+    flipHint: "اضغط للقلب"
+  }
+};
+
+function toggleLanguage() {
+  currentLanguage = currentLanguage === 'en' ? 'ar' : 'en';
+  const t = translations[currentLanguage];
+  $('app-title').textContent = t.title;
+  $('app-subtitle').textContent = t.subtitle;
+  $('tab-cards').textContent = t.tabCards;
+  $('tab-builder').textContent = t.tabBuilder;
+  $('tab-quiz').textContent = t.tabQuiz;
+  $('tab-gallery').textContent = t.tabGallery;
+  
+  document.querySelectorAll('.lbl-speak').forEach(el => el.textContent = t.sayWord);
+  document.querySelectorAll('.lbl-spell').forEach(el => el.textContent = t.spell);
+  document.querySelectorAll('.lbl-mic').forEach(el => el.textContent = t.sayIt);
+  document.querySelectorAll('.lbl-phonics').forEach(el => el.textContent = t.phonics);
+  document.querySelectorAll('.lbl-repeat').forEach(el => el.textContent = t.repeat);
+  document.querySelectorAll('.lbl-prev').forEach(el => el.textContent = t.prev);
+  document.querySelectorAll('.lbl-flip').forEach(el => el.textContent = t.flip);
+  document.querySelectorAll('.lbl-next').forEach(el => el.textContent = t.next);
+  document.querySelectorAll('.lbl-shuffle').forEach(el => el.textContent = t.shuffle);
+  document.querySelectorAll('.lbl-listen').forEach(el => el.textContent = t.listen);
+  document.querySelectorAll('.lbl-clear').forEach(el => el.textContent = t.clear);
+  document.querySelectorAll('.lbl-next-word').forEach(el => el.textContent = t.nextWord);
+  document.querySelectorAll('.lbl-next-quiz').forEach(el => el.textContent = t.nextQuiz);
+  $('quiz-audio-lbl').textContent = t.hearAgain;
+  $('quiz-prompt-text').textContent = t.promptQuiz;
+  $('label-autospeak').textContent = t.autoSpeak;
+  $('label-slow').textContent = t.slowVoice;
+  document.querySelectorAll('.hint-flip-text').forEach(el => el.textContent = t.flipHint);
+
+  showToast(currentLanguage === 'ar' ? 'تم تحويل الواجهة إلى اللغة العربية 🇸🇦' : 'Switched interface to English 🇺🇸');
+}
+
+// --- EVENT LISTENERS ---
+// Card Interaction
+$('card-box').onclick = flipCard;
+$('card-box').onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flipCard(); } };
+$('visual-front').onclick = (e) => { e.stopPropagation(); playSoundFX('pop'); speakWordItem(currentDeck[currentIndex]); };
+$('visual-back').onclick = (e) => { e.stopPropagation(); playSoundFX('pop'); speakWordItem(currentDeck[currentIndex]); };
+
+// Buttons on Card
+$('btn-speak-word').onclick = () => { playSoundFX('pop'); speakWordItem(currentDeck[currentIndex]); };
+$('btn-spell-word').onclick = () => { playSoundFX('pop'); spellOutItem(currentDeck[currentIndex]); };
+$('btn-speak-phonics').onclick = () => { playSoundFX('pop'); speakPhonicsSound(currentDeck[currentIndex]); };
+$('btn-repeat-back').onclick = () => { playSoundFX('pop'); speakWordItem(currentDeck[currentIndex]); };
+$('btn-mic-practice').onclick = toggleMicPractice;
+
+// Navigation buttons
+$('btn-flip').onclick = flipCard;
+$('btn-prev').onclick = () => changeCard(-1);
+$('btn-next').onclick = () => changeCard(1);
+$('btn-shuffle').onclick = shuffleDeck;
+
+// Tabs
+$('tab-cards').onclick = () => switchTab('cards');
+$('tab-builder').onclick = () => switchTab('builder');
+$('tab-quiz').onclick = () => switchTab('quiz');
+$('tab-gallery').onclick = () => switchTab('gallery');
+
+// Categories
+document.querySelectorAll('.cat-pill').forEach(btn => {
+  btn.onclick = () => filterCategory(btn.getAttribute('data-cat'));
+});
+
+// Audio Settings
+$('toggle-autospeak').onclick = () => {
+  autoSpeakEnabled = !autoSpeakEnabled;
+  $('toggle-autospeak').classList.toggle('active', autoSpeakEnabled);
+  playSoundFX('pop');
+  showToast(autoSpeakEnabled ? 'Auto-speak ON 🔊' : 'Auto-speak OFF 🔇');
+};
+$('toggle-slow').onclick = () => {
+  isSlowMode = !isSlowMode;
+  $('toggle-slow').classList.toggle('active', isSlowMode);
+  playSoundFX('pop');
+  showToast(isSlowMode ? 'Slow Voice Mode 🐢' : 'Normal Voice Mode 🐇');
+};
+
+// Builder buttons
+$('builder-listen-btn').onclick = () => { playSoundFX('pop'); speakWordItem(builderTargetCard); };
+$('builder-image').onclick = () => { playSoundFX('pop'); speakWordItem(builderTargetCard); };
+$('builder-reset-btn').onclick = resetBuilder;
+$('builder-next-btn').onclick = () => { playSoundFX('pop'); initBuilderGame(); };
+
+// Quiz buttons
+$('quiz-audio-trigger').onclick = () => { playSoundFX('pop'); speak(quizTargetCard.word); };
+$('quiz-skip-btn').onclick = () => { playSoundFX('pop'); initQuizQuestion(); };
+
+// Header actions
+$('lang-btn').onclick = toggleLanguage;
+$('sound-btn').onclick = () => {
+  soundFXEnabled = !soundFXEnabled;
+  $('sound-btn').textContent = soundFXEnabled ? '🔔' : '🔕';
+  showToast(soundFXEnabled ? 'Sound Effects Enabled 🔔' : 'Sound Effects Muted 🔕');
+};
+
+// Global Keyboard Navigation
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === 'ArrowRight') changeCard(1);
+  if (e.key === 'ArrowLeft') changeCard(-1);
+  if (e.key === ' ' && e.target.tagName !== 'BUTTON') { e.preventDefault(); flipCard(); }
+  if (e.key.toLowerCase() === 's') speakWordItem(currentDeck[currentIndex]);
+  if (e.key === '1') switchTab('cards');
+  if (e.key === '2') switchTab('builder');
+  if (e.key === '3') switchTab('quiz');
+  if (e.key === '4') switchTab('gallery');
+});
+
+// Init
+updateStarDisplay();
+renderCard();
+renderGallery();
+
+
+// --- CHILD EXIT LOCK & AUTO-FULLSCREEN CONTROLLER ---
+const CHILD_EXIT_LOCK = {
+  currentPinInput: "",
+  isAuthorizedExit: false,
+  getSavedPin() {
+    return localStorage.getItem('fatima_child_pin') || '1234';
+  },
+  setSavedPin(newPin) {
+    localStorage.setItem('fatima_child_pin', newPin);
+  },
+  init() {
+    const lbl = document.getElementById('exit-default-pin-lbl');
+    if (lbl) lbl.textContent = this.getSavedPin();
+
+    // 1. Auto-request fullscreen on very first click/touch anywhere on the page
+    const tryEnterFS = () => {
+      this.requestFullscreen();
+    };
+    document.addEventListener('click', tryEnterFS, { once: true });
+    document.addEventListener('touchstart', tryEnterFS, { once: true });
+    document.addEventListener('keydown', tryEnterFS, { once: true });
+
+    // 2. Monitor fullscreen changes to catch unauthorized exits (e.g. Esc key pressed)
+    document.addEventListener('fullscreenchange', () => this.handleFullscreenChange());
+    document.addEventListener('webkitfullscreenchange', () => this.handleFullscreenChange());
+
+    // 3. Update nudge banner visibility
+    
+    
+
+    // 4. Beforeunload listener to prevent closing the tab directly without warning
+    window.addEventListener('beforeunload', (e) => {
+      if (!this.isAuthorizedExit) {
+        e.preventDefault();
+        e.returnValue = 'المنصة محمية بقفل الأطفال! يرجى إدخال رمز PIN للخروج.';
+        return e.returnValue;
+      }
+    });
+  },
+  requestFullscreen() {
+    try {
+      const elem = document.documentElement;
+      if (!document.fullscreenElement) {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen().catch(() => {});
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen();
+        }
+      }
+      this.hideExitLock();
+    } catch (e) {}
+  },
+  handleFullscreenChange() {
+    const isFS = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement);
+    
+    if (!isFS && !this.isAuthorizedExit) {
+      // Child attempted to exit fullscreen! Show exit lock immediately
+      this.showExitLock("⚠️ تم رصد محاولة خروج! المنصة محمية بقفل أمان الأطفال لمنع الخروج إلى سطح المكتب.<br><strong>أدخل رمز PIN لولي الأمر للسماح بالخروج، أو اضغطي على زر المتابعة:</strong>");
+    }
+  },
+  
+  promptExit() {
+    this.showExitLock("🚪 خروج ولي الأمر: يرجى إدخال رمز PIN المكون من 4 أرقام لتأكيد الخروج من المنصة:");
+  },
+  showExitLock(msg) {
+    const overlay = document.getElementById('child-exit-lock-overlay');
+    if (!overlay) return;
+    overlay.classList.remove('exit-lock-hidden');
+    this.currentPinInput = "";
+    this.updateDots();
+    if (msg) {
+      const msgElem = document.getElementById('exit-lock-msg');
+      if (msgElem) msgElem.innerHTML = msg;
+    }
+  },
+  hideExitLock() {
+    const overlay = document.getElementById('child-exit-lock-overlay');
+    if (overlay) overlay.classList.add('exit-lock-hidden');
+  },
+  resumeLearning() {
+    if (typeof playSound === 'function') playSound('pop');
+    else if (typeof playTone === 'function') playTone('pop');
+    else if (typeof playSoundFX === 'function') playSoundFX('flip');
+    this.isAuthorizedExit = false;
+    this.hideExitLock();
+    this.requestFullscreen();
+  },
+  pressKey(digit) {
+    if (this.currentPinInput.length < 4) {
+      this.currentPinInput += digit;
+      if (typeof playSound === 'function') playSound('pop');
+      else if (typeof playTone === 'function') playTone('pop');
+      else if (typeof playSoundFX === 'function') playSoundFX('flip');
+      this.updateDots();
+      if (this.currentPinInput.length === 4) {
+        setTimeout(() => this.verifyPin(), 250);
+      }
+    }
+  },
+  backspace() {
+    if (this.currentPinInput.length > 0) {
+      this.currentPinInput = this.currentPinInput.slice(0, -1);
+      this.updateDots();
+    }
+  },
+  updateDots() {
+    for (let i = 0; i < 4; i++) {
+      const dot = document.getElementById(`exit-pin-dot-${i}`);
+      if (dot) {
+        dot.classList.toggle('filled', i < this.currentPinInput.length);
+      }
+    }
+  },
+  verifyPin() {
+    const correctPin = this.getSavedPin();
+    if (this.currentPinInput === correctPin) {
+      // Authorized Exit by Parent!
+      this.isAuthorizedExit = true;
+      if (typeof playSound === 'function') playSound('success');
+      else if (typeof playTone === 'function') playTone('cheer');
+      else if (typeof playSoundFX === 'function') playSoundFX('cheer');
+      this.hideExitLock();
+
+      // Exit fullscreen safely
+      if (document.fullscreenElement && document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+      }
+
+      alert("تم التحقق بنجاح! تم فتح قفل الأطفال ويمكنك الآن إغلاق المنصة أو التبديل للنوافذ الأخرى.");
+      try {
+        window.close();
+      } catch (e) {}
+    } else {
+      // Wrong PIN
+      if (typeof playSound === 'function') playSound('wrong');
+      else if (typeof playTone === 'function') playTone('wrong');
+      else if (typeof playSoundFX === 'function') playSoundFX('wrong');
+      const card = document.querySelector('.exit-lock-card');
+      if (card) {
+        card.style.animation = 'shake 0.4s ease';
+        setTimeout(() => card.style.animation = '', 450);
+      }
+      const msgElem = document.getElementById('exit-lock-msg');
+      if (msgElem) {
+        msgElem.innerHTML = '<span style="color:#e11d48; font-weight:900">❌ رمز PIN غير صحيح! حاولي مجدداً، أو اضغطي على زر متابعة التعلم.</span>';
+      }
+      this.currentPinInput = "";
+      this.updateDots();
+    }
+  },
+  changePinPrompt() {
+    const current = prompt("أدخل رمز PIN الحالي للتحقق:", "");
+    if (current === this.getSavedPin()) {
+      const nextPin = prompt("أدخل رمز PIN الجديد المكون من 4 أرقام:", "");
+      if (nextPin && /^\d{4}$/.test(nextPin)) {
+        this.setSavedPin(nextPin);
+        alert(`تم تغيير رمز PIN بنجاح إلى: ${nextPin}`);
+        const defaultLbl = document.getElementById('exit-default-pin-lbl');
+        if (defaultLbl) defaultLbl.textContent = nextPin;
+      } else {
+        alert("يجب أن يتكون رمز PIN من 4 أرقام عددية فقط!");
+      }
+    } else if (current !== null) {
+      alert("رمز PIN الحالي غير صحيح!");
+    }
+  }
+};
+
+
+
+
+CHILD_EXIT_LOCK.init();
+
+
+// --- PWA SERVICE WORKER REGISTRATION ---
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW registration:', err));
+  });
+}
+
+</script>
+
+
+</body>
+</html>
