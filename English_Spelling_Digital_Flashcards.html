@@ -1102,7 +1102,7 @@ footer {
 
 
 /* Child Exit Lock & Auto-Fullscreen Styles */
-#child-exit-lock-overlay {
+#child-exit-lock-overlay { display: none !important;
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.92);
@@ -2005,6 +2005,56 @@ footer {
   }
 }
 
+
+/* Banner bridging printable sheets to interactive canvas */
+.printbook-to-canvas-banner {
+  background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+  border: 2px dashed #0284c7;
+  border-radius: 18px;
+  padding: 18px 24px;
+  margin: 18px auto 26px;
+  max-width: 850px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.12);
+}
+.p2c-badge {
+  display: inline-block;
+  background: #dbeafe;
+  color: #0369a1;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+.printbook-to-canvas-banner h3 {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 18px;
+}
+.printbook-to-canvas-banner p {
+  margin: 0 0 14px;
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.btn-go-to-canvas {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-go-to-canvas:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(37, 99, 235, 0.45);
+}
+
 </style>
   <!-- PWA & Mobile Web App Meta -->
   <link rel="manifest" href="manifest.json">
@@ -2094,8 +2144,8 @@ footer {
         ⭐ <span class="num" id="star-count">0</span>
       </div>
       
-      <button class="icon-btn" id="btn-fullscreen-toggle" title="ملء الشاشة / Fullscreen" onclick="CHILD_EXIT_LOCK.requestFullscreen()">⛶</button>
-      <button class="icon-btn" id="btn-lock-toggle" title="خروج ولي الأمر برمز PIN" onclick="CHILD_EXIT_LOCK.promptExit()" style="background:#ffe4e6; color:#be123c">🚪</button>
+      <button class="icon-btn" id="btn-fullscreen-toggle" style="display:none !important;" title="ملء الشاشة / Fullscreen" onclick="CHILD_EXIT_LOCK.requestFullscreen()">⛶</button>
+      <button class="icon-btn" id="btn-lock-toggle" style="display:none !important;" title="خروج ولي الأمر برمز PIN" onclick="CHILD_EXIT_LOCK.promptExit()" style="display:none !important;background:#ffe4e6; color:#be123c">🚪</button>
       <button class="icon-btn" id="lang-btn" title="تبديل اللغة / Switch Language">🌐</button>
       <button class="icon-btn" id="sound-btn" title="مؤثرات الصوت / Sound FX">🔔</button>
     </div>
@@ -2422,6 +2472,9 @@ footer {
         <span class="tracing-badge">✏️ سبورة الخط والسطور الأربعة • 4-Lines Smart Handwriting</span>
         <h2>Learn the 4-Lines Rule & Trace Letters Correctly!</h2>
         <p>تعلّمي سر السطور الأربعة الإنجليزية: أين يلمس الحرف السماء، وأين يقف على العشب، وأين ينزل ذيله إلى الأرض!</p>
+        <div style="margin-top:10px; display:inline-flex; align-items:center; gap:8px; background:#eff6ff; color:#1d4ed8; padding:6px 16px; border-radius:20px; font-weight:700; font-size:14px; border:1px solid #bfdbfe;">
+          <span>✍️</span> <span>اكتبي بإصبعكِ أو بقلم الشاشة (Touch) أو الماوس مباشرة على السبورة بالأسفل</span>
+        </div>
       </div>
 
       <!-- The 4 Lines Legend -->
@@ -2523,6 +2576,19 @@ footer {
         <h2>Print Fatima's Custom Handwriting Workbook (A4)!</h2>
         <p>كراسة خط وتمارين كتابة متكاملة بأسطر إنجليزية أصلية جاهزة للطباعة على ورق A4 لتدريب اليد والقلم في المنزل!</p>
         <button class="print-trigger-btn" onclick="triggerWorkbookPrint()">🖨️ اضغط هنا لطباعة الكراسة كاملة الآن (Print Workbook)</button>
+      </div>
+
+            <!-- Notice bridging printable sheet to interactive canvas -->
+      <div class="printbook-to-canvas-banner">
+        <div class="p2c-badge">💡 تنبيه وتوضيح لفاطمة وولي الأمر</div>
+        <h3>هذه المعروضة بالأسفل هي "أوراق الكراسة المخصصة للطباعة الورقية A4" 🖨️</h3>
+        <p>
+          هذه الصفحات صُممت لتُطبع على الورق عبر الطابعة المنزلية وتُحل بالقلم الرصاص 📄.<br>
+          إذا كنتِ ترغبين في <strong>الرسم والكتابة بالإصبع أو قلم الشاشة (Touch) مباشرة على الشاشة</strong>، اضغطي على الزر التالي:
+        </p>
+        <button class="btn-go-to-canvas" onclick="switchPillar('writing'); switchWritingSub('tracing');">
+          ✍️ الانتقال إلى سبورة الخط التفاعلية (للكتابة باللمس على الشاشة) ➔
+        </button>
       </div>
 
       <!-- Screen Preview of the Workbook -->
@@ -3540,15 +3606,18 @@ renderGallery();
 
 // --- CHILD EXIT LOCK & AUTO-FULLSCREEN CONTROLLER ---
 const CHILD_EXIT_LOCK = {
+  enabled: false,
   currentPinInput: "",
-  isAuthorizedExit: false,
+  isAuthorizedExit: true,
   getSavedPin() {
     return localStorage.getItem('fatima_child_pin') || '1234';
   },
-  setSavedPin(newPin) {
-    localStorage.setItem('fatima_child_pin', newPin);
-  },
+  setSavedPin(newPin) {},
   init() {
+    // Disabled completely per user request until re-evaluated
+    return;
+  },
+  _unused_init() {
     const lbl = document.getElementById('exit-default-pin-lbl');
     if (lbl) lbl.textContent = this.getSavedPin();
 
@@ -3998,103 +4067,139 @@ function selectTracingLetter(item) {
   speakEnglish(item.name);
 }
 
+let tracingListenersBound = false;
+
 function setupTracingCanvas() {
   const canvas = $('tracing-canvas');
   if (!canvas) return;
   tracingCtx = canvas.getContext('2d');
 
-  const getCanvasCoords = (clientX, clientY) => {
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
-    return {
-      x: (clientX - rect.left) * scaleX,
-      y: (clientY - rect.top) * scaleY
+  if (!tracingListenersBound) {
+    tracingListenersBound = true;
+
+    const getCanvasCoords = (e) => {
+      const rect = canvas.getBoundingClientRect();
+      if (!rect || rect.width === 0 || rect.height === 0) return { x: 0, y: 0 };
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      
+      let clientX = e.clientX;
+      let clientY = e.clientY;
+      
+      if (clientX === undefined && e.touches && e.touches.length > 0) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else if (clientX === undefined && e.changedTouches && e.changedTouches.length > 0) {
+        clientX = e.changedTouches[0].clientX;
+        clientY = e.changedTouches[0].clientY;
+      }
+
+      return {
+        x: (clientX - rect.left) * scaleX,
+        y: (clientY - rect.top) * scaleY
+      };
     };
-  };
 
-  const drawStrokeTo = (x, y) => {
-    tracingCtx.lineWidth = 15;
-    tracingCtx.lineCap = 'round';
-    tracingCtx.lineJoin = 'round';
-    tracingCtx.strokeStyle = brushColor;
-
-    tracingCtx.lineTo(x, y);
-    tracingCtx.stroke();
-    tracingCtx.beginPath();
-    tracingCtx.moveTo(x, y);
-  };
-
-  // --- UNIFIED POINTER EVENTS (Touch, Stylus Pen, and Mouse) ---
-  const handlePointerDown = (e) => {
-    e.preventDefault();
-    isDrawing = true;
-    try { canvas.setPointerCapture(e.pointerId); } catch(err) {}
-    const { x, y } = getCanvasCoords(e.clientX, e.clientY);
-    tracingCtx.beginPath();
-    tracingCtx.moveTo(x, y);
-    drawStrokeTo(x, y);
-  };
-
-  const handlePointerMove = (e) => {
-    if (!isDrawing) return;
-    e.preventDefault();
-    const { x, y } = getCanvasCoords(e.clientX, e.clientY);
-    drawStrokeTo(x, y);
-  };
-
-  const handlePointerUp = (e) => {
-    if (isDrawing) {
-      isDrawing = false;
-      try { canvas.releasePointerCapture(e.pointerId); } catch(err) {}
-      tracingCtx.beginPath();
-    }
-  };
-
-  canvas.onpointerdown = handlePointerDown;
-  canvas.onpointermove = handlePointerMove;
-  canvas.onpointerup = handlePointerUp;
-  canvas.onpointercancel = handlePointerUp;
-
-  // --- NATIVE TOUCH FALLBACK (with { passive: false }) ---
-  canvas.addEventListener('touchstart', (e) => {
-    if (e.touches && e.touches.length > 0) {
-      e.preventDefault();
-      const t = e.touches[0];
+    const startDraw = (coords) => {
       isDrawing = true;
-      const { x, y } = getCanvasCoords(t.clientX, t.clientY);
+      tracingCtx.lineWidth = 14;
+      tracingCtx.lineCap = 'round';
+      tracingCtx.lineJoin = 'round';
+      tracingCtx.strokeStyle = brushColor;
+      tracingCtx.fillStyle = brushColor;
+
+      // Draw dot immediately on initial touch/click
       tracingCtx.beginPath();
-      tracingCtx.moveTo(x, y);
-      drawStrokeTo(x, y);
+      tracingCtx.arc(coords.x, coords.y, 7, 0, Math.PI * 2);
+      tracingCtx.fill();
+
+      // Begin stroke path
+      tracingCtx.beginPath();
+      tracingCtx.moveTo(coords.x, coords.y);
+    };
+
+    const moveDraw = (coords) => {
+      if (!isDrawing) return;
+      tracingCtx.lineWidth = 14;
+      tracingCtx.lineCap = 'round';
+      tracingCtx.lineJoin = 'round';
+      tracingCtx.strokeStyle = brushColor;
+
+      tracingCtx.lineTo(coords.x, coords.y);
+      tracingCtx.stroke();
+      tracingCtx.beginPath();
+      tracingCtx.moveTo(coords.x, coords.y);
+    };
+
+    const stopDraw = () => {
+      if (isDrawing) {
+        isDrawing = false;
+        if (tracingCtx) tracingCtx.beginPath();
+      }
+    };
+
+    // Use Pointer Events (modern touch, pen & mouse unified)
+    if (window.PointerEvent) {
+      canvas.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        startDraw(getCanvasCoords(e));
+      }, { passive: false });
+
+      canvas.addEventListener('pointermove', (e) => {
+        if (!isDrawing) return;
+        e.preventDefault();
+        moveDraw(getCanvasCoords(e));
+      }, { passive: false });
+
+      canvas.addEventListener('pointerup', (e) => {
+        e.preventDefault();
+        stopDraw();
+      }, { passive: false });
+
+      canvas.addEventListener('pointercancel', (e) => {
+        stopDraw();
+      }, { passive: false });
+
+      canvas.addEventListener('pointerleave', (e) => {
+        stopDraw();
+      }, { passive: false });
+
+      window.addEventListener('pointerup', stopDraw);
+    } else {
+      // Legacy Touch + Mouse
+      canvas.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        startDraw(getCanvasCoords(e));
+      }, { passive: false });
+
+      canvas.addEventListener('touchmove', (e) => {
+        if (!isDrawing) return;
+        e.preventDefault();
+        moveDraw(getCanvasCoords(e));
+      }, { passive: false });
+
+      canvas.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        stopDraw();
+      }, { passive: false });
+
+      canvas.addEventListener('touchcancel', stopDraw, { passive: false });
+
+      canvas.addEventListener('mousedown', (e) => {
+        startDraw(getCanvasCoords(e));
+      });
+
+      canvas.addEventListener('mousemove', (e) => {
+        if (!isDrawing) return;
+        moveDraw(getCanvasCoords(e));
+      });
+
+      canvas.addEventListener('mouseup', stopDraw);
+      canvas.addEventListener('mouseleave', stopDraw);
     }
-  }, { passive: false });
-
-  canvas.addEventListener('touchmove', (e) => {
-    if (!isDrawing || !e.touches || e.touches.length === 0) return;
-    e.preventDefault();
-    const t = e.touches[0];
-    const { x, y } = getCanvasCoords(t.clientX, t.clientY);
-    drawStrokeTo(x, y);
-  }, { passive: false });
-
-  canvas.addEventListener('touchend', (e) => {
-    e.preventDefault();
-    isDrawing = false;
-    tracingCtx.beginPath();
-  }, { passive: false });
+  }
 
   drawGuidelinesAndSample();
-}
-
-function getCanvasPos(e) {
-  const canvas = $('tracing-canvas');
-  const rect = canvas.getBoundingClientRect();
-  const scaleX = canvas.width / rect.width;
-  const scaleY = canvas.height / rect.height;
-  return {
-    x: (e.clientX - rect.left) * scaleX,
-    y: (e.clientY - rect.top) * scaleY
-  };
 }
 
 function drawGuidelinesAndSample() {
@@ -4420,10 +4525,10 @@ function switchWritingSub(sub, el) {
   activeWritingSub = sub;
 
   // Highlight sub-tab button
-  if (el) {
-    document.querySelectorAll('#writing-sub-nav .sub-tab-btn').forEach(b => b.classList.remove('active'));
-    el.classList.add('active');
-  }
+  document.querySelectorAll('#writing-sub-nav .sub-tab-btn').forEach(b => {
+    const isTarget = el ? (b === el) : (b.getAttribute('onclick') && b.getAttribute('onclick').includes(sub));
+    b.classList.toggle('active', !!isTarget);
+  });
 
   // Hide all views
   document.querySelectorAll('.view-panel').forEach(panel => panel.style.display = 'none');

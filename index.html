@@ -659,7 +659,7 @@ footer strong {
 
 
 /* Child Exit Lock & Auto-Fullscreen Styles */
-#child-exit-lock-overlay {
+#child-exit-lock-overlay { display: none !important;
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.92);
@@ -966,12 +966,7 @@ footer strong {
           <p class="subject-desc">
             منهج شامل يجمع بين <strong>التأسيس الصوتي المتقن</strong> و<strong>المنهج الأساسي المعتمد</strong> للصف الثالث الابتدائي.
           </p>
-          <div class="subject-features">
-            <div class="feature-item"><span class="dot"></span> <div><strong>📘 منهج SMILE 3:</strong> 6 وحدات تفاعلية ناطقة مع القصص</div></div>
-            <div class="feature-item"><span class="dot"></span> <div><strong>👑 بنك Test King:</strong> 5 نماذج امتحانات وزارية وشهادة ملكية</div></div>
-            <div class="feature-item"><span class="dot"></span> <div><strong>🎬 سينما الحروف:</strong> فيديو مخارج الأصوات ومعمل الدمج</div></div>
-            <div class="feature-item"><span class="dot"></span> <div><strong>✏️ سبورة الخط:</strong> السطور الأربعة وكراسة A4 للطباعة</div></div>
-          </div>
+          
         </div>
         <div style="display:flex; flex-direction:column; gap:10px; margin-top:14px;">
           <a href="Grade3_English_Curriculum.html" class="btn-subject-action btn-action-english" style="box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);">
@@ -995,11 +990,7 @@ footer strong {
           <p class="subject-desc">
             سور القرآن الكريم المقررة، سيرة النبي ﷺ، الآداب والأذكار اليومية وقصص الأنبياء.
           </p>
-          <div class="subject-features">
-            <div class="feature-item"><span class="dot"></span> تلاوة القرآن الكريم بالصوت العذب</div>
-            <div class="feature-item"><span class="dot"></span> بطاقات الأحاديث النبوية المصورة</div>
-            <div class="feature-item"><span class="dot"></span> أذكار المسلم الصغير التفاعلية</div>
-          </div>
+          
         </div>
         <button class="btn-subject-action btn-action-disabled" onclick="notifySoon('التربية الإسلامية')">
           <span>⏳</span> <span>يتم إعداد الدروس لفاطمة</span>
@@ -1018,11 +1009,7 @@ footer strong {
           <p class="subject-desc">
             القراءة السليمة، الإملاء والقواعد، معاني الكلمات، والقصص المشوقة باللغة العربية الفصحى.
           </p>
-          <div class="subject-features">
-            <div class="feature-item"><span class="dot"></span> نصوص القراءة التفاعلية الناطقة</div>
-            <div class="feature-item"><span class="dot"></span> بنك الإملاء والتراكيب اللغوية</div>
-            <div class="feature-item"><span class="dot"></span> قصص مصورة ومسلية للأبطال</div>
-          </div>
+          
         </div>
         <button class="btn-subject-action btn-action-disabled" onclick="notifySoon('اللغة العربية')">
           <span>⏳</span> <span>يتم إعداد الدروس لفاطمة</span>
@@ -1041,11 +1028,7 @@ footer strong {
           <p class="subject-desc">
             جدول الضرب التفاعلي، العمليات الحسابية الذكية، القياس والهندسة، والألغاز المنطقية.
           </p>
-          <div class="subject-features">
-            <div class="feature-item"><span class="dot"></span> لعبة تحدي جدول الضرب السريع</div>
-            <div class="feature-item"><span class="dot"></span> مسائل الحساب التفاعلية بالصور</div>
-            <div class="feature-item"><span class="dot"></span> كسب النجوم وحل الألغاز الرياضية</div>
-          </div>
+          
         </div>
         <button class="btn-subject-action btn-action-disabled" onclick="notifySoon('الرياضيات')">
           <span>⏳</span> <span>يتم إعداد الدروس لفاطمة</span>
@@ -1064,11 +1047,7 @@ footer strong {
           <p class="subject-desc">
             استكشاف الكائنات الحية، عالم النبات والحيوان، حواس الإنسان، والتجارب العلمية الممتعة.
           </p>
-          <div class="subject-features">
-            <div class="feature-item"><span class="dot"></span> صور توضيحية ثلاثية الأبعاد</div>
-            <div class="feature-item"><span class="dot"></span> دورة حياة الكائنات والبيئة</div>
-            <div class="feature-item"><span class="dot"></span> بطاقات التجارب والملاحظة الذكية</div>
-          </div>
+          
         </div>
         <button class="btn-subject-action btn-action-disabled" onclick="notifySoon('العلوم')">
           <span>⏳</span> <span>يتم إعداد الدروس لفاطمة</span>
@@ -1076,21 +1055,7 @@ footer strong {
       </div>
     </div>
 
-    <!-- Spotlight Banner for Grade 3 English Book -->
-    <div class="book-spotlight" style="border-color:#818cf8; background:linear-gradient(135deg, #ffffff 0%, #f5f3ff 100%)">
-      <div class="book-info">
-        <span class="book-badge" style="background:#dcfce7; color:#15803d">✅ تم دمج المنهج بنجاح</span>
-        <h4 class="book-title">منهج كتاب اللغة الإنجليزية (SMILE Book 3 - Grade 3)</h4>
-        <p class="book-desc">
-          تم تحويل كافة وحدات كتاب المنهج الرسمي (الوحدات الست: الدروس، المحادثات، الصوتيات، الأناشيد، والتمارين التفاعلية) إلى نظام ناطق ومصور خاص بفاطمة!
-        </p>
-      </div>
-      <div class="book-action-box">
-        <a href="Grade3_English_Curriculum.html" class="btn-hero-primary" style="padding:10px 20px; font-size:15px">
-          <span>📘</span> <span>فتح منهج الصف الثالث (SMILE 3)</span>
-        </a>
-      </div>
-    </div>
+    
   </section>
 </main>
 
@@ -1269,15 +1234,18 @@ function notifySoon(subj) {
 
 // --- CHILD EXIT LOCK & AUTO-FULLSCREEN CONTROLLER ---
 const CHILD_EXIT_LOCK = {
+  enabled: false,
   currentPinInput: "",
-  isAuthorizedExit: false,
+  isAuthorizedExit: true,
   getSavedPin() {
     return localStorage.getItem('fatima_child_pin') || '1234';
   },
-  setSavedPin(newPin) {
-    localStorage.setItem('fatima_child_pin', newPin);
-  },
+  setSavedPin(newPin) {},
   init() {
+    // Disabled completely per user request until re-evaluated
+    return;
+  },
+  _unused_init() {
     const lbl = document.getElementById('exit-default-pin-lbl');
     if (lbl) lbl.textContent = this.getSavedPin();
 

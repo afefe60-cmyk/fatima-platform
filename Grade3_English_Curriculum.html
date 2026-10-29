@@ -1006,7 +1006,7 @@ footer {
 
 
 /* Child Exit Lock & Auto-Fullscreen Styles */
-#child-exit-lock-overlay {
+#child-exit-lock-overlay { display: none !important;
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.92);
@@ -1604,10 +1604,10 @@ footer {
       <a href="index.html" class="btn-nav-portal">🏠 الرئيسية</a>
       <a href="English_Spelling_Digital_Flashcards.html" class="btn-nav-portal">🌱 مسار التأسيس (Phonics)</a>
       
-      <button class="btn-nav-portal" id="btn-fullscreen-toggle" title="تكبير الشاشة بالكامل" onclick="CHILD_EXIT_LOCK.requestFullscreen()">
+      <button class="btn-nav-portal" id="btn-fullscreen-toggle" style="display:none !important;" title="تكبير الشاشة بالكامل" onclick="CHILD_EXIT_LOCK.requestFullscreen()">
         ⛶ ملء الشاشة
       </button>
-      <button class="btn-nav-portal" id="btn-lock-toggle" style="background:rgba(225,29,72,0.25); border-color:#f43f5e" title="خروج ولي الأمر برمز PIN" onclick="CHILD_EXIT_LOCK.promptExit()">
+      <button class="btn-nav-portal" id="btn-lock-toggle" style="display:none !important;background:rgba(225,29,72,0.25); border-color:#f43f5e" title="خروج ولي الأمر برمز PIN" onclick="CHILD_EXIT_LOCK.promptExit()">
         🚪 خروج (PIN)
       </button>
       <div class="stars-badge">⭐ <span id="stars-val">0</span></div>
@@ -2876,15 +2876,18 @@ renderUnitContent();
 
 // --- CHILD EXIT LOCK & AUTO-FULLSCREEN CONTROLLER ---
 const CHILD_EXIT_LOCK = {
+  enabled: false,
   currentPinInput: "",
-  isAuthorizedExit: false,
+  isAuthorizedExit: true,
   getSavedPin() {
     return localStorage.getItem('fatima_child_pin') || '1234';
   },
-  setSavedPin(newPin) {
-    localStorage.setItem('fatima_child_pin', newPin);
-  },
+  setSavedPin(newPin) {},
   init() {
+    // Disabled completely per user request until re-evaluated
+    return;
+  },
+  _unused_init() {
     const lbl = document.getElementById('exit-default-pin-lbl');
     if (lbl) lbl.textContent = this.getSavedPin();
 
