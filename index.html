@@ -517,26 +517,29 @@ main {
 }
 .feature-item {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  align-items: flex-start;
+  gap: 10px;
   font-size: 13px;
-  font-weight: 700;
+  line-height: 1.5;
+  font-weight: 600;
   color: #334155;
 }
 .feature-item span.dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
+  margin-top: 6px;
+  flex-shrink: 0;
   border-radius: 50%;
   background: #cbd5e1;
 }
-.subject-card.english .feature-item span.dot { background: #3b82f6; }
+.subject-card.english .feature-item span.dot { background: #2563eb; }
 
 /* Action Button inside Card */
 .btn-subject-action {
   width: 100%;
-  padding: 12px;
+  padding: 12px 14px;
   border-radius: 14px;
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 800;
   border: none;
   cursor: pointer;
@@ -545,6 +548,8 @@ main {
   justify-content: center;
   gap: 8px;
   text-decoration: none;
+  white-space: nowrap;
+  letter-spacing: -0.2px;
   transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .btn-action-english {
@@ -950,11 +955,11 @@ footer strong {
 
     <div class="subjects-grid">
       <!-- 1. English Language (ACTIVE) -->
-      <div class="subject-card english">
+      <div class="subject-card english" style="border: 3px solid #3b82f6; box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1);">
         <div>
           <div class="card-top">
             <div class="subject-icon-box icon-box-english">🇬🇧</div>
-            <span class="status-badge status-active">جاهز ومفعّل (مساران) 🚀</span>
+            <span class="status-badge status-active" style="background:#eff6ff; color:#1d4ed8; border:1px solid #93c5fd;">جاهز ومفعّل بالكامل 🌟</span>
           </div>
           <h4 class="subject-name">اللغة الإنجليزية</h4>
           <span class="subject-name-en">English Language • Foundation & SMILE 3</span>
@@ -962,13 +967,15 @@ footer strong {
             منهج شامل يجمع بين <strong>التأسيس الصوتي المتقن</strong> و<strong>المنهج الأساسي المعتمد</strong> للصف الثالث الابتدائي.
           </p>
           <div class="subject-features">
-            <div class="feature-item"><span class="dot"></span> <strong>📘 المنهج الأساسي:</strong> 6 وحدات دراسية، الكلمات والمحادثات، وبنك امتحانات Test King 👑</div>
-            <div class="feature-item"><span class="dot"></span> <strong>🌱 مسار التأسيس:</strong> سينما وفيديو الحروف، الأصوات والدمج، سبورة الخط، وكراسة الطباعة A4 ✏️</div>
+            <div class="feature-item"><span class="dot"></span> <div><strong>📘 منهج SMILE 3:</strong> 6 وحدات تفاعلية ناطقة مع القصص</div></div>
+            <div class="feature-item"><span class="dot"></span> <div><strong>👑 بنك Test King:</strong> 5 نماذج امتحانات وزارية وشهادة ملكية</div></div>
+            <div class="feature-item"><span class="dot"></span> <div><strong>🎬 سينما الحروف:</strong> فيديو مخارج الأصوات ومعمل الدمج</div></div>
+            <div class="feature-item"><span class="dot"></span> <div><strong>✏️ سبورة الخط:</strong> السطور الأربعة وكراسة A4 للطباعة</div></div>
           </div>
         </div>
-        <div style="display:flex; flex-direction:column; gap:12px; margin-top:16px;">
-          <a href="Grade3_English_Curriculum.html" class="btn-subject-action btn-action-english">
-            <span>📘</span> <span>دخول المنهج الأساسي (SMILE Book 3)</span>
+        <div style="display:flex; flex-direction:column; gap:10px; margin-top:14px;">
+          <a href="Grade3_English_Curriculum.html" class="btn-subject-action btn-action-english" style="box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);">
+            <span>📘</span> <span>دخول المنهج الأساسي (SMILE 3)</span>
           </a>
           <a href="English_Spelling_Digital_Flashcards.html" class="btn-subject-action" style="background:#eff6ff; color:#1d4ed8; border:2px solid #bfdbfe; font-weight:800;">
             <span>🌱</span> <span>دخول مسار التأسيس الشامل</span>
